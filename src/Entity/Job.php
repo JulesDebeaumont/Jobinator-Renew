@@ -74,6 +74,12 @@ class Job
      */
     private $applications;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Recruter::class, inversedBy="job")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $recruter;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -230,6 +236,18 @@ class Job
                 $application->setJob(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRecruter(): ?Recruter
+    {
+        return $this->recruter;
+    }
+
+    public function setRecruter(?Recruter $recruter): self
+    {
+        $this->recruter = $recruter;
 
         return $this;
     }

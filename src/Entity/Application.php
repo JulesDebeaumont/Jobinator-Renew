@@ -28,6 +28,12 @@ class Application
      */
     private $job;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Candidat::class, inversedBy="applications")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $candidat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +59,18 @@ class Application
     public function setJob(?Job $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    public function getCandidat(): ?Candidat
+    {
+        return $this->candidat;
+    }
+
+    public function setCandidat(?Candidat $candidat): self
+    {
+        $this->candidat = $candidat;
 
         return $this;
     }
