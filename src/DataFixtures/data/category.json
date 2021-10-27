@@ -1,0 +1,26 @@
+[
+    {
+        "name" : "Agriculture"
+    },
+    {
+        "name" : "Informatique"
+    },
+    {
+        "name" : "Commerce"
+    },
+    {
+        "name" : "Agroalimentaire"
+    },
+    {
+        "name" : "Finance"
+    },
+    {
+        "name" : "Evenementiel"
+    },
+    {
+        "name" : "Industrie"
+    },
+    {
+        "name" : "Artisan"
+    }
+]
