@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body, html {
+    background-color: #222;
+    font-family: 'Rubik', sans-serif;
+    font-variant: small-caps;
+    color: #fff;
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/city.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.navbar-dark {
+    background-color: #00000040;
+}
+
+.navbar {
+    font-size: 1.5em;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+}
