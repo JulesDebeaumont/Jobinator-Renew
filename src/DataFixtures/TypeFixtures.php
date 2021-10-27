@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Type;
+use App\Factory\TypeFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -10,7 +10,7 @@ class TypeFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $$types = json_decode(file_get_contents(implode(
+        $types = json_decode(file_get_contents(implode(
             DIRECTORY_SEPARATOR,
             [__DIR__, 
             'data', 
@@ -18,12 +18,7 @@ class TypeFixtures extends Fixture
 
         foreach ($types as $type)
         {
-            $newType = new Type;
-            $newType->setName($type['name']);
-
-            $manager->persist($newType);
+            TypeFactory::new()->create($type);
         }
-
-        $manager->flush();
     }
 }

@@ -10,10 +10,10 @@ fg=green</panel_attributes><additional_attributes></additional_attributes></elem
 --
 date: Date
 name: string
-start: Date
 descr: string
 pay: string
 location: string
+departement: string
 isRemote: bool
 experienceNeeded: integer
 isSignaled: bool

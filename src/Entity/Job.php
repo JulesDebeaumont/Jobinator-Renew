@@ -25,11 +25,6 @@ class Job
     private $name;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $start;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -40,12 +35,12 @@ class Job
     private $pay;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $location;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $isRemote;
 
@@ -80,6 +75,11 @@ class Job
      */
     private $recruter;
 
+    /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private $departement;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -98,18 +98,6 @@ class Job
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getStart(): ?\DateTimeInterface
-    {
-        return $this->start;
-    }
-
-    public function setStart(\DateTimeInterface $start): self
-    {
-        $this->start = $start;
 
         return $this;
     }
@@ -248,6 +236,18 @@ class Job
     public function setRecruter(?Recruter $recruter): self
     {
         $this->recruter = $recruter;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?string
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?string $departement): self
+    {
+        $this->departement = $departement;
 
         return $this;
     }
