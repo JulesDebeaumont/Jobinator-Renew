@@ -39,10 +39,11 @@ final class JobFactory extends ModelFactory
             'name' => self::faker()->jobTitle(),
             'description' => self::faker()->realText(1000),
             'location' => self::faker()->city(),
-            'isSignaled' => self::faker()->boolean(95),
+            'isSignaled' => self::faker()->boolean(2),
             'departement' => self::faker()->randomNumber(2),
-            'isRemote' => self::faker()->boolean(80),
-            'experienceNeeded' => self::faker()->randomDigitNot([6 ,7 ,8 ,9]),
+            'isRemote' => self::faker()->boolean(15),
+            'pay' => self::faker()->randomNumber(5),
+            'experienceNeeded' => self::faker()->optional()->randomDigitNot([6, 7, 8, 9]),
             'type' => TypeFactory::random(),
             'category' => CategoryFactory::random(),
             'recruter' => RecruterFactory::random()
@@ -53,8 +54,14 @@ final class JobFactory extends ModelFactory
     {
         // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
         return $this
-            // ->afterInstantiate(function(Job $job) {})
-        ;
+            ->beforeInstantiate(function (array $attributes) {
+                if ($attributes['isRemote'] === true) {
+                    $attributes['location'] = NULL;
+                    $attributes['departement'] = NULL;
+                }
+
+                return $attributes;
+            });
     }
 
     protected static function getClass(): string

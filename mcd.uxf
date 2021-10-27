@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>130</x><y>20</y><w>120</w><h>160</h></coordinates><panel_attributes>User
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>130</x><y>10</y><w>120</w><h>160</h></coordinates><panel_attributes>User
 --
 mail: string
 password: string
@@ -6,9 +6,8 @@ role: string
 name: string
 surname: string
 birthday: Date
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>220</y><w>170</w><h>190</h></coordinates><panel_attributes>Job
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>210</y><w>170</w><h>190</h></coordinates><panel_attributes>Job
 --
-date: Date
 name: string
 descr: string
 pay: string
@@ -17,55 +16,54 @@ departement: string
 isRemote: bool
 experienceNeeded: integer
 isSignaled: bool
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>20</y><w>150</w><h>80</h></coordinates><panel_attributes>(enum)Category&lt;string&gt;
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>10</y><w>150</w><h>80</h></coordinates><panel_attributes>(enum)Category&lt;string&gt;
 --
 IT
 Management
 Cooking
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>470</y><w>120</w><h>70</h></coordinates><panel_attributes>Application
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>460</y><w>120</w><h>70</h></coordinates><panel_attributes>Application
 --
-date: Date
 descr: string
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>10</y><w>140</w><h>90</h></coordinates><panel_attributes>(enum)Type&lt;string&gt;
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>0</y><w>140</w><h>90</h></coordinates><panel_attributes>(enum)Type&lt;string&gt;
 --
 CDI
 CDD
 Interim
 Stage
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>470</y><w>120</w><h>70</h></coordinates><panel_attributes>File
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>460</y><w>120</w><h>70</h></coordinates><panel_attributes>File
 --
 path: string
 name: string
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>270</y><w>120</w><h>90</h></coordinates><panel_attributes>Candidat
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>260</y><w>120</w><h>90</h></coordinates><panel_attributes>Candidat
 --
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>90</y><w>130</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>80</y><w>130</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
 m1=0,1
 m2=0,n
 has ^
-fg=green</panel_attributes><additional_attributes>10;10;10;80;90;80;90;130</additional_attributes></element><element><id>Relation</id><coordinates><x>690</x><y>90</y><w>150</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+fg=green</panel_attributes><additional_attributes>10;10;10;80;90;80;90;130</additional_attributes></element><element><id>Relation</id><coordinates><x>690</x><y>80</y><w>150</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
 m1=0,1
 m2=0,n
 has ^
-fg=green</panel_attributes><additional_attributes>110;10;110;70;10;70;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>380</y><w>160</w><h>110</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
+fg=green</panel_attributes><additional_attributes>110;10;110;70;10;70;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>370</y><w>160</w><h>110</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
 m1=0,n
 m2=1
 submits ^
-fg=green</panel_attributes><additional_attributes>10;90;10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>500</y><w>360</w><h>50</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
+fg=green</panel_attributes><additional_attributes>10;90;10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>490</y><w>360</w><h>50</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
 m1=0,n
 m2=1
-contains &gt;</panel_attributes><additional_attributes>340;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>350</y><w>250</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
+contains &gt;</panel_attributes><additional_attributes>340;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>340</y><w>250</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
 m1=1
 m2=0,n
 creates v
-fg=green</panel_attributes><additional_attributes>10;10;10;170;230;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>200</x><y>270</y><w>140</w><h>90</h></coordinates><panel_attributes>Recruter
+fg=green</panel_attributes><additional_attributes>10;10;10;170;230;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>200</x><y>260</y><w>140</w><h>90</h></coordinates><panel_attributes>Recruter
 --
 company: string
 roleInCompany: string
 mailCompany: string
-fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>310</y><w>260</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
+fg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>300</y><w>260</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
 m1=1
 m2=0,n
 gives &gt;
-fg=green</panel_attributes><additional_attributes>10;20;240;20</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>170</y><w>120</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
-fg=green</panel_attributes><additional_attributes>100;100;100;70;10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>170</y><w>110</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+fg=green</panel_attributes><additional_attributes>10;20;240;20</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>160</y><w>120</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+fg=green</panel_attributes><additional_attributes>100;100;100;70;10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>160</y><w>110</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
 fg=green</panel_attributes><additional_attributes>10;100;10;70;90;70;90;10</additional_attributes></element></diagram>

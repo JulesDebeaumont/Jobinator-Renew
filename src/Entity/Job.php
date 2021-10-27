@@ -131,7 +131,7 @@ class Job
         return $this->location;
     }
 
-    public function setLocation(string $location): self
+    public function setLocation(?string $location): self
     {
         $this->location = $location;
 
@@ -155,7 +155,7 @@ class Job
         return $this->experienceNeeded;
     }
 
-    public function setExperienceNeeded(int $experienceNeeded): self
+    public function setExperienceNeeded(?int $experienceNeeded): self
     {
         $this->experienceNeeded = $experienceNeeded;
 
@@ -170,6 +170,18 @@ class Job
     public function setIsSignaled(bool $isSignaled): self
     {
         $this->isSignaled = $isSignaled;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?string
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?string $departement): self
+    {
+        $this->departement = $departement;
 
         return $this;
     }
@@ -240,15 +252,5 @@ class Job
         return $this;
     }
 
-    public function getDepartement(): ?string
-    {
-        return $this->departement;
-    }
 
-    public function setDepartement(?string $departement): self
-    {
-        $this->departement = $departement;
-
-        return $this;
-    }
 }
