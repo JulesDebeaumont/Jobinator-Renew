@@ -26,12 +26,41 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                    {% if is_granted('ROLE_CANDIDAT') %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ path('app_login') }}">My applications</a>
+                        </li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_RECRUTER') %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ path('app_login') }}">My jobs</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_login') }}">My profil</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_logout') }}">Log out</a>
+                    </li>
+
+                {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ path('app_login') }}">Log in</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ path('app_login') }}">Register</a>
                     </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_login') }}">About</a>
+                </li>
+
                 </ul>
             </div>
         </div>

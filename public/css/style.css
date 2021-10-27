@@ -31,3 +31,10 @@ body {
 .navbar-brand {
     font-size: 1.5em;
 }
+ .main-search {
+     margin-top: 200px;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+ }
