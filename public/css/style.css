@@ -95,15 +95,14 @@ body {
     }
  }
 
-
- .register-form {
+ .register-form, .login-form {
     margin: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
  }
 
- .register-form > * {
+ .register-form > *, .login-form > * {
     margin: 10px 0px;
 }
 
