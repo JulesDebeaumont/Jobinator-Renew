@@ -33,7 +33,7 @@ class HomeController extends AbstractController
 
         $query = $jobRepository->createQueryBuilder('j')
             ->select('j', 'c', 't')
-            ->leftJoin('j.catgory', 'c')
+            ->leftJoin('j.category', 'c')
             ->leftJoin('j.type', 't')
             ->leftJoin('j.recruter', 'r')
             ->where('
@@ -47,7 +47,7 @@ class HomeController extends AbstractController
 
         $jobs = $query->getResult();
 
-        return $this->render('search/index.html.twig', [
+        return $this->render('home/search.html.twig', [
             'jobs' => $jobs
         ]);
     }

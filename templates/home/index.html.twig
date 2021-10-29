@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {% if path(app.request.attributes.get('_route')) is same as('/') %}
+        <div class="blank-divider"></div>
+    {% endif %}
+    
 <div class="main-page">
 
     <h1>The job seeker app where companies responds to every applicants.</h1>
 
     <form>
+    
         <div class="home-search">
 
             <div class="input-group">
@@ -24,7 +30,9 @@
                 aria-label="City, department.." aria-describedby="basic-addon1" name="job-where">
             </div>
 
-            <button type="submit" class="btn btn-dark">Search</button>
+            <button type="submit" class="btn btn-dark">
+                <a href="{{ path('search')}}">Search</a>
+            </button>
         </div>
     </form>
 </div>
