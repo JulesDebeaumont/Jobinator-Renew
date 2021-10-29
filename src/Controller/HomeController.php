@@ -24,7 +24,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function search(Request $request): Response {
+    public function search(Request $request): Response
+    {
         $jobRepository = $this->getDoctrine()->getRepository(Job::class);
 
         // Choppe la valeur de l'input avec la props name="job-what"
@@ -40,7 +41,7 @@ class HomeController extends AbstractController
             (j.name LIKE :jobWhat OR j.name LIKE r.company) 
             AND 
             (j.departement LIKE :jobWhere OR j.location LIKE :jobWhere)')
-            ->setParameter('jobWhat' , "%{$jobWhat}%")
+            ->setParameter('jobWhat', "%{$jobWhat}%")
             ->setParameter('jobWhere', "%{$jobWhere}%")
             ->orderBy('j.updatedAt')
             ->getQuery();
@@ -50,5 +51,13 @@ class HomeController extends AbstractController
         return $this->render('home/search.html.twig', [
             'jobs' => $jobs
         ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about(): Response
+    {
+        return $this->render('home/about.html.twig');
     }
 }
