@@ -1,11 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="main-search">
+<div class="main-page">
 
-    <h3>The job seeker app where companies responds to every applicants.</h3>
-    <h6>Try it out!</h6>
-    <button type="button" class="btn btn-dark">Search</button>
+    <h1>The job seeker app where companies responds to every applicants.</h1>
+
+    <div class="home-search">
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text label-input" for="job-what"><strong>What</strong></label>
+            </div>
+            <input type="text" class="form-control" id="job-what" placeholder="Job, company.." 
+            aria-label="Job, company.." aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text label-input" for="job-where"><strong>Where</strong></label>
+            </div>
+            <input type="text" class="form-control" id="job-where" placeholder="City, department.." 
+            aria-label="City, department.." aria-describedby="basic-addon1">
+        </div>
+
+        <button type="button" class="btn btn-dark">Search</button>
+    </div>
 </div>
 
 {% endblock %}
