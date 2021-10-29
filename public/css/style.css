@@ -93,6 +93,10 @@ body {
     .blank-divider {
         margin-top: 25%;
     }
+
+    .small-blank-divider {
+        margin-top: 15%;
+    }
  }
 
  .register-form, .login-form {
