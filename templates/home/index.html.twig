@@ -2,39 +2,41 @@
 
 {% block body %}
 
-    {% if path(app.request.attributes.get('_route')) is same as('/') %}
-        <div class="blank-divider"></div>
-    {% endif %}
-    
-<div class="main-page">
+	{% if path(app.request.attributes.get('_route')) is same as('/') %}
+		<div class="blank-divider"></div>
+	{% endif %}
 
-    <h1>The job seeker app where companies responds to every applicants.</h1>
+	<div class="main-page">
 
-    <form>
-    
-        <div class="home-search">
+		<h1>The job seeker app where companies responds to every applicants.</h1>
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <label class="input-group-text label-input" for="job-what"><strong>What</strong></label>
-                </div>
-                <input type="text" class="form-control" id="job-what" placeholder="Job, company.." 
-                aria-label="Job, company.." aria-describedby="basic-addon1" name="job-what">
-            </div>
+		<form>
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <label class="input-group-text label-input" for="job-where"><strong>Where</strong></label>
-                </div>
-                <input type="text" class="form-control" id="job-where" placeholder="City, department.." 
-                aria-label="City, department.." aria-describedby="basic-addon1" name="job-where">
-            </div>
+			<div class="home-search">
 
-            <button type="submit" class="btn btn-dark">
-                <a href="{{ path('search')}}">Search</a>
-            </button>
-        </div>
-    </form>
-</div>
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text label-input" for="job-what">
+							<strong>What</strong>
+						</label>
+					</div>
+					<input type="text" class="form-control" id="job-what" placeholder="Job, company.." aria-label="Job, company.." aria-describedby="basic-addon1" name="job-what">
+				</div>
+
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text label-input" for="job-where">
+							<strong>Where</strong>
+						</label>
+					</div>
+					<input type="text" class="form-control" id="job-where" placeholder="City, department.." aria-label="City, department.." aria-describedby="basic-addon1" name="job-where">
+				</div>
+
+				<button type="submit" class="btn btn-dark">
+					<a href="{{ path('search')}}">Search</a>
+				</button>
+			</div>
+		</form>
+	</div>
 
 {% endblock %}

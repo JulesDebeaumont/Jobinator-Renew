@@ -31,6 +31,7 @@ body {
 .navbar-brand {
     font-size: 1.5em;
 }
+
  .main-page {
      margin-top: 20px;
      display: flex;
@@ -84,6 +85,10 @@ body {
      margin-top: 15%;
  }
 
+ .small-blank-divider {
+     margin-top: 8%;
+ }
+
  @media screen and ( max-width: 1050px ) {
     .blank-divider {
         margin-top: 25%;
@@ -91,3 +96,26 @@ body {
  }
 
 
+ .register-form {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ }
+
+ .register-form > * {
+    margin: 10px 0px;
+}
+
+.form-text {
+    color: #fff;
+    font-size: 1.0em;
+}
+
+.invalid-feedback {
+    font-size: 1.0em;
+}
+
+.form-group-label {
+    font-size: 1.2em;
+}
