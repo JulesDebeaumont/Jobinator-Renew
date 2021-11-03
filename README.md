@@ -18,8 +18,7 @@ By *Jules Debeaumont*
 
 - Log as admin on your localhost/phpmyadmin
 - Make a new user for the Symfony5 access
-- Copy the .env file
-- Paste and rename the second one to .env.local at /
+- Copy the .env file `cp .env .env.local`
 - Add .env.local to gitignore file
 - In the .env.local:
 

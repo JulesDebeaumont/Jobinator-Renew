@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="main-page">
+		<div class="small-blank-divider"></div>
+		<h1>My profil</h1>
+		<div class="profil">
+			<div>{{ user.name }} & {{ user.surname}}</div>
+		</div>
+	</div>
+{% endblock %}

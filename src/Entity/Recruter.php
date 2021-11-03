@@ -18,23 +18,13 @@ class Recruter extends User
     private $company;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $roleInCompany;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $mailCompany;
-
-    /**
      * @ORM\OneToMany(targetEntity=Job::class, mappedBy="recruter", orphanRemoval=true)
      */
-    private $job;
+    private $jobs;
 
     public function __construct()
     {
-        $this->job = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
     }
 
     public function getCompany(): ?string
@@ -49,42 +39,18 @@ class Recruter extends User
         return $this;
     }
 
-    public function getRoleInCompany(): ?string
-    {
-        return $this->roleInCompany;
-    }
-
-    public function setRoleInCompany(?string $roleInCompany): self
-    {
-        $this->roleInCompany = $roleInCompany;
-
-        return $this;
-    }
-
-    public function getMailCompany(): ?string
-    {
-        return $this->mailCompany;
-    }
-
-    public function setMailCompany(?string $mailCompany): self
-    {
-        $this->mailCompany = $mailCompany;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Job[]
      */
-    public function getJob(): Collection
+    public function getJobs(): Collection
     {
-        return $this->job;
+        return $this->jobs;
     }
 
     public function addJob(Job $job): self
     {
-        if (!$this->job->contains($job)) {
-            $this->job[] = $job;
+        if (!$this->jobs->contains($job)) {
+            $this->jobs[] = $job;
             $job->setRecruter($this);
         }
 
@@ -93,7 +59,7 @@ class Recruter extends User
 
     public function removeJob(Job $job): self
     {
-        if ($this->job->removeElement($job)) {
+        if ($this->jobs->removeElement($job)) {
             // set the owning side to null (unless already changed)
             if ($job->getRecruter() === $this) {
                 $job->setRecruter(null);
@@ -102,4 +68,5 @@ class Recruter extends User
 
         return $this;
     }
+
 }
