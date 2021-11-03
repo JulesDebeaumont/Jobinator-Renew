@@ -24,6 +24,10 @@ class RegistrationController extends AbstractController
         UserAuthenticatorInterface $userAuthenticator
     ): Response {
 
+        // auto redirect if already logged in
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
 
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -45,7 +49,7 @@ class RegistrationController extends AbstractController
 
             // auto log in
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
-      }
+        }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

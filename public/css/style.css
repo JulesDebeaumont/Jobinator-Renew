@@ -77,7 +77,7 @@ body {
  }
 
  a, a:visited {
-    color: var(--bs-blue);
+    color: rgb(126, 208, 255);
     text-decoration: none;
  }
 
