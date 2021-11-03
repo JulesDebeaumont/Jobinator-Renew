@@ -5,19 +5,16 @@
 		<div class="small-blank-divider"></div>
 
 		<form method="post">
-			{% if error %}
-				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
-
-			{% if app.user %}
-				<div class="mb-3">
-					You are logged in as
-					{{ app.user.username }},
-					<a href="{{ path('app_logout') }}">Logout</a>
-				</div>
-			{% endif %}
 
 			<h1>Log in</h1>
+
+			{% if error %}
+				{% if error.messageKey|trans(error.messageData, 'security') is same as('Invalid credentials.') %}
+					<div class="alert">Wrong email or wrong password.</div>
+				{% else %}
+					<div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+			{% endif %}
 
 			<div class="login-form">
 				<div class="form-group">

@@ -77,8 +77,13 @@ body {
  }
 
  a, a:visited {
-     color: #fff;
-     text-decoration: none;
+    color: rgb(126, 208, 255);
+    text-decoration: none;
+ }
+
+ a:hover {
+    color: rgb(57, 182, 255);
+    transition: all 0.2ms;
  }
 
  .blank-divider {
@@ -121,4 +126,9 @@ body {
 
 .form-group-label {
     font-size: 1.2em;
+}
+
+.alert {
+    color: var(--bs-red);
+    font-size: 1.5em;
 }
