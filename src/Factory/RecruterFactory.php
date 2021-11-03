@@ -42,12 +42,8 @@ final class RecruterFactory extends ModelFactory
         return [
             'email' => self::faker()->unique()->safeEmail(),
             'password' => self::faker()->text(),
-            'name' => self::faker()->firstName(),
-            'surname' => self::faker()->lastName(),
-            'birthday' => self::faker()->dateTime(),
             'company' => self::faker()->company(),
-            'roleInCompany' => self::faker()->jobTitle(),
-            'mailCompany' => self::faker()->unique()->safeEmail()
+            'roles' => ['ROLE_USER' ,'ROLE_RECRUTER']
         ];
     }
 

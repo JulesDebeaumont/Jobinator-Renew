@@ -41,10 +41,15 @@ final class CandidatFactory extends ModelFactory
     {
         return [
             'email' => self::faker()->unique()->safeEmail(),
-            'password' => self::faker()->text(),
+            'password' => self::faker()->password(),
             'name' => self::faker()->firstName(),
             'surname' => self::faker()->lastName(),
-            'birthday' => self::faker()->dateTime()
+            'birthday' => self::faker()->dateTime(),
+            'phone' => self::faker()->phoneNumber(),
+            'country' => self::faker()->country(),
+            'city' => self::faker()->city(),
+            'departement' => self::faker()->randomNumber(2),
+            'roles' => ['ROLE_USER' ,'ROLE_CANDIDAT']
         ];
     }
 
