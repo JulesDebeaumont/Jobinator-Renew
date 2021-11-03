@@ -7,13 +7,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class RegistrationCandidatFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -53,6 +54,27 @@ class RegistrationFormType extends AbstractType
                 'second_options' => [
                     'label' => 'Password confirmation'
                 ]
+            ])
+            ->add('name', TextType::class, [
+                'label' => 'Firstname'
+            ])
+            ->add('surname', TextType::class, [
+                'label' => 'Lastname'
+            ])
+            ->add('birthday', DateType::class, [
+                'label' => 'Birthday'
+            ])
+            ->add('phone', TextType::class, [
+                'label' => 'Phone number'
+            ])
+            ->add('country', TextType::class, [
+                'label' => 'Country'
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'City'
+            ])
+            ->add('departement', TextType::class, [
+                'label' => 'Department'
             ]);
     }
 

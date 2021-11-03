@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="main-page">
+		<div class="small-blank-divider"></div>
+		<h1>Register</h1>
+		<div class="register-buttons">
+			<button class="btn btn-dark">
+				<a href="{{ path('app_register_candidat') }}">I am candidat</a>
+			</button>
+            <button class="btn btn-dark">
+				<a href="{{ path('app_register_recruter') }}">I am recruter</a>
+			</button>
+		</div>
+	</div>
+{% endblock %}
