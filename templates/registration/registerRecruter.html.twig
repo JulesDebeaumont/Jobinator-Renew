@@ -2,42 +2,60 @@
 
 {% block body %}
 	<div class="main-page">
-		<div class="small-blank-divider"></div>
+		<div class="tiny-blank-divider"></div>
 
-		<h1>Register</h1>
+		<h1>Register as recruter</h1>
 
 		{{ form_start(registrationForm) }}
 
 		<div class="register-form">
-			<div class="form-group">
-				<label for="registration_form[email]" class="form-group-label">
-					<strong>{{ form_label(registrationForm.email) }}</strong>
-				</label>
-				{{ form_widget(registrationForm.email) }}
-				<div class="input-error">{{ form_errors(registrationForm.email) }}</div>
+
+			<span class="misc-info">
+				<i>"There is normally a bunch of stuff you would required as a company<br/>
+					for security purpose, but I just got the form really standard just to check out how the app is going."</i>
+			</span>
+
+			<div class="aligned-input">
+				<div class="form-group">
+					<label for="registration_form[email]" class="form-group-label">
+						<strong>{{ form_label(registrationForm.email) }}</strong>
+					</label>
+					{{ form_widget(registrationForm.email) }}
+					<div class="input-error">{{ form_errors(registrationForm.email) }}</div>
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[password][first]" class="form-group-label">
+						<strong>{{ form_label(registrationForm.password.first) }}</strong>
+					</label>
+					{{ form_widget(registrationForm.password.first) }}
+					{% if form_errors(registrationForm.password.first) is same as('') %}
+						<small id="passwordHelp" class="form-text text-muted">{{ form_help(registrationForm.password.first) }}</small>
+					{% endif %}
+					<div class="input-error">{{ form_errors(registrationForm.password.first) }}</div>
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[password][second]" class="form-group-label">
+						<strong>{{ form_label(registrationForm.password.second) }}</strong>
+					</label>
+					{{ form_widget(registrationForm.password.second) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[company]" class="form-group-label">
+						<strong>{{ form_label(registrationForm.company) }}</strong>
+					</label>
+					{{ form_widget(registrationForm.company) }}
+				</div>
+				<button type="submit" class="btn btn-dark submit-form-button">Register</button>
 			</div>
 
-			<div class="form-group">
-				<label for="registration_form[password][first]" class="form-group-label">
-					<strong>{{ form_label(registrationForm.password.first) }}</strong>
-				</label>
-				{{ form_widget(registrationForm.password.first) }}
-				{% if form_errors(registrationForm.password.first) is same as('') %}
-					<small id="passwordHelp" class="form-text text-muted">{{ form_help(registrationForm.password.first) }}</small>
-				{% endif %}
-				<div class="input-error">{{ form_errors(registrationForm.password.first) }}</div>
-			</div>
 
-			<div class="form-group">
-				<label for="registration_form[password][second]" class="form-group-label">
-					<strong>{{ form_label(registrationForm.password.second) }}</strong>
-				</label>
-				{{ form_widget(registrationForm.password.second) }}
-			</div>
-
-			<button type="submit" class="btn btn-dark submit-form">Register</button>
 		</div>
 
 		{{ form_end(registrationForm) }}
+
+		<div class="small-blank-divider"></div>
 	</div>
 {% endblock %}
