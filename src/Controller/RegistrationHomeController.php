@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Candidat;
+use App\Entity\Recruter;
 use App\Form\RegistrationCandidatFormType;
 use App\Form\RegistrationRecruterFormType;
 use App\Security\LoginFormAnthenticatorAuthenticator;
@@ -47,7 +48,7 @@ class RegistrationHomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        $user = new User();
+        $user = new Candidat();
         $form = $this->createForm(RegistrationCandidatFormType::class, $user);
         $form->handleRequest($request);
 
@@ -90,7 +91,7 @@ class RegistrationHomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        $user = new User();
+        $user = new Recruter();
         $form = $this->createForm(RegistrationRecruterFormType::class, $user);
         $form->handleRequest($request);
 

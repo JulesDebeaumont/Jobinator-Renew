@@ -21,6 +21,7 @@ class RegistrationCandidatFormType extends AbstractType
         $builder
             ->add('email', TextType::class, [
                 'label' => 'Email',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Email is required',
@@ -56,25 +57,32 @@ class RegistrationCandidatFormType extends AbstractType
                 ]
             ])
             ->add('name', TextType::class, [
-                'label' => 'Firstname'
+                'label' => 'Firstname',
+                'required' => false
             ])
             ->add('surname', TextType::class, [
-                'label' => 'Lastname'
+                'label' => 'Lastname',
+                'required' => false
             ])
             ->add('birthday', DateType::class, [
-                'label' => 'Birthday'
+                'label' => 'Birthday',
+                'required' => false
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Phone number'
+                'label' => 'Phone number',
+                'required' => false
             ])
             ->add('country', TextType::class, [
-                'label' => 'Country'
+                'label' => 'Country',
+                'required' => false
             ])
             ->add('city', TextType::class, [
-                'label' => 'City'
+                'label' => 'City',
+                'required' => false
             ])
             ->add('departement', TextType::class, [
-                'label' => 'Department'
+                'label' => 'Department',
+                'required' => false
             ]);
     }
 

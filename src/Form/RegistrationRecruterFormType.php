@@ -20,6 +20,7 @@ class RegistrationRecruterFormType extends AbstractType
         $builder
             ->add('email', TextType::class, [
                 'label' => 'Email',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Email is required',
@@ -55,7 +56,13 @@ class RegistrationRecruterFormType extends AbstractType
                 ]
             ])
             ->add('company', TextType::class, [
-                'label' => 'Company'
+                'label' => 'Company',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Company is required',
+                    ])
+                ]
             ]);
     }
 
