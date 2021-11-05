@@ -2,23 +2,33 @@
 
 {% block body %}
 	<div class="main-page">
-		<div class="small-blank-divider"></div>
+		<div class="tiny-blank-divider"></div>
 		<h1>My profil</h1>
 		<div class="profil">
-		<ul>
-		{% if user[0][0].name %}
-					<li>{{ user[0][0].name }}</li>
-		{% endif %}
-		{% if user[0][0].surname %}
-					<li>{{ user[0][0].surname }}</li>
-		{% endif %}
-		{% if user[0][0] %}
-					<li>{{ user[0][0] }}</li>
-		{% endif %}
-		</ul>
 
-		
-			<div>{{ dump(user) }}</div>
+			<ul class="profil-info">
+				<li>Email:
+					<strong>{{ user[0][0].email }}</strong>
+				</li>
+				<li>Company:
+					<strong>{{ user[0][0].company }}</strong>
+				</li>
+			</ul>
+
+			<div class="small-blank-divider"></div>
+
+			<a href="{{ path('home') }}">
+				<button class="btn btn-dark">Edit my profil</button>
+			</a>
+			<div class="tiny-blank-divider"></div>
+			<a href="{{ path('home') }}">
+				<button class="btn btn-dark">Change my password</button>
+			</a>
+
+			<div class="profil-count">Job count :
+				<a href={{ path('home') }}>{{ user[0][1] }}</a>
+			</div>
+
 		</div>
 	</div>
 {% endblock %}
