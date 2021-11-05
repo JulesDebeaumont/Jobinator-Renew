@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        if ($request) {
+        if ($request->query->get('job-where') || $request->query->get('job-what')) {
             return $this->redirectToRoute('search');
         }
 

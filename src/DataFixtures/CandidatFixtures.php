@@ -22,9 +22,9 @@ class CandidatFixtures extends Fixture
     {
         $candidat = new Candidat();
         $candidat->setEmail('random@yahoo.fr');
-        $candidat->setRoles(['ROLE_ADMIN']);
-        $candidat->setName('Jules');
-        $candidat->setSurname('Debeaumont');
+        $candidat->setRoles(['ROLE_CANDIDAT']);
+        $candidat->setName('Didier');
+        $candidat->setSurname('Moulard');
         $birthday = new DateTime('1995-01-03');
         $candidat->setBirthday($birthday);
         $password = $this->encoder->encodePassword($candidat, '1234');
