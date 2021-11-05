@@ -5,7 +5,7 @@ All images found on https://unsplash.com (copyright free)
 By *Jules Debeaumont*
 
 
-### 1_Installation
+### 🔧 1_Installation 
 
 - Do a `git init`
 - Clone the project
@@ -14,7 +14,7 @@ By *Jules Debeaumont*
 
 
 
-### 2_Configure the Database:
+### ⚙ 2_Configure the Database:
 
 - Log as admin on your localhost/phpmyadmin
 - Make a new user for the Symfony5 access
@@ -34,15 +34,7 @@ Password: `1234`
 *If using other Database (aka MariaDB, SQLite etc...), make sure to change the server version!*
 
 
-### 3_Create the Database:
-
-Run `composer reset`
-
-*This will delete the database if there's one, create a new one depending on the actual entities of the project, apply migrations and load all fixtures.*
-
-
-
-### 4_Launch the server:
+### 🎬 3_Launch the server:
 
 Do a `symfony serve`
 
@@ -50,7 +42,7 @@ Do a `symfony serve`
 `php -S 127.0.0.1:8000 -t public`
 
 
-### 5_Misc:
+### 📎 4_Misc:
 
-- Delete, create and update database schema then run test: `composer test`
-
+- Reset DB and load fixtures `composer reset`
+- To check the 404 Error Page, go to `yourLocalhost/index.php/_error/404`

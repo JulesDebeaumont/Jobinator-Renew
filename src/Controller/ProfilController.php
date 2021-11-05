@@ -62,7 +62,7 @@ class ProfilController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('about'); // TODO make an error controller
+        return $this->redirectToRoute('about');
     }
 
 
@@ -108,6 +108,6 @@ class ProfilController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('about'); // TODO make an error controller
+        return $this->redirectToRoute('about');
     }
 }
