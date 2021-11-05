@@ -181,3 +181,14 @@ body, html {
 .misc-info {
     font-size: 1.5em;
 }
+
+.register-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.register-buttons > a {
+    margin: 40px 20px;
+    font-size: 1.3em;
+}
