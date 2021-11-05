@@ -21,7 +21,7 @@ class RecruterFixtures extends Fixture
     {
         $recruter = new Recruter();
         $recruter->setEmail('another@hotmail.fr');
-        $recruter->setRoles(['ROLE_RECRUTER']);
+        $recruter->setRoles(['ROLE_USER', 'ROLE_RECRUTER']);
         $password = $this->encoder->encodePassword($recruter, 'abcd');
         $recruter->setPassword($password);
         $recruter->setCompany('Da Big Biz');

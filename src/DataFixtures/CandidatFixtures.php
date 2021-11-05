@@ -22,7 +22,7 @@ class CandidatFixtures extends Fixture
     {
         $candidat = new Candidat();
         $candidat->setEmail('random@yahoo.fr');
-        $candidat->setRoles(['ROLE_CANDIDAT']);
+        $candidat->setRoles(['ROLE_USER', 'ROLE_CANDIDAT']);
         $candidat->setName('Didier');
         $candidat->setSurname('Moulard');
         $birthday = new DateTime('1992-05-05');

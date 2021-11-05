@@ -60,6 +60,7 @@ class RegistrationHomeController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
+            $user->setRoles(array_merge($user->getRoles() ,['ROLE_CANDIDAT']));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -103,6 +104,7 @@ class RegistrationHomeController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
+            $user->setRoles(array_merge($user->getRoles() ,['ROLE_RECRUTER']));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

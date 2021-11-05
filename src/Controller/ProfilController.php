@@ -75,7 +75,7 @@ class ProfilController extends AbstractController
 
         $currentUser = $this->getUser();
 
-        // recruter
+        // Recruter
         if ($this->isRecruter()) {
             $form = $this->createForm(RecruterType::class, $currentUser);
             $form->handleRequest($request);
