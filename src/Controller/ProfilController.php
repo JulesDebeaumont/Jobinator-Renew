@@ -17,9 +17,9 @@ class ProfilController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        // Check if current user is candidat or recruter
         $currentUser = $this->getUser();
 
+        // Check if current user is candidat or recruter
         if (in_array('ROLE_RECRUTER', $currentUser->getRoles())) {
             $user = $recruterRepository->createQueryBuilder('r')
                 ->select('r', 'COUNT(j)')
@@ -29,19 +29,24 @@ class ProfilController extends AbstractController
                 ->groupBy('r')
                 ->getQuery()
                 ->getResult();
-        } else {
+
+            return $this->render('profil/recruter.html.twig', [
+                'user' => $user,
+            ]);
+        } else if (in_array('ROLE_CANDIDAT', $currentUser->getRoles())) {
             $user = $candidatRepository->createQueryBuilder('c')
                 ->select('c', 'COUNT(a)')
                 ->leftJoin('c.applications', 'a')
-                ->where('c = :currentUser')
+                ->where('c.id = :currentUser')
                 ->setParameter('currentUser', $currentUser)
                 ->groupBy('c')
                 ->getQuery()
                 ->getResult();
-        }
 
-        return $this->render('profil/index.html.twig', [
-            'user' => $user,
-        ]);
+            return $this->render('profil/candidat.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        return $this->redirectToRoute('about');
     }
 }
