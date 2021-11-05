@@ -52,7 +52,5 @@ Do a `symfony serve`
 
 ### 5_Misc:
 
-- Execute CS-Fixer in src\: `composer cs-fixer` 
 - Delete, create and update database schema then run test: `composer test`
-- TP Link : https://tp-symfony-iut.netlify.app/
 

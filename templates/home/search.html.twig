@@ -1,7 +1,11 @@
 {% extends 'home/index.html.twig' %}
 
 {% block body %}
-    {{ parent() }}
-    <h1>Results</h1>
+	{{ parent() }}
+	<h1>Results</h1>
+
+	{% for job in jobs %}
+		<h6>{{ job.name}}</h6>
+	{% endfor %}
 
 {% endblock %}
