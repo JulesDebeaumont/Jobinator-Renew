@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 
+:root {
+    --blueAlt: rgb(126, 208, 255);
+    --whiteAlt: rgb(211, 211, 211);
+}
+
 * {
     margin: 0;
 }
@@ -35,6 +40,10 @@ body, html {
 
 .navbar-brand {
     font-size: 1.5em;
+}
+
+.btn-dark {
+    color: var(--blueAlt);
 }
 
 #main {
@@ -102,13 +111,13 @@ body, html {
  }
 
  a, a:visited {
-    color: rgb(126, 208, 255);
+    color: var(--blueAlt);
     text-decoration: none;
+    transition: all 0.2ms;
  }
 
  a:hover {
     color: rgb(57, 182, 255);
-    transition: all 0.2ms;
  }
 
  .blank-divider {
@@ -181,6 +190,7 @@ body, html {
 .register-info, .log-info {
     margin-top: 120px;
     font-size: 1.5em;
+    color: var(--whiteAlt);
 }
 
 .submit-form-button {
@@ -218,5 +228,5 @@ body, html {
 
 .profil-count {
     font-size: 1.3em;
-    margin-top: 50px;
+    margin: 50px 0px;
 }

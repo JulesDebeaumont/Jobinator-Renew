@@ -2,14 +2,14 @@
 
 {% block body %}
 	<div class="main-page">
-		<div class="small-blank-divider"></div>
+		<div class="tiny-blank-divider"></div>
 		<h1>My profil</h1>
 		<div class="profil">
 
 			<ul class="profil-info">
 				<li>Email:
 					<strong>{{ user[0][0].email }}</strong>
-					</li>
+				</li>
 				{% if user[0][0].name %}
 					<li>Name:
 						<strong>{{ user[0][0].name }}</strong>
@@ -50,7 +50,14 @@
 			<span class="log-info">These informations are only shown to the recruter when applying for a job.</span><br/>
 			<div class="small-blank-divider"></div>
 
-			<a class="btn btn-dark" href="{{ path('home') }}">Edit my profil</a>
+
+			<a href="{{ path('home') }}">
+				<button class="btn btn-dark">Edit my profil</button>
+			</a>
+			<div class="tiny-blank-divider"></div>
+			<a href="{{ path('home') }}">
+				<button class="btn btn-dark">Change my password</button>
+			</a>
 
 			<div class="profil-count">Application count :
 				<a href={{ path('home') }}>{{ user[0][1] }}</a>
