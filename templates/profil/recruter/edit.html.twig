@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Edit Profile</h1>
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1>Edit Profile</h1>
 
-    {{ include('profil/recruter/_form.html.twig', {'button_label': 'Save'}) }}
+		{{ include('profil/recruter/_form.html.twig', {'button_label': 'Save'}) }}
+        
+		<a href="{{ path('profil') }}">Cancel</a>
 
-    <a href="{{ path('home') }}">Cancel</a>
-
+		<div class="small-blank-divider"></div>
+	</div>
 {% endblock %}

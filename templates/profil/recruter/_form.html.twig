@@ -1,4 +1,19 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+		{{ form_start(form) }}
+
+		<div class="register-form">
+
+			<div class="aligned-input">
+				<div class="form-group">
+					<label for="registration_form[company]" class="form-group-label">
+						<strong>{{ form_label(form.company) }}</strong>
+					</label>
+					{{ form_widget(form.company) }}
+				</div>
+				<button type="submit" class="btn btn-dark submit-form-button">Save</button>
+			</div>
+
+
+		</div>
+
+		{{ form_end(form) }}

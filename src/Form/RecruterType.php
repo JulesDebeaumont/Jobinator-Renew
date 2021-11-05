@@ -6,17 +6,23 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RecruterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('company')
-        ;
+        ->add('company', TextType::class, [
+            'label' => 'Company',
+            'required' => true,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Company is required',
+                ])
+            ]
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
