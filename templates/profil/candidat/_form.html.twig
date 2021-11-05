@@ -1,4 +1,61 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+		<div class="register-form">
+
+			<span class="profil-info">The following informations are not required,<br/>
+				but helps recruters having crucials informations when applying to jobs.</span>
+
+			<div class="aligned-input">
+				<div class="form-group">
+					<label for="registration_form[name]" class="form-group-label">
+						<strong>{{ form_label(form.name) }}</strong>
+					</label>
+					{{ form_widget(form.name) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[surname]" class="form-group-label">
+						<strong>{{ form_label(form.surname) }}</strong>
+					</label>
+					{{ form_widget(form.surname) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[birthday]" class="form-group-label">
+						<strong>{{ form_label(form.birthday) }}</strong>
+					</label>
+					{{ form_widget(form.birthday) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[phone]" class="form-group-label">
+						<strong>{{ form_label(form.phone) }}</strong>
+					</label>
+					{{ form_widget(form.phone) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[country]" class="form-group-label">
+						<strong>{{ form_label(form.country) }}</strong>
+					</label>
+					{{ form_widget(form.country) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[city]" class="form-group-label">
+						<strong>{{ form_label(form.city) }}</strong>
+					</label>
+					{{ form_widget(form.city) }}
+				</div>
+
+				<div class="form-group">
+					<label for="registration_form[departement]" class="form-group-label">
+						<strong>{{ form_label(form.departement) }}</strong>
+					</label>
+					{{ form_widget(form.departement) }}
+				</div>
+				<button type="submit" class="btn btn-dark submit-form-button">Save</button>
+			</div>
+
+		</div>
+		{{ form_end(form) }}
