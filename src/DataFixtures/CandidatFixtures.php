@@ -25,7 +25,7 @@ class CandidatFixtures extends Fixture
         $candidat->setRoles(['ROLE_CANDIDAT']);
         $candidat->setName('Didier');
         $candidat->setSurname('Moulard');
-        $birthday = new DateTime('1995-01-03');
+        $birthday = new DateTime('1992-05-05');
         $candidat->setBirthday($birthday);
         $password = $this->encoder->encodePassword($candidat, '1234');
         $candidat->setPassword($password);

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit Candidat</h1>
+
+    {{ include('candidat/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('home') }}">Cancel</a>
+
+{% endblock %}

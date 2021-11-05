@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit Recruter</h1>
+
+    {{ include('recruter/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('home') }}">back to list</a>
+
+{% endblock %}
