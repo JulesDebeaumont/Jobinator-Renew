@@ -71,7 +71,7 @@ class Job
     private $applications;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Recruter::class, inversedBy="job")
+     * @ORM\ManyToOne(targetEntity=Recruter::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $recruter;

@@ -1,5 +1,5 @@
 # Jobinator
-The job seeker app where companies responds to all applicants! 🤔
+The job seeker app where companies respond to every applicants! 🤔
 All images found on https://unsplash.com (copyright free)
 
 By *Jules Debeaumont*
