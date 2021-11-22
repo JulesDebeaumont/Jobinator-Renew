@@ -42,4 +42,9 @@ final class Version20211025113338 extends AbstractMigration
         $this->addSql('DROP INDEX IDX_FBD8E0F8C54C8C93 ON job');
         $this->addSql('ALTER TABLE job DROP category_id, DROP type_id');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }
