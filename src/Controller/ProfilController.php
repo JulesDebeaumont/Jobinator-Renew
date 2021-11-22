@@ -6,6 +6,7 @@ use App\Form\CandidatType;
 use App\Form\RecruterType;
 use App\Repository\ApplicationRepository;
 use App\Repository\CandidatRepository;
+use App\Repository\JobRepository;
 use App\Repository\RecruterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilController extends AbstractController
 {
-
     private function isCandidat(): bool
     {
         return in_array('ROLE_CANDIDAT', $this->getUser()->getRoles());
@@ -117,21 +117,47 @@ class ProfilController extends AbstractController
      */
     public function candidatApplications(ApplicationRepository $applicationRepository): Response
     {
-        
         if ($this->isCandidat()) {
             $applications = $applicationRepository->createQueryBuilder('a')
-            ->select('a', 'j')
-            ->leftJoin('a.candidat', 'c')
-            ->leftJoin('a.job', 'j')
-            ->where('c.id = :currentUser')
-            ->setParameter('currentUser', $this->getUser()->getId())
-            ->orderBy('a.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
+                ->select('a', 'j')
+                ->leftJoin('a.candidat', 'c')
+                ->leftJoin('a.job', 'j')
+                ->where('c.id = :currentUser')
+                ->setParameter('currentUser', $this->getUser()->getId())
+                ->orderBy('a.createdAt', 'DESC')
+                ->getQuery()
+                ->getResult();
 
-        return $this->render('profil/candidat/applications.html.twig', [
-            'applications' => $applications,
-        ]);
+            return $this->render('profil/candidat/applications.html.twig', [
+                'applications' => $applications,
+            ]);
+        }
+
+        return $this->redirect('home');
+    }
+
+
+    /**
+     * @Route("/my-jobs", name="my-jobs")
+     */
+    public function recruterJobs(JobRepository $jobRepository): Response
+    {
+        if ($this->isRecruter()) {
+            $jobs = $jobRepository->createQueryBuilder('j')
+                ->select('j', 'a', 'COUNT(c)')
+                ->leftJoin('j.recruter', 'r')
+                ->leftJoin('j.applications', 'a')
+                ->leftJoin('a.candidat', 'c')
+                ->where('r.id = :currentUser')
+                ->setParameter('currentUser', $this->getUser()->getId())
+                ->groupBy('a')
+                ->orderBy('j.updatedAt', 'DESC')
+                ->getQuery()
+                ->getResult();
+
+            return $this->render('profil/recruter/jobs.html.twig', [
+                'jobs' => $jobs
+            ]);
         }
 
         return $this->redirect('home');

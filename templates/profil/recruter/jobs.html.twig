@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1>My jobs</h1>
+		<div class="profil">
+
+			{% if jobs|length <= 0 %}
+				<div>You didn't create job opportunities yet.</div>
+			{% else %}
+
+				<ul class="profil-info">
+					{% for job in jobs %}
+						<a href="{{ path('home') }}" class="card-job-link">
+							<li class="card-job">
+								<h2 class="card-job-title">
+									<strong>{{ job[0].name }}</strong>
+								</h2>
+								<div>{{ job[0].location }}
+									({{ job[0].departement }})</div>
+								<div>Updated on
+									{{ job[0].updatedAt|date("m/d/Y") }}</div>
+
+								<div class="card-job-info">Candidats:
+									{{ job[1] }}
+								</div>
+							</li>
+						</a>
+					{% endfor %}
+				</ul>
+
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

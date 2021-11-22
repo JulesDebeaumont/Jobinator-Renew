@@ -45,4 +45,4 @@ Do a `symfony serve`
 ### 📎 4_Misc:
 
 - Reset DB and load fixtures `composer reset`
-- To check the 404 Error Page, go to `yourLocalhost/index.php/_error/404`
+- To check the 404 Error Page, go to `your-localhost-here/index.php/_error/404`
