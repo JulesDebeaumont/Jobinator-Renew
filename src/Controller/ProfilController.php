@@ -113,15 +113,16 @@ class ProfilController extends AbstractController
     }
 
     /**
-     * @Route("/my-applications", name="application")
+     * @Route("/my-applications", name="my_application")
      */
     public function candidatApplications(ApplicationRepository $applicationRepository): Response
     {
         
         if ($this->isCandidat()) {
-            $user = $applicationRepository->createQueryBuilder('a')
-            ->select('a')
+            $applications = $applicationRepository->createQueryBuilder('a')
+            ->select('a', 'j')
             ->leftJoin('a.candidat', 'c')
+            ->leftJoin('a.job', 'j')
             ->where('c.id = :currentUser')
             ->setParameter('currentUser', $this->getUser()->getId())
             ->orderBy('a.createdAt', 'DESC')
@@ -129,7 +130,7 @@ class ProfilController extends AbstractController
             ->getResult();
 
         return $this->render('profil/candidat/applications.html.twig', [
-            'user' => $user,
+            'applications' => $applications,
         ]);
         }
 

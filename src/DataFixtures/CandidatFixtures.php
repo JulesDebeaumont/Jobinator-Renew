@@ -33,7 +33,7 @@ class CandidatFixtures extends Fixture
         $manager->persist($candidat);
         $manager->flush();
 
-        $this->loadRandom(20);
+        $this->loadRandom(1);
     }
 
     /**
