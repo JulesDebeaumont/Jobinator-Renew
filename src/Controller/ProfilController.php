@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\CandidatType;
 use App\Form\RecruterType;
+use App\Repository\ApplicationRepository;
 use App\Repository\CandidatRepository;
 use App\Repository\RecruterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,7 +92,7 @@ class ProfilController extends AbstractController
                 'form' => $form
             ]);
 
-        // Candidat
+            // Candidat
         } else if ($this->isCandidat()) {
             $form = $this->createForm(CandidatType::class, $currentUser);
             $form->handleRequest($request);
@@ -109,5 +110,29 @@ class ProfilController extends AbstractController
         }
 
         return $this->redirectToRoute('about');
+    }
+
+    /**
+     * @Route("/my-applications", name="application")
+     */
+    public function candidatApplications(ApplicationRepository $applicationRepository): Response
+    {
+        
+        if ($this->isCandidat()) {
+            $user = $applicationRepository->createQueryBuilder('a')
+            ->select('a')
+            ->leftJoin('a.candidat', 'c')
+            ->where('c.id = :currentUser')
+            ->setParameter('currentUser', $this->getUser()->getId())
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('profil/candidat/applications.html.twig', [
+            'user' => $user,
+        ]);
+        }
+
+        return $this->redirect('home');
     }
 }
