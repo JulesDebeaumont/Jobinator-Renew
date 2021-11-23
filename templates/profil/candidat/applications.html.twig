@@ -12,7 +12,7 @@
 
 				<ul class="profil-info">
 					{% for application in applications %}
-						<a href="{{ path('home') }}" class="card-job-link">
+						<a href="{{ path('job_show', {'id': application.job.id}) }}" class="card-job-link">
 							<li class="card-job">
 								<h2 class="card-job-title">
 									<strong>{{ application.job.name}}</strong>
