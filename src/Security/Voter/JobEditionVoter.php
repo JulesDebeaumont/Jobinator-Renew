@@ -15,13 +15,14 @@ class JobEditionVoter extends Voter
 
     protected function supports(string $attribute, $subject): bool
     {
-        if (in_array($attribute, [
+        if (!in_array($attribute, [
             self::EDIT,
             self::DELETE,
             self::POST
         ])) {
             return false;
         }
+
         if ($subject instanceof Job) {
             return false;
         }
@@ -44,7 +45,8 @@ class JobEditionVoter extends Voter
             case self::POST:
                 return $this->canPost();
         }
-        throw new \LogicException('This code should not be reached!');
+
+        throw new \LogicException('This code should not be reached! (JobEditionVoter)');
     }
 
     private function canEdit(Job $job, Recruter $recruter): bool

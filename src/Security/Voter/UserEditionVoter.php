@@ -10,25 +10,32 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class UserEditionVoter extends Voter
 {
-    public const EDIT = 'USER_EDIT';
-    public const DELETE = 'USER_DELETE';
-    public const SHOW = 'USER_SHOW';
+    protected const EDIT = 'USER_EDIT';
+    protected const DELETE = 'USER_DELETE';
+    protected const SHOW = 'USER_SHOW';
 
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [
+        if (!in_array($attribute, [
             self::EDIT,
             self::DELETE,
             self::SHOW
-        ])
-            && $subject instanceof User;
+        ])) {
+            return false;
+        }
+
+        if ($subject instanceof User) {
+            return false;
+        }
+
+        return true;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
 
-        if (!$user instanceof Candidat || $user instanceof Recruter) {
+        if (!$user instanceof Candidat || !$user instanceof Recruter) {
             return false;
         }
 
@@ -41,7 +48,7 @@ class UserEditionVoter extends Voter
                 return $this->canShow($subject, $user);
         }
 
-        throw new \LogicException('This code should not be reached!');
+        throw new \LogicException('This code should not be reached! (UserEditionVoter)');
     }
 
     private function canEdit(User $user, User $currentUser)

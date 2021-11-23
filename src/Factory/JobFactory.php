@@ -46,7 +46,8 @@ final class JobFactory extends ModelFactory
             'experienceNeeded' => self::faker()->optional()->randomDigitNot([6, 7, 8, 9]),
             'type' => TypeFactory::random(),
             'category' => CategoryFactory::random(),
-            'recruter' => RecruterFactory::random()
+            'recruter' => RecruterFactory::random(),
+            'company' => self::faker()->company()
         ];
     }
 

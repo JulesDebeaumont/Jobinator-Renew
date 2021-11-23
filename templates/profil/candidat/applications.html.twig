@@ -14,12 +14,17 @@
 					{% for application in applications %}
 						<a href="{{ path('job_show', {'id': application.job.id}) }}" class="card-job-link">
 							<li class="card-job">
-								<h2 class="card-job-title">
+								<h2>
 									<strong>{{ application.job.name}}</strong>
 								</h2>
-								<div class="card-job-description">{{ application.job.description|slice(0, 200) }}..</div>
-								<div class="card-job-info">{{ application.job.location }}
-									({{ application.job.departement }}) - Applied on
+								<h4 class="card-job-title">{{ application.job.company}}</h4>
+								<div class="card-job-description">{{ application.job.description|slice(0, 100) }}..</div>
+								<div class="card-job-info">
+									{% if application.job.location is not null and application.job.departement is not null %}
+										{{ application.job.location }}
+										({{ application.job.departement }}) -
+									{% endif %}
+									Applied on
 									{{ application.createdAt|date("m/d/Y") }}</div>
 							</li>
 						</a>

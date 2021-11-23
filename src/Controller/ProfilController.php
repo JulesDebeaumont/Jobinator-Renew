@@ -113,7 +113,7 @@ class ProfilController extends AbstractController
     }
 
     /**
-     * @Route("/my-applications", name="my_application")
+     * @Route("/my-applications", name="my_applications")
      */
     public function candidatApplications(ApplicationRepository $applicationRepository): Response
     {

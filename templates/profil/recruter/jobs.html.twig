@@ -17,8 +17,10 @@
 								<h2 class="card-job-title">
 									<strong>{{ job[0].name }}</strong>
 								</h2>
-								<div>{{ job[0].location }}
-									({{ job[0].departement }})</div>
+								{% if application.job.location is not null and application.job.departement is not null %}
+									<div>{{ job[0].location }}
+										({{ job[0].departement }})</div>
+								{% endif %}
 								<div>Updated on
 									{{ job[0].updatedAt|date("m/d/Y") }}</div>
 
