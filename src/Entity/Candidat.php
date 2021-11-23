@@ -21,13 +21,11 @@ class Candidat extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\NotBlank()]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\NotBlank()]
     private $surname;
 
     /**
@@ -39,26 +37,22 @@ class Candidat extends User
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
-    #[Assert\NotBlank()]
     #[Assert\Length(['min' => 10, 'max' => 20])]
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\NotBlank()]
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\NotBlank()]
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\NotBlank()]
     private $departement;
 
     public function __construct()

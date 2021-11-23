@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\JobRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -18,16 +19,23 @@ class Job
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Assert\NotNull()]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Assert\NotNull()]
+    #[Assert\NotBlank()]
+    #[Assert\Length(['max' => 255])]
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", length=1000)
      */
+    #[Assert\NotNull()]
+    #[Assert\NotBlank()]
+    #[Assert\Length(['max' => 1000])]
     private $description;
 
     /**
@@ -43,6 +51,7 @@ class Job
     /**
      * @ORM\Column(type="boolean")
      */
+    #[Assert\NotNull()]
     private $isRemote;
 
     /**
@@ -53,16 +62,19 @@ class Job
     /**
      * @ORM\Column(type="boolean")
      */
+    #[Assert\NotNull()]
     private $isSignaled = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="jobs")
      */
+    #[Assert\NotNull()]
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="jobs")
      */
+    #[Assert\NotNull()]
     private $type;
 
     /**
@@ -74,6 +86,7 @@ class Job
      * @ORM\ManyToOne(targetEntity=Recruter::class, inversedBy="jobs")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Assert\NotNull()]
     private $recruter;
 
     /**
