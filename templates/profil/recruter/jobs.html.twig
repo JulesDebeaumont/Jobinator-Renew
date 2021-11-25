@@ -9,23 +9,24 @@
 			{% if jobs|length <= 0 %}
 				<div>You didn't create job opportunities yet.</div>
 			{% else %}
-
 				<ul class="profil-info">
 					{% for job in jobs %}
-						<a href="{{ path('job_show', {'id': job.id}) }}" class="card-job-link">
+						<a href="{{ path('job_show', {'id': job[0].id}) }}" class="card-job-link">
 							<li class="card-job">
 								<h2 class="card-job-title">
 									<strong>{{ job[0].name }}</strong>
 								</h2>
-								{% if application.job.location is not null and application.job.departement is not null %}
-									<div>{{ job[0].location }}
-										({{ job[0].departement }})</div>
-								{% endif %}
-								<div>Updated on
-									{{ job[0].updatedAt|date("m/d/Y") }}</div>
-
-								<div class="card-job-info">Candidats:
-									{{ job[1] }}
+								<h4>{{ job[0].type.name }}</h4>
+								<div class="card-job-info">
+									{% if job[0].location is not null and job[0].departement is not null %}
+										<div>{{ job[0].location }}
+											({{ job[0].departement }})</div>
+									{% endif %}
+									<div>Updated on
+										{{ job[0].updatedAt|date("m/d/Y") }}</div>
+									<div>Candidats:
+										{{ job[1] }}
+									</div>
 								</div>
 							</li>
 						</a>

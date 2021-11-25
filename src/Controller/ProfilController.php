@@ -17,12 +17,12 @@ class ProfilController extends AbstractController
 {
     private function isCandidat(): bool
     {
-        return in_array('ROLE_CANDIDAT', $this->getUser()->getRoles());
+        return $this->getUser() ? in_array('ROLE_CANDIDAT', $this->getUser()->getRoles()) : false;
     }
 
     private function isRecruter(): bool
     {
-        return in_array('ROLE_RECRUTER', $this->getUser()->getRoles());
+        return $this->getUser() ? in_array('ROLE_RECRUTER', $this->getUser()->getRoles()) : false;
     }
 
     /**
