@@ -3,6 +3,7 @@
 :root {
     --blueAlt: rgb(126, 208, 255);
     --whiteAlt: rgb(211, 211, 211);
+    --whiteAlpha: #dddddd90;
 }
 
 * {
@@ -240,7 +241,7 @@ body, html {
     background-color: #77777710;
     border-radius: 1em;
     padding: 60px;
-    transition: all 0.2s
+    transition: all 0.2s;
 }
 
 .card-job-single {
@@ -257,18 +258,36 @@ body, html {
     background-color: #77777734;
 }
 
-.card-job-title {
-    margin-bottom: 40px;
+.card-job-title, .card-job-info {
+    text-align: center;
 }
 
-.card-job-info {
-    margin-top: 50px;
+.card-job-description {
+    margin: 50px 0px;
+    padding: 50px 0px;
+    border-top: 1px solid var(--whiteAlpha);
+    border-bottom: 1px solid var(--whiteAlpha);
 }
 
 .card-job-link {
-    margin: 30px 300px;
+    margin: 30px 200px;
+}
+
+@media screen and (max-width: 450px) {
+    .card-job-link {
+        margin: 0px;
+    }
+
+    .card-job-single {
+        padding: 0px;
+    }
 }
 
 .profil-info > a {
     color: var(--whiteAlt);
+}
+
+.title-section {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--whiteAlpha);
 }

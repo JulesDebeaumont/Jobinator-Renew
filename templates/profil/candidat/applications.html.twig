@@ -3,7 +3,7 @@
 {% block body %}
 	<div class="main-page">
 		<div class="tiny-blank-divider"></div>
-		<h1>My applications</h1>
+		<h1 class="title-section">My applications</h1>
 		<div class="profil">
 
 			{% if applications|length <= 0 %}
@@ -18,14 +18,18 @@
 									<strong>{{ application.job.name}}</strong>
 								</h2>
 								<h4 class="card-job-title">{{ application.job.company}}</h4>
-								<div class="card-job-description">{{ application.job.description|slice(0, 100) }}..</div>
+								<h4>{{ application.job.type.name }}</h4>
 								<div class="card-job-info">
-									{% if application.job.location is not null and application.job.departement is not null %}
-										{{ application.job.location }}
-										({{ application.job.departement }}) -
+									<div>
+										{% if application.job.location is not null and application.job.departement is not null %}
+											{{ application.job.location }}
+											({{ application.job.departement }})
+										</div>
 									{% endif %}
-									Applied on
-									{{ application.createdAt|date("m/d/Y") }}</div>
+									<div>
+										Applied on
+										{{ application.createdAt|date("m/d/Y") }}</div>
+								</div>
 							</li>
 						</a>
 					{% endfor %}
