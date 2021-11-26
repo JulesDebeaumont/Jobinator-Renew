@@ -6,6 +6,7 @@ use App\Entity\Job;
 use App\Entity\Recruter;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class JobEditionVoter extends Voter
 {
@@ -32,9 +33,11 @@ class JobEditionVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
+        // Ne pas oublier de mettre les attributs de User en protected avec l'héritage
+        // Autraument le $token->getUser() va pas pouvoir check correctement et instant logout
         $user = $token->getUser();
 
-        if (!$user instanceof Recruter) {
+        if (!$user instanceof UserInterface) {
             return false;
         }
 

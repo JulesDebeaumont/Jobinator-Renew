@@ -35,13 +35,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      */
     #[Assert\Email()]
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="json")
      */
     #[Assert\NotNull()]
-    private $roles = [];
+    protected $roles = [];
 
     /**
      * @var string The hashed password
@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     #[Assert\NotBlank()]
     #[Assert\Length(['min' => 8])]
-    private $password;
+    protected $password;
 
     public function getId(): ?int
     {

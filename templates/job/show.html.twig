@@ -43,9 +43,10 @@
 		</div>
 	</ul>
 
-	{% if is_granted('JOB_EDIT') %}
-		<a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
-		<a href="{{ path('job_delete', {'id': job.id}) }}">delete</a>
+	{% if is_granted('JOB_EDIT', job) %}
+		<a href="{{ path('job_edit', {'id': job.id}) }}">Edit</a>
+		<a href="{{ path('job_delete', {'id': job.id}) }}">Delete</a>
+		<a href="{{ path('job_show', {'id': job.id}) }}">See candidats</a>
 	{% endif %}
 
 {% endblock %}

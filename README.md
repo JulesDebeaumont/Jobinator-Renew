@@ -50,7 +50,7 @@ Do a `symfony serve`
 
 TODO
 -> Finir crud Jobs
--> Fix Voters
+-> Fix Voters ✔
 -> Redirect from /home to / ✔
 -> Mailer inscription + candidature
 -> Table file pour candidature
