@@ -51,6 +51,7 @@ Do a `symfony serve`
 TODO
 -> Finir crud Jobs
 -> Fix Voters ✔
+-> Already apply constraint
 -> Redirect from /home to / ✔
 -> Mailer inscription + candidature
 -> Table file pour candidature

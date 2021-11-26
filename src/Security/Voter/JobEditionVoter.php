@@ -6,7 +6,6 @@ use App\Entity\Job;
 use App\Entity\Recruter;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class JobEditionVoter extends Voter
 {
@@ -37,7 +36,7 @@ class JobEditionVoter extends Voter
         // Autraument le $token->getUser() va pas pouvoir check correctement et instant logout
         $user = $token->getUser();
 
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof Recruter) {
             return false;
         }
 

@@ -291,3 +291,14 @@ body, html {
     padding-bottom: 8px;
     border-bottom: 1px solid var(--whiteAlpha);
 }
+
+.buttons-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-group > a {
+    margin: 50px 8px 0px 8px;
+    font-size: 1em;
+}

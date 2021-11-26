@@ -39,14 +39,21 @@
 						{{ job.updatedAt|date("m/d/Y") }}</div>
 				</div>
 
+				{% if is_granted('JOB_EDIT', job) %}
+					<div class="buttons-group">
+						<a class="btn btn-dark" href="{{ path('job_edit', {'id': job.id}) }}">Edit</a>
+						<a class="btn btn-dark" href="{{ path('job_delete', {'id': job.id}) }}">Delete</a>
+						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">See candidats</a>
+					</div>
+				{% endif %}
+
+				{% if is_granted('ROLE_CANDIDAT') %}
+					<div class="buttons-group">
+						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Apply</a>
+					</div>
+				{% endif %}
 			</li>
 		</div>
 	</ul>
-
-	{% if is_granted('JOB_EDIT', job) %}
-		<a href="{{ path('job_edit', {'id': job.id}) }}">Edit</a>
-		<a href="{{ path('job_delete', {'id': job.id}) }}">Delete</a>
-		<a href="{{ path('job_show', {'id': job.id}) }}">See candidats</a>
-	{% endif %}
 
 {% endblock %}
