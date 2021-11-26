@@ -298,7 +298,7 @@ body, html {
     align-items: center;
 }
 
-.buttons-group > a {
+.buttons-group > a, .buttons-group > form {
     margin: 50px 8px 0px 8px;
-    font-size: 1em;
+    font-variant: normal;
 }

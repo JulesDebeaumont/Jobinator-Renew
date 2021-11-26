@@ -41,15 +41,19 @@
 
 				{% if is_granted('JOB_EDIT', job) %}
 					<div class="buttons-group">
-						<a class="btn btn-dark" href="{{ path('job_edit', {'id': job.id}) }}">Edit</a>
-						<a class="btn btn-dark" href="{{ path('job_delete', {'id': job.id}) }}">Delete</a>
 						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">See candidats</a>
+						<a class="btn btn-dark" href="{{ path('job_edit', {'id': job.id}) }}">Edit</a>
+						{{ include('job/_delete_form.html.twig') }}
 					</div>
 				{% endif %}
 
 				{% if is_granted('ROLE_CANDIDAT') %}
 					<div class="buttons-group">
-						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Apply</a>
+						{% if true %}
+							<a class="btn btn-dark confirmed">Already applied ✔</a>
+						{% else %}
+							<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Apply</a>
+						{% endif %}
 					</div>
 				{% endif %}
 			</li>

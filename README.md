@@ -51,7 +51,7 @@ Do a `symfony serve`
 TODO
 -> Finir crud Jobs
 -> Fix Voters ✔
--> Already apply constraint
+-> Already applied constraint
 -> Redirect from /home to / ✔
 -> Mailer inscription + candidature
 -> Table file pour candidature
@@ -61,3 +61,5 @@ TODO
 -> Commandes
 -> Change password
 -> Reset password mailer
+-> Fix Job counts for Recruter
+-> EasyAdmin
