@@ -1,4 +1,72 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div class="register-form">
+	<div class="aligned-input">
+
+		<div class="form-group">
+			<label for="job_form[name]" class="form-group-label">
+				<strong>{{ form_label(form.name) }}</strong>
+			</label>
+			{{ form_widget(form.name) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[company]" class="form-group-label">
+				<strong>{{ form_label(form.company) }}</strong>
+			</label>
+			{{ form_widget(form.company) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[type]" class="form-group-label">
+				<strong>{{ form_label(form.type) }}</strong>
+			</label>
+			{{ form_widget(form.type) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[description]" class="form-group-label">
+				<strong>{{ form_label(form.description) }}</strong>
+			</label>
+			{{ form_widget(form.description) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[experienceNeeded]" class="form-group-label">
+				<strong>{{ form_label(form.experienceNeeded) }}</strong>
+			</label>
+			{{ form_widget(form.experienceNeeded) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[pay]" class="form-group-label">
+				<strong>{{ form_label(form.pay) }}</strong>
+			</label>
+			{{ form_widget(form.pay) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[location]" class="form-group-label">
+				<strong>{{ form_label(form.location) }}</strong>
+			</label>
+			{{ form_widget(form.location) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[departement]" class="form-group-label">
+				<strong>{{ form_label(form.departement) }}</strong>
+			</label>
+			{{ form_widget(form.departement) }}
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[isRemote]" class="form-group-label">
+				<strong>{{ form_label(form.isRemote) }}</strong>
+			</label>
+			{{ form_widget(form.isRemote) }}
+		</div>
+
+		<button type="submit" class="btn btn-dark submit-form-button">Save</button>
+	</div>
+</div>
 {{ form_end(form) }}

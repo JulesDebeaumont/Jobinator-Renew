@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -20,7 +21,7 @@ class JobType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name',
+                'label' => 'Name*',
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
@@ -32,8 +33,32 @@ class JobType extends AbstractType
                     ])
                 ]
             ])
-            ->add('description', TextType::class, [
-                'label' => 'Description',
+            ->add('company', TextType::class, [
+                'label' => 'Company name*',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Contract type is required'
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'max' => 255
+                    ])
+                ]
+            ])
+            ->add('type', EntityType::class, [
+                'label' => 'Contract type*',
+                'class' => Type::class,
+                'choice_label' => 'name',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Contract type is required'
+                    ]),
+                ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description*',
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
@@ -43,17 +68,6 @@ class JobType extends AbstractType
                         'min' => 3,
                         'max' => 1000
                     ])
-                ]
-            ])
-            ->add('type', EntityType::class, [
-                'label' => 'Contract type',
-                'class' => Type::class,
-                'choice_label' => 'name',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Contract type is required'
-                    ]),
                 ]
             ])
             ->add('pay', TextType::class, [

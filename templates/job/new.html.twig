@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Job{% endblock %}
+{% block title %}New Job
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Job</h1>
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1>Create a new job</h1>
 
-    {{ include('job/_form.html.twig') }}
+		{{ include('job/_form.html.twig') }}
 
-    <a href="{{ path('my-jobs') }}">back to list</a>
+		<a href="{{ path('my-jobs') }}">Cancel</a>
+
+		<div class="small-blank-divider"></div>
+	</div>
 {% endblock %}
