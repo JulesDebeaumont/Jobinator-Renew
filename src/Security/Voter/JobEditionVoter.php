@@ -23,7 +23,7 @@ class JobEditionVoter extends Voter
             return false;
         }
 
-        if ($subject instanceof Job) {
+        if (!$subject instanceof Job) {
             return false;
         }
 
@@ -37,6 +37,7 @@ class JobEditionVoter extends Voter
         if (!$user instanceof Recruter) {
             return false;
         }
+
         switch ($attribute) {
             case self::EDIT:
                 return $this->canEdit($subject, $user);

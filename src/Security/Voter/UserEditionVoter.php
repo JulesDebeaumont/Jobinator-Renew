@@ -7,6 +7,7 @@ use App\Entity\Recruter;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserEditionVoter extends Voter
 {
@@ -24,7 +25,7 @@ class UserEditionVoter extends Voter
             return false;
         }
 
-        if ($subject instanceof User) {
+        if (!$subject instanceof User) {
             return false;
         }
 
@@ -35,7 +36,7 @@ class UserEditionVoter extends Voter
     {
         $user = $token->getUser();
 
-        if (!$user instanceof Candidat || !$user instanceof Recruter) {
+        if (!$user instanceof UserInterface) {
             return false;
         }
 

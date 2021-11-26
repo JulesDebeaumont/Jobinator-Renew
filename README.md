@@ -46,3 +46,17 @@ Do a `symfony serve`
 
 - Reset DB and load fixtures `composer reset`
 - To check the 404 Error Page, go to `your-localhost-here/index.php/_error/404`
+
+
+TODO
+-> Finir crud Jobs
+-> Fix Voters
+-> Redirect from /home to / ✔
+-> Mailer inscription + candidature
+-> Table file pour candidature
+-> Fichier avec Vich
+-> Page de recherche
+-> Tests
+-> Commandes
+-> Change password
+-> Reset password mailer

@@ -24,6 +24,14 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/home", name="home-page")
+     */
+    public function home(): Response
+    {
+        return $this->redirectToRoute('home');
+    }
+
 
     /**
      * @Route("/search", name="search")
