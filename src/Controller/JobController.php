@@ -22,12 +22,11 @@ class JobController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $job->setRecruter($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute('my-jobs', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('job/new.html.twig', [
@@ -55,7 +54,7 @@ class JobController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('my-jobs', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('job/edit.html.twig', [
@@ -75,6 +74,6 @@ class JobController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('my-jobs', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);
     }
 }

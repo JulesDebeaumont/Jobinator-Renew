@@ -27,7 +27,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Assert\NotNull()]
     protected $id;
 
     /**

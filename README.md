@@ -49,7 +49,8 @@ Do a `symfony serve`
 - Amazing reference: https://slides-symfony-iut.netlify.app
 
 TODO
--> Finir crud Jobs
+-> Finir crud Jobs ✔
+-> Add all form errors
 -> Fix Voters ✔
 -> Already applied constraint
 -> Redirect from /home to / ✔

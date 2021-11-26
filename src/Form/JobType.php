@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Job;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Positive;
 
 class JobType extends AbstractType
 {
@@ -29,7 +31,9 @@ class JobType extends AbstractType
                     ]),
                     new Length([
                         'min' => 3,
-                        'max' => 255
+                        'minMessage' => 'Should be at least 3 characters long',
+                        'max' => 255,
+                        'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
             ])
@@ -42,7 +46,9 @@ class JobType extends AbstractType
                     ]),
                     new Length([
                         'min' => 3,
-                        'max' => 255
+                        'minMessage' => 'Should be at least 3 characters long',
+                        'max' => 255,
+                        'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
             ])
@@ -57,16 +63,32 @@ class JobType extends AbstractType
                     ]),
                 ]
             ])
+            ->add('category', EntityType::class, [
+                'label' => 'Job field*',
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Job field* is required'
+                    ]),
+                ]
+            ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description*',
                 'required' => true,
+                'attr' => [
+                    'rows' => 10
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Description is required'
                     ]),
                     new Length([
                         'min' => 3,
-                        'max' => 1000
+                        'minMessage' => 'Should be at least 3 characters long',
+                        'max' => 1000,
+                        'maxMessage' => 'Should be at most 1000 characters long',
                     ])
                 ]
             ])
@@ -75,7 +97,8 @@ class JobType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Length([
-                        'max' => 255
+                        'max' => 255,
+                        'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
             ])
@@ -84,7 +107,8 @@ class JobType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Length([
-                        'max' => 255
+                        'max' => 255,
+                        'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
             ])
@@ -93,16 +117,23 @@ class JobType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Length([
-                        'max' => 5
+                        'max' => 5,
+                        'maxMessage' => 'Should be at most 5 characters long',
                     ])
                 ]
             ])
             ->add('isRemote', CheckboxType::class, [
-                'label' => 'Remote work'
+                'label' => 'Remote work',
+                'required' => false,
             ])
             ->add('experienceNeeded', IntegerType::class, [
                 'label' => 'Experience needed',
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new Positive([
+                        'message' => 'Experience needed must be a positive number'
+                    ])
+                ]
             ]);
     }
 

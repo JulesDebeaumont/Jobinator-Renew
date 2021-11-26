@@ -138,7 +138,7 @@ class ProfilController extends AbstractController
 
 
     /**
-     * @Route("/my-jobs", name="my-jobs")
+     * @Route("/my-jobs", name="my_jobs")
      */
     public function recruterJobs(JobRepository $jobRepository): Response
     {

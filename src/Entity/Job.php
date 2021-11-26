@@ -19,7 +19,6 @@ class Job
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Assert\NotNull()]
     private $id;
 
     /**
@@ -59,6 +58,7 @@ class Job
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    #[Assert\Positive()]
     private $experienceNeeded;
 
     /**
@@ -86,9 +86,9 @@ class Job
 
     /**
      * @ORM\ManyToOne(targetEntity=Recruter::class, inversedBy="jobs")
+     * @Gedmo\Blameable(on="create")
      * @ORM\JoinColumn(nullable=false)
      */
-    #[Assert\NotNull()]
     private $recruter;
 
     /**

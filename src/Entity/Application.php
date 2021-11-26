@@ -16,7 +16,6 @@ class Application
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Assert\NotNull()]
     private $id;
 
     /**
