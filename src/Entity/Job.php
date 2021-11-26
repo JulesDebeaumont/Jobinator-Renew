@@ -27,7 +27,7 @@ class Job
      */
     #[Assert\NotNull()]
     #[Assert\NotBlank()]
-    #[Assert\Length(['max' => 255])]
+    #[Assert\Length(['max' => 255, 'min' => 3])]
     private $name;
 
     /**
@@ -41,11 +41,13 @@ class Job
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $pay;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $location;
 
     /**
@@ -92,6 +94,7 @@ class Job
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
+    #[Assert\Length(['max' => 5])]
     private $departement;
 
     /**
@@ -109,6 +112,7 @@ class Job
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Assert\Length(['max' => 255])]
     private $company;
 
 

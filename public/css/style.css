@@ -302,3 +302,8 @@ body, html {
     margin: 50px 8px 0px 8px;
     font-variant: normal;
 }
+
+.message-info {
+    margin-top: 20px;
+    font-size: 1.6em;
+}

@@ -7,9 +7,15 @@
 		<div class="profil">
 
 			{% if jobs|length <= 0 %}
-				<div>You didn't create job opportunities yet.</div>
+				<div class="message-info">You didn't create job opportunities yet.</div>
+				<div class="buttons-group">
+					<a class="btn btn-dark" href="{{ path('job_new') }}">New job</a>
+				</div>
 			{% else %}
 				<ul class="profil-info">
+					<div class="buttons-group">
+						<a class="btn btn-dark" href="{{ path('job_new') }}">New job</a>
+					</div>
 					{% for job in jobs %}
 						<a href="{{ path('job_show', {'id': job[0].id}) }}" class="card-job-link">
 							<li class="card-job">

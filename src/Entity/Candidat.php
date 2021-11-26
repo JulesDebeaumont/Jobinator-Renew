@@ -21,11 +21,13 @@ class Candidat extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $surname;
 
     /**
@@ -43,16 +45,19 @@ class Candidat extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Assert\Length(['max' => 255])]
     private $departement;
 
     public function __construct()
@@ -173,5 +178,4 @@ class Candidat extends User
 
         return $this;
     }
-
 }
