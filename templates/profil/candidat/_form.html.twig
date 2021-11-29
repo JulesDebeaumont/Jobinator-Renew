@@ -8,9 +8,8 @@
 	<div class="aligned-input">
 		<div class="form-group">
 			<label for="candidat[name]" class="form-group-label">
-				<strong></strong>
+				<strong>{{ form_label(form.name) }}</strong>
 			</label>
-			{{ form_label(form.name) }}
 			{{ form_widget(form.name) }}
 			<div class="input-error">{{ form_errors(form.name) }}</div>
 		</div>

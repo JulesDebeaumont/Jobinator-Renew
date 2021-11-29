@@ -61,6 +61,10 @@ class RegistrationRecruterFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Company is required',
+                    ]),
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
             ]);

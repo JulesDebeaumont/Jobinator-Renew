@@ -47,10 +47,10 @@
 						<strong>{{ form_label(registrationForm.company) }}</strong>
 					</label>
 					{{ form_widget(registrationForm.company) }}
+					<div class="input-error">{{ form_errors(registrationForm.company) }}</div>
 				</div>
 				<button type="submit" class="btn btn-dark submit-form-button">Register</button>
 			</div>
-
 
 		</div>
 

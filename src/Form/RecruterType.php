@@ -23,8 +23,8 @@ class RecruterType extends AbstractType
                         'message' => 'Company is required',
                     ]),
                     new Length([
-                        'max' => 1000,
-                        // 'maxMessage' => 'Should be at most 1000 characters long',
+                        'max' => 255,
+                        'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
             ]);
