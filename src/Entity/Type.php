@@ -23,8 +23,6 @@ class Type
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Assert\NotNull()]
-    #[Assert\NotBlank()]
     private $name;
 
     /**

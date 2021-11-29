@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\JobRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -24,59 +23,46 @@ class Job
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Assert\NotNull()]
-    #[Assert\NotBlank()]
-    #[Assert\Length(['max' => 255, 'min' => 3])]
     private $name;
 
     /**
      * @ORM\Column(type="text", length=1000)
      */
-    #[Assert\NotNull()]
-    #[Assert\NotBlank()]
-    #[Assert\Length(['max' => 1000])]
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $pay;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $location;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    #[Assert\NotNull()]
     private $isRemote;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    #[Assert\Positive()]
     private $experienceNeeded;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    #[Assert\NotNull()]
     private $isSignaled = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="jobs")
      */
-    #[Assert\NotNull()]
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="jobs")
      */
-    #[Assert\NotNull()]
     private $type;
 
     /**
@@ -94,7 +80,6 @@ class Job
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
-    #[Assert\Length(['max' => 5])]
     private $departement;
 
     /**
@@ -112,7 +97,6 @@ class Job
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Assert\Length(['max' => 255])]
     private $company;
 
 

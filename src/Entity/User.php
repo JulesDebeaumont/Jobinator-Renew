@@ -33,13 +33,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      */
-    #[Assert\Email()]
     protected $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    #[Assert\NotNull()]
     protected $roles = [];
 
     /**
@@ -50,9 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *      minMessage = "Passwors must be at least {{ limit }} characters long"
      * )
      */
-    #[Assert\NotNull()]
-    #[Assert\NotBlank()]
-    #[Assert\Length(['min' => 8])]
     protected $password;
 
     public function getId(): ?int

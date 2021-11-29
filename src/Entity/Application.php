@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ApplicationRepository;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,27 +20,23 @@ class Application
     /**
      * @ORM\Column(type="text", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Job::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
-    #[Assert\NotNull()]
     private $job;
 
     /**
      * @ORM\ManyToOne(targetEntity=Candidat::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
-    #[Assert\NotNull()]
     private $candidat;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    #[Assert\DateTime()]
     private $createdAt;
 
     public function getId(): ?int

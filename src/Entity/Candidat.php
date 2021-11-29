@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\CandidatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,43 +20,36 @@ class Candidat extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $surname;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    #[Assert\Date()]
     private $birthday;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
-    #[Assert\Length(['min' => 10, 'max' => 20])]
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Assert\Length(['max' => 255])]
     private $departement;
 
     public function __construct()

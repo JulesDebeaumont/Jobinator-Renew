@@ -16,9 +16,6 @@ class Recruter extends User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Assert\NotNull()]
-    #[Assert\NotBlank()]
-    #[Assert\Length(['max' => 255])]
     private $company;
 
     /**
