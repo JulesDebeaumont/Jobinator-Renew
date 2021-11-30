@@ -7,12 +7,16 @@ use App\Entity\Recruter;
 use App\Form\RegistrationCandidatFormType;
 use App\Form\RegistrationRecruterFormType;
 use App\Security\LoginFormAnthenticatorAuthenticator;
+use ErrorException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 /**
  * @Route("/register")
@@ -40,7 +44,8 @@ class RegistrationHomeController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $userPasswordHasherInterface,
         LoginFormAnthenticatorAuthenticator $authenticator,
-        UserAuthenticatorInterface $userAuthenticator
+        UserAuthenticatorInterface $userAuthenticator,
+        MailerInterface $mailer
     ): Response {
 
         // auto redirect if already logged in
@@ -60,12 +65,21 @@ class RegistrationHomeController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-            $user->setRoles(array_merge($user->getRoles() ,['ROLE_CANDIDAT']));
+            $user->setRoles(array_merge($user->getRoles(), ['ROLE_CANDIDAT']));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
+            $email = (new TemplatedEmail())
+                ->to($user->getEmail())
+                ->subject('Thanks for signing up!')
+                ->htmlTemplate('emails/welcome.html.twig');
+            try {
+                $mailer->send($email);
+            } catch (TransportExceptionInterface $error) {
+                echo $error;
+            }
 
             // auto log in
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
@@ -84,7 +98,8 @@ class RegistrationHomeController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $userPasswordHasherInterface,
         LoginFormAnthenticatorAuthenticator $authenticator,
-        UserAuthenticatorInterface $userAuthenticator
+        UserAuthenticatorInterface $userAuthenticator,
+        MailerInterface $mailer
     ): Response {
 
         // auto redirect if already logged in
@@ -104,12 +119,21 @@ class RegistrationHomeController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-            $user->setRoles(array_merge($user->getRoles() ,['ROLE_RECRUTER']));
+            $user->setRoles(array_merge($user->getRoles(), ['ROLE_RECRUTER']));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
+            $email = (new TemplatedEmail())
+                ->to($user->getEmail())
+                ->subject('Thanks for signing up!')
+                ->htmlTemplate('emails/welcome.html.twig');
+            try {
+                $mailer->send($email);
+            } catch (TransportExceptionInterface $error) {
+                echo $error;
+            }
 
             // auto log in
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
