@@ -57,6 +57,7 @@ TODO
 -> Mailer inscription + candidature
 -> Table file pour candidature
 -> Fichier avec Vich
+-> Application form
 -> Page de recherche
 -> Tests
 -> Commandes
