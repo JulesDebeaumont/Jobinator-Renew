@@ -49,7 +49,7 @@
 
 				{% if is_granted('ROLE_CANDIDAT') %}
 					<div class="buttons-group">
-						{% if true %}
+						{% if alreadyApplied %}
 							<a class="btn btn-dark confirmed">Already applied ✔</a>
 						{% else %}
 							<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Apply</a>

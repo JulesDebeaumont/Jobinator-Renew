@@ -50,9 +50,9 @@ Do a `symfony serve`
 
 TODO
 -> Finir crud Jobs ✔
--> Add all form errors
+-> Add all form errors ✔
 -> Fix Voters ✔
--> Already applied constraint
+-> Already applied constraint ✔
 -> Redirect from /home to / ✔
 -> Mailer inscription + candidature
 -> Table file pour candidature
