@@ -55,7 +55,7 @@ TODO
 -> Already applied constraint ✔
 -> Redirect from /home to / ✔
 -> Mailer inscription ✔ 
--> Table file pour candidature
+-> Table file pour candidature ✔
 -> Fichier avec Vich
 -> Application form
 -> Mailer candidature (candidat + recruter)
@@ -69,3 +69,4 @@ TODO
 -> Reset password mailer
 -> Fix Job counts for Recruter
 -> EasyAdmin
+-> Image table for Job
