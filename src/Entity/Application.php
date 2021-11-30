@@ -42,7 +42,7 @@ class Application
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=File::class, mappedBy="application", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=FileApplication::class, mappedBy="application", orphanRemoval=true)
      */
     private $files;
 
@@ -112,7 +112,7 @@ class Application
         return $this->files;
     }
 
-    public function addFile(File $file): self
+    public function addFile(FileApplication $file): self
     {
         if (!$this->files->contains($file)) {
             $this->files[] = $file;
@@ -122,7 +122,7 @@ class Application
         return $this;
     }
 
-    public function removeFile(File $file): self
+    public function removeFile(FileApplication $file): self
     {
         if ($this->files->removeElement($file)) {
             // set the owning side to null (unless already changed)
