@@ -55,15 +55,16 @@ TODO
 -> Already applied constraint ✔
 -> Redirect from /home to / ✔
 -> Mailer inscription ✔ 
--> Mailer candidature
 -> Table file pour candidature
 -> Fichier avec Vich
 -> Application form
+-> Mailer candidature (candidat + recruter)
 -> Page de recherche
 -> Test login recruter -> new job
 -> Tests login candidat -> apply
 -> Test register + mail
 -> Commandes
+-> Better emails style
 -> Change password
 -> Reset password mailer
 -> Fix Job counts for Recruter
