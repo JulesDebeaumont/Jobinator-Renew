@@ -66,7 +66,9 @@ TODO
 -> Test login recruter -> new job
 -> Tests login candidat -> apply
 -> Test register + mail
+-> Slug dans URL
 -> Commandes
+-> Apply as anonymous
 -> Better emails style
 -> Change password
 -> Reset password mailer

@@ -8,42 +8,12 @@
 	<ul class="profil-info">
 		<div class="card-job-link">
 			<li class="card-job-single">
-				<div class="card-job-title">
-					<h2 class="title-section">
-						<strong>{{ job.name }}</strong>
-					</h2>
-					<h4>{{ job.company}}</h4>
-					<h4>{{ job.type.name }}</h4>
-				</div>
-				<div class="card-job-description">{{ job.description }}..</div>
-				<div class="card-job-info">
-					{% if job.location is not null and job.departement is not null %}
-						<div>
-							{{ job.location }}
-							({{ job.departement }})
-						</div>
-					{% endif %}
-					{% if job.isRemote is same as(true) %}
-						<div>Remote work</div>
-					{% endif %}
-					{% if job.pay is not null %}
-						<div>Estimate incomes:
-							{{ job.pay }}€/y
-						</div>
-					{% endif %}
-					{% if job.experienceNeeded is not null %}
-						<div>{{ job.experienceNeeded }}
-							year(s) of experience needed</div>
-					{% endif %}
-					<div>Last updated:
-						{{ job.updatedAt|date("m/d/Y") }}</div>
-				</div>
-
+				{% include('job/content.html.twig', ) %}
 				{% if is_granted('JOB_EDIT', job) %}
 					<div class="buttons-group">
 						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">See candidats</a>
 						<a class="btn btn-dark" href="{{ path('job_edit', {'id': job.id}) }}">Edit</a>
-						{{ include('job/_delete_form.html.twig') }}
+						{{ include 'job/_delete_form.html.twig' with { job : job }}) }}
 					</div>
 				{% endif %}
 
@@ -52,7 +22,7 @@
 						{% if alreadyApplied %}
 							<a class="btn btn-dark confirmed">Already applied ✔</a>
 						{% else %}
-							<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Apply</a>
+							<a class="btn btn-dark" href="{{ path('application_new', {'job_id': job.id,}) }}">Apply</a>
 						{% endif %}
 					</div>
 				{% endif %}

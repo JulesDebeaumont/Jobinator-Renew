@@ -1,0 +1,30 @@
+<div class="card-job-title">
+	<h2 class="title-section">
+		<strong>{{ job.name }}</strong>
+	</h2>
+	<h4>{{ job.company}}</h4>
+	<h4>{{ job.type.name }}</h4>
+</div>
+<div class="card-job-description">{{ job.description }}..</div>
+<div class="card-job-info">
+	{% if job.location is not null and job.departement is not null %}
+		<div>
+			{{ job.location }}
+			({{ job.departement }})
+		</div>
+	{% endif %}
+	{% if job.isRemote is same as(true) %}
+		<div>Remote work</div>
+	{% endif %}
+	{% if job.pay is not null %}
+		<div>Estimate incomes:
+			{{ job.pay }}€/y
+		</div>
+	{% endif %}
+	{% if job.experienceNeeded is not null %}
+		<div>{{ job.experienceNeeded }}
+			year(s) of experience needed</div>
+	{% endif %}
+	<div>Last updated:
+		{{ job.updatedAt|date("m/d/Y") }}</div>
+</div>

@@ -11,12 +11,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-#[Route('/job/{id}/application')]
+#[Route('/job/{job_id}/application')]
+#[ParamConverter("job", class:Job::class, options:["id" => "job_id"])]
 class ApplicationController extends AbstractController
 {
     #[Route('/', name: 'application_index', methods: ['GET'])]
-    public function index(ApplicationRepository $applicationRepository): Response
+    public function index(ApplicationRepository $applicationRepository, Job $job): Response
     {
         return $this->render('application/index.html.twig', [
             'applications' => $applicationRepository->findAll(),
@@ -65,12 +67,13 @@ class ApplicationController extends AbstractController
 
         return $this->renderForm('application/new.html.twig', [
             'application' => $application,
+            'job' => $job,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'application_show', methods: ['GET'])]
-    public function show(Application $application): Response
+    public function show(Application $application, Job $job): Response
     {
         return $this->render('application/show.html.twig', [
             'application' => $application,
