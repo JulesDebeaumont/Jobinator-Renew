@@ -57,7 +57,7 @@ TODO
 -> Mailer inscription ✔ 
 -> Table file pour candidature ✔
 -> PDF avec Vich ✔
--> Application form
+-> Application form ✔
 -> Show candidat count on my_jobs + link if count > 0 ✔
 -> Voter application 
 -> File max size + type
