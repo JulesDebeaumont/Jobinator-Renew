@@ -42,7 +42,7 @@ class Application
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=FileApplication::class, mappedBy="application", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=FileApplication::class, mappedBy="application", orphanRemoval=true, cascade={"persist"})
      */
     private $files;
 

@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Application{% endblock %}
-
 {% block body %}
-    <h1>Create new Application</h1>
+<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1>Apply to a job</h1>
 
     {{ include('application/_form.html.twig') }}
 
-    <a href="{{ path('application_index') }}">Back</a>
+	<a href="{{ path('home') }}">Cancel</a>
+
+		<div class="small-blank-divider"></div>
+	</div>
 {% endblock %}

@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ApplicationType extends AbstractType
 {
@@ -16,7 +17,7 @@ class ApplicationType extends AbstractType
     {
         $builder
             ->add('description', TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Message',
                 'required' => false,
                 'attr' => [
                     'rows' => 5
@@ -29,13 +30,14 @@ class ApplicationType extends AbstractType
                 ]
             ])
             ->add('files', FileType::class, [
-                'label' => false,
+                'label' => 'Files',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'help' => '3 files at most, 2Mb max each'
             ]);
     }
- 
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
