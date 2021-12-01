@@ -22,6 +22,7 @@ class ApplicationController extends AbstractController
     {
         return $this->render('application/index.html.twig', [
             'applications' => $applicationRepository->findAll(),
+            'job' => $job
         ]);
     }
 
@@ -77,6 +78,7 @@ class ApplicationController extends AbstractController
     {
         return $this->render('application/show.html.twig', [
             'application' => $application,
+            'job' => $job
         ]);
     }
 }

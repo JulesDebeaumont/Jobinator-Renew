@@ -17,25 +17,31 @@
 						<a class="btn btn-dark" href="{{ path('job_new') }}">New job</a>
 					</div>
 					{% for job in jobs %}
-						<a href="{{ path('job_show', {'id': job[0].id}) }}" class="card-job-link">
-							<li class="card-job">
-								<h2 class="card-job-title">
-									<strong>{{ job[0].name }}</strong>
-								</h2>
-								<h4>{{ job[0].type.name }}</h4>
-								<div class="card-job-info">
-									{% if job[0].location is not null and job[0].departement is not null %}
-										<div>{{ job[0].location }}
-											({{ job[0].departement }})</div>
+						<li class="card-job card-job-link">
+							<h2 class="card-job-title">
+								<strong>{{ job[0].name }}</strong>
+							</h2>
+							<h4>{{ job[0].type.name }}</h4>
+							<div class="card-job-info">
+								{% if job[0].location is not null and job[0].departement is not null %}
+									<div>{{ job[0].location }}
+										({{ job[0].departement }})</div>
+								{% endif %}
+								<div>Updated on
+									{{ job[0].updatedAt|date("m/d/Y") }}</div>
+								<div class="buttons-group">
+									<a class="btn btn-dark" href="{{ path('job_show', {'id': job[0].id}) }}">See</a>
+									{# if job[1] > 0 #}
+									{% if true %}
+										<a class="btn btn-dark" href="{{ path('application_index', {'job_id': job[0].id}) }}">See candidats ({{ job[1]}})</a>
+									{% else %}
+										<a class="btn btn-dark">No candidat yet</a>
 									{% endif %}
-									<div>Updated on
-										{{ job[0].updatedAt|date("m/d/Y") }}</div>
-									<div>Candidats:
-										{{ job[1] }}
-									</div>
+									<a class="btn btn-dark" href="{{ path('job_edit', {'id': job[0].id}) }}">Edit</a>
+									{% include 'job/_delete_form.html.twig' with { job : job[0] } %}
 								</div>
-							</li>
-						</a>
+							</div>
+						</li>
 					{% endfor %}
 				</ul>
 

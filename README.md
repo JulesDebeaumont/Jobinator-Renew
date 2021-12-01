@@ -58,6 +58,8 @@ TODO
 -> Table file pour candidature ✔
 -> PDF avec Vich ✔
 -> Application form
+-> Show candidat count on my_jobs + link if count > 0 ✔
+-> Voter application 
 -> File max size + type
 -> Reactive forms pour department region pays
 -> Mailer candidature (candidat + recruter)
@@ -73,5 +75,6 @@ TODO
 -> Change password
 -> Reset password mailer
 -> Fix Job counts for Recruter
+-> Message table ?
 -> EasyAdmin
 -> Image table for Job

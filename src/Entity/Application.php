@@ -6,6 +6,7 @@ use App\Repository\ApplicationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ApplicationRepository::class)
@@ -33,6 +34,7 @@ class Application
     /**
      * @ORM\ManyToOne(targetEntity=Candidat::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
+     * @Gedmo\Blameable(on="create")
      */
     private $candidat;
 

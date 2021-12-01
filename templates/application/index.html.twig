@@ -1,37 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Application index{% endblock %}
-
 {% block body %}
-    <h1>Application index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for application in applications %}
-            <tr>
-                <td>{{ application.id }}</td>
-                <td>{{ application.description }}</td>
-                <td>{{ application.createdAt ? application.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('application_show', {'id': application.id}) }}">show</a>
-                    <a href="{{ path('application_edit', {'id': application.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('application_new') }}">Create new</a>
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1>All candidat(s) for
+			{{ job.name }}</h1>
+		<div class="profil">
+			<ul class="profil-info">
+				{% for application in applications %}
+					<li class="card-job card-job-link">
+						<h2>
+							<strong>{{ application.candidat.name }}
+								{{ application.candidat.surname }}</strong>
+						</h2>
+						<div>
+							Applied on
+							{{ application.createdAt|date("m/d/Y") }}</div>
+						<a class="btn btn-dark" href="{{ path('application_show', {'job_id' : job.id, 'id': application.id}) }}">show</a>
+					</li>
+				{% else %}
+					<div>There's no candidat for this job yet.</div>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 {% endblock %}
