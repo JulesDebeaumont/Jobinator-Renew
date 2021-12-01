@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+<div class="job-form">
+
+	<div class="form-group">
+		<label for="form[description]" class="form-group-label">
+			<strong>{{ form_label(form.description) }}</strong>
+		</label>
+		{{ form_widget(form.description) }}
+		<div class="input-error">{{ form_errors(form.description) }}</div>
+	</div>
+
+	<h3>Files</h3>
+	{{ form_row(form.files) }}
+
+	<button type="submit" class="btn btn-dark submit-form-button">Save</button>
+</div>
+{{ form_end(form) }}

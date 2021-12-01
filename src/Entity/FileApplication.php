@@ -5,12 +5,10 @@ namespace App\Entity;
 use App\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=FileApplicationRepository::class)
- * @Vich\Uploadable
  */
 class FileApplication
 {
@@ -31,12 +29,6 @@ class FileApplication
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @Vich\UploadableField(mapping="application_file", fileNameProperty="name")
-     * @var File
-     */
-    private $file;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)

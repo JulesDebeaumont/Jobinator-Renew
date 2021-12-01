@@ -56,10 +56,13 @@ TODO
 -> Redirect from /home to / ✔
 -> Mailer inscription ✔ 
 -> Table file pour candidature ✔
--> Fichier avec Vich
+-> PDF avec Vich ✔
 -> Application form
+-> File max size + type
+-> Reactive forms pour department region pays
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
+-> fix all <lavel> for props for forms
 -> Test login recruter -> new job
 -> Tests login candidat -> apply
 -> Test register + mail
