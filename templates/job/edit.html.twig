@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Job{% endblock %}
+{% block title %}Edit Job
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Job</h1>
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1 class="title-section">Edit a job</h1>
 
-    {{ include('job/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('job/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('my_jobs') }}">Cancel</a>
+		<a href="{{ path('my_jobs') }}">Cancel</a>
 
-    {{ include('job/_delete_form.html.twig') }}
+		{{ include('job/_delete_form.html.twig') }}
+		<div class="small-blank-divider"></div>
+	</div>
 {% endblock %}

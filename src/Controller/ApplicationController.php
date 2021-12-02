@@ -14,14 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/job/{job_id}/application')]
-#[ParamConverter("job", class:Job::class, options:["id" => "job_id"])]
+#[ParamConverter("job", class: Job::class, options: ["id" => "job_id"])]
 class ApplicationController extends AbstractController
 {
     #[Route('/', name: 'application_index', methods: ['GET'])]
     public function index(ApplicationRepository $applicationRepository, Job $job): Response
     {
+        $this->denyAccessUnlessGranted('JOB_EDIT', $job);
+
+        $applications = $applicationRepository->createQueryBuilder('a')
+            ->leftJoin('a.job', 'j')
+            ->where('j.id = :jobId')
+            ->setParameter('jobId', $job->getId())
+            ->getQuery()
+            ->getResult();
+
         return $this->render('application/index.html.twig', [
-            'applications' => $applicationRepository->findAll(),
+            'applications' => $applications,
             'job' => $job
         ]);
     }
@@ -29,6 +38,8 @@ class ApplicationController extends AbstractController
     #[Route('/new', name: 'application_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Job $job): Response
     {
+        $this->denyAccessUnlessGranted('JOB_APPLY', $job);
+
         $application = new Application();
         $form = $this->createForm(ApplicationType::class, $application);
         $form->handleRequest($request);
@@ -76,6 +87,8 @@ class ApplicationController extends AbstractController
     #[Route('/{id}', name: 'application_show', methods: ['GET'])]
     public function show(Application $application, Job $job): Response
     {
+        $this->denyAccessUnlessGranted('APPLICATION_READ');
+
         return $this->render('application/show.html.twig', [
             'application' => $application,
             'job' => $job

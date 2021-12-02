@@ -73,7 +73,7 @@ class JobEditionVoter extends Voter
             return false;
         }
 
-        if ($job->getRecruter() === $user) {
+        if ($job->getRecruter() !== $user) {
             return false;
         }
 
@@ -97,7 +97,7 @@ class JobEditionVoter extends Voter
     }
 
 
-    private function canApply($job, $user): bool
+    private function canApply(Job $job, User $user): bool
     {
         if (!$this->isCandidat($user)) {
             return false;
@@ -130,7 +130,7 @@ class JobEditionVoter extends Voter
     /**
      * Tell if user is candidat or not
      */
-    private function isCandidat(Candidat $user): bool
+    private function isCandidat(User $user): bool
     {
         return $user instanceof Candidat;
     }

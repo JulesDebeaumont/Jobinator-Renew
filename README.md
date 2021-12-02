@@ -59,7 +59,7 @@ TODO
 -> PDF avec Vich ✔
 -> Application form ✔
 -> Show candidat count on my_jobs + link if count > 0 ✔
--> Voter application 
+-> Voter job extend ✔ 
 -> Success applied page
 -> Logique fixture apply only once
 -> File max size + type

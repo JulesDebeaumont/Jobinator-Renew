@@ -13,10 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/job')]
 class JobController extends AbstractController
 {
-    private function isCandidat(): bool
-    {
-        return $this->getUser() ? in_array('ROLE_CANDIDAT', $this->getUser()->getRoles()) : false;
-    }
 
     #[Route('/new', name: 'job_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -42,25 +38,10 @@ class JobController extends AbstractController
     }
 
     #[Route('/{id}', name: 'job_show', methods: ['GET'])]
-    public function show(CandidatRepository $candidatRepository, Job $job): Response
+    public function show(Job $job): Response
     {
-        $alreadyApplied = false;
-        if ($this->isCandidat()) {
-            $results = $candidatRepository->createQueryBuilder('c')
-                ->leftJoin('c.applications', 'a')
-                ->where('a.job = :currentJob')
-                ->setParameter('currentJob', $job)
-                ->getQuery()
-                ->getResult();
-
-            if ($results) {
-                $alreadyApplied = true;
-            }
-        }
-
         return $this->render('job/show.html.twig', [
-            'job' => $job,
-            'alreadyApplied' => $alreadyApplied
+            'job' => $job
         ]);
     }
 
