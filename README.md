@@ -60,9 +60,11 @@ TODO
 -> Application form ✔
 -> Show candidat count on my_jobs + link if count > 0 ✔
 -> Voter job extend ✔ 
--> Success applied page
+-> Success applied page ✔
 -> Logique fixture apply only once
 -> File max size + type
+-> Delete files when deleting job/user
+-> Show files on application/id
 -> Reactive forms pour department region pays
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
@@ -72,6 +74,7 @@ TODO
 -> Test register + mail
 -> Slug dans URL
 -> Commandes
+-> My_application/job by createdAt/UpdateAt order
 -> Apply as anonymous
 -> Better emails style
 -> Change password

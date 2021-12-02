@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1>You successfully applied to
+			{{ job.name }}! ✔</h1>
+		<h2>The informations have been transmited to the recruter.</h2>
+
+		<a class="btn btn-dark" href="{{ path('home') }}">Back to the search</a>
+
+		<div class="small-blank-divider"></div>
+	</div>
+{% endblock %}

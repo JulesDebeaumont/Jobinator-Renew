@@ -38,7 +38,9 @@ class ApplicationController extends AbstractController
     #[Route('/new', name: 'application_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Job $job): Response
     {
-        $this->denyAccessUnlessGranted('JOB_APPLY', $job);
+        if (!$this->isGranted('JOB_APPLY', $job)) {
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
 
         $application = new Application();
         $form = $this->createForm(ApplicationType::class, $application);
@@ -74,13 +76,25 @@ class ApplicationController extends AbstractController
             $entityManager->persist($application);
             $entityManager->flush();
 
-            return $this->redirectToRoute('my_applications', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('apply_success', ['job_id' => $job->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('application/new.html.twig', [
             'application' => $application,
             'job' => $job,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/success', name: 'apply_success', methods: ['GET'])]
+    public function success(Job $job): Response
+    {
+        if ($this->isGranted('JOB_APPLY', $job) || $this->isGranted('ROLE_RECRUTER')) {
+            return $this->redirectToRoute('job_show', ['id' => $job->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('job/success.html.twig', [
+            'job' => $job
         ]);
     }
 
