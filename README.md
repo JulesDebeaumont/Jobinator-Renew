@@ -60,6 +60,8 @@ TODO
 -> Application form ✔
 -> Show candidat count on my_jobs + link if count > 0 ✔
 -> Voter application 
+-> Success applied page
+-> Logique fixture apply only once
 -> File max size + type
 -> Reactive forms pour department region pays
 -> Mailer candidature (candidat + recruter)

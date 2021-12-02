@@ -3,7 +3,7 @@
 {% block body %}
 	<div class="main-page">
 		<div class="tiny-blank-divider"></div>
-		<h1>Apply to a job</h1>
+		<h1 class="title-section">Apply to {{ job.name }}</h1>
 		<a href="#job">Show the job</a>
 		{{ include('application/_form.html.twig') }}
 
