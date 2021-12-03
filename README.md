@@ -61,7 +61,7 @@ TODO
 -> Show candidat count on my_jobs + link if count > 0 ✔
 -> Voter job extend ✔ 
 -> Success applied page ✔
--> Logique fixture apply only once
+-> Logique fixture apply only once ✔
 -> File max size + type
 -> Delete files when deleting job/user
 -> Show files on application/id

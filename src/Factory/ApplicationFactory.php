@@ -37,7 +37,7 @@ final class ApplicationFactory extends ModelFactory
     {
         return [
             'description' => self::faker()->optional()->realText(300),
-            'job' => JobFactory::random(),
+            'job' => JobFactory::new(),
             'candidat' => CandidatFactory::random()
         ];
     }
@@ -45,9 +45,7 @@ final class ApplicationFactory extends ModelFactory
     protected function initialize(): self
     {
         // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(Application $application) {})
-        ;
+        return $this;
     }
 
     protected static function getClass(): string

@@ -11,7 +11,7 @@ class JobFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        JobFactory::createMany(50);
+        JobFactory::createMany(3);
     }
 
     public function getDependencies(): array

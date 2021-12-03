@@ -30,7 +30,7 @@ class RecruterFixtures extends Fixture
         $manager->persist($recruter);
         $manager->flush();
 
-        $this->loadRandom(20);
+        $this->loadRandom(10);
     }
 
     /**
