@@ -17,12 +17,14 @@ class JobEditionVoter extends Voter
     protected const DELETE = 'JOB_DELETE';
     protected const POST = 'JOB_POST';
     protected const APPLY = 'JOB_APPLY';
-    private $candidatRepository;
+    // private $candidatRepository;
 
+    /*
     public function __construct(CandidatRepository $candidatRepository)
     {
         $this->candidatRepository = $candidatRepository;
     }
+    */
 
     protected function supports(string $attribute, $subject): bool
     {
@@ -103,15 +105,25 @@ class JobEditionVoter extends Voter
             return false;
         }
 
+        /*
         $results = $this->candidatRepository->createQueryBuilder('c')
             ->leftJoin('c.applications', 'a')
-            ->where('a.job = :currentJob')
-            ->setParameter('currentJob', $job)
+            ->where('c = :currentUser', 'a.job = :currentJob')
+            ->setParameters([
+                'currentUser' => $user,
+                'currentJob' => $job
+            ])
             ->getQuery()
             ->getResult();
+        
+        dump($results);
+        */
 
-        if ($results) {
-            return false;
+        // Ici on est sûr que le $user est une instance de Candidat
+        foreach ($user->getApplications() as $application) {
+            if ($application->getJob() === $job) {
+                return false;
+            }
         }
 
         return true;

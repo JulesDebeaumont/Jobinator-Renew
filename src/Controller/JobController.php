@@ -71,9 +71,17 @@ class JobController extends AbstractController
         $this->denyAccessUnlessGranted('JOB_DELETE', $job);
 
         if ($this->isCsrfTokenValid('delete' . $job->getId(), $request->request->get('_token'))) {
+
+            foreach ($job->getApplications() as $application) {
+                foreach ($application->getFiles() as $file) {
+                    $fileName = $this->getParameter('application_file_directory') . '/' . $file->getName();
+                    dump($fileName);
+                }
+            }
+/*
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($job);
-            $entityManager->flush();
+            $entityManager->flush();*/
         }
 
         return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);

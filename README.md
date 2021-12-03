@@ -62,7 +62,7 @@ TODO
 -> Voter job extend ✔ 
 -> Success applied page ✔
 -> Logique fixture apply only once ✔
--> File max size + type
+-> File max size + type ✔
 -> Delete files when deleting job/user
 -> Show files on application/id
 -> Reactive forms pour department region pays
