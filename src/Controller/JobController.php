@@ -72,16 +72,20 @@ class JobController extends AbstractController
 
         if ($this->isCsrfTokenValid('delete' . $job->getId(), $request->request->get('_token'))) {
 
+            // Suppression des fichiers des candidatures
             foreach ($job->getApplications() as $application) {
                 foreach ($application->getFiles() as $file) {
                     $fileName = $this->getParameter('application_file_directory') . '/' . $file->getName();
-                    dump($fileName);
+
+                    if (file_exists($fileName)) {
+                        unlink($fileName);
+                    }
                 }
             }
-/*
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($job);
-            $entityManager->flush();*/
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);

@@ -70,6 +70,7 @@ TODO
 -> Page de recherche
 -> fix all <lavel> for props for forms
 -> Test login recruter -> new job
+-> Cron delete job after 6 months
 -> Tests login candidat -> apply
 -> Test register + mail
 -> Slug dans URL
