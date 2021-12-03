@@ -107,7 +107,7 @@ class Application
     }
 
     /**
-     * @return Collection|File[]
+     * @return Collection|FileApplication[]
      */
     public function getFiles(): Collection
     {

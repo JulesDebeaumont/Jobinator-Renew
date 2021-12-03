@@ -1,56 +1,90 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<ul class="profil-info">
-		<div class="card-job-link">
-			<li class="card-job-single">
-				<div class="card-job-title">
-					<h4>Name:
-						<strong>{{ application.candidat.name }}
-							{{ application.candidat.surname }}</strong>
-					</h4>
-					<h4>Email:
-						<strong>{{ application.candidat.email }}</strong>
-					</h4>
-					<h4>Birthday:
-						<strong>{{ application.candidat.birthday|date() }}</strong>
-					</h4>
-					<h4>Phone:
-						<strong>{{ application.candidat.phone }}</strong>
-					</h4>
-					<h4>Country:
-						<strong>{{ application.candidat.country }}</strong>
-					</h4>
-					<h4>City:
-						<strong>{{ application.candidat.city }}</strong>
-					</h4>
-					<h4>Department:
-						<strong>{{ application.candidat.departement }}</strong>
-					</h4>
-					<h4>
-						<strong>Applied on:
-							{{ application.createdAt ? application.createdAt|date('Y-m-d H:i:s') : 'Today' }}</strong>
-					</h4>
+	<div class="main-page">
+		<div class="tiny-blank-divider"></div>
+		<h1 class="title-section">Candidat for
+			{{ job.name }}</h1>
+		<div class="profil">
+			<ul class="profil-info">
+				<div class="card-job-link">
+					<li class="card-job-single">
+						<div class="card-job-title">
+
+							<h4>Email:
+								<strong>{{ application.candidat.email }}</strong>
+							</h4>
+
+							{% if application.candidat.name %}
+								<h4>Name:
+									<strong>{{ application.candidat.name }}</strong>
+								</h4>
+							{% endif %}
+
+							{% if application.candidat.surname %}
+								<h4>Surname:
+									<strong>{{ application.candidat.surname }}</strong>
+								</h4>
+							{% endif %}
+
+							{% if application.candidat.birthday %}
+								<h4>Birthday:
+									<strong>{{ application.candidat.birthday|date('Y/m/d') }}</strong>
+								</h4>
+							{% endif %}
+
+							{% if application.candidat.phone %}
+								<h4>Phone:
+									<strong>{{ application.candidat.phone }}</strong>
+								</h4>
+							{% endif %}
+
+							{% if application.candidat.country %}
+								<h4>Country:
+									<strong>{{ application.candidat.country }}</strong>
+								</h4>
+							{% endif %}
+
+							{% if application.candidat.city %}
+								<h4>City:
+									<strong>{{ application.candidat.city }}</strong>
+								</h4>
+							{% endif %}
+
+							{% if application.candidat.departement %}
+								<h4>Department:
+									<strong>{{ application.candidat.departement }}</strong>
+								</h4>
+							{% endif %}
+
+							<h4>
+								<strong>Applied on:
+									{{ application.createdAt ? application.createdAt|date('Y-m-d H:i:s') : 'Today' }}</strong>
+							</h4>
+						</div>
+
+						<div class="tiny-blank-divider"></div>
+
+						<div class="card-job-info">
+							<div>{{ application.description }}</div>
+
+							<div class="tiny-blank-divider"></div>
+
+							{% for file in application.files %}
+								<a href="{{ path('application_file', { 'job_id' : job.id, 'id': application.id, 'file_id': file.id }) }}" target="_blank">Linked file</a>
+							{% else %}
+								The candidat applied without any file.
+							{% endfor %}
+						</div>
+
+						<div class="small-blank-divider"></div>
+						<div class="small-blank-divider"></div>
+						<div class="small-blank-divider"></div>
+
+						<a href="{{ path('application_index', {'job_id' : job.id}) }}">Back to all candidats</a>
+					</li>
 				</div>
-
-				<div class="tiny-blank-divider"></div>
-
-				<div class="card-job-info">
-					<div>{{ application.description }}</div>
-
-					<div class="tiny-blank-divider"></div>
-
-					{% for file in application.files %}
-						<div>{{ file.name }}</div>
-					{% else %}
-						No file in the application
-					{% endfor %}
-				</div>
-
-				<div class="tiny-blank-divider"></div>
-
-				<a href="{{ path('application_index', {'job_id' : job.id}) }}">Back to all candidats</a>
-			</li>
+			</ul>
 		</div>
-	</ul>
+	</div>
 {% endblock %}

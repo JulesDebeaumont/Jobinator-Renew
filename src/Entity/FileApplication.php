@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\FileRepository;
+use App\Repository\FileApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Gedmo\Mapping\Annotation as Gedmo;

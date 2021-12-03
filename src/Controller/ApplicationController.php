@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 #[Route('/job/{job_id}/application')]
 #[ParamConverter("job", class: Job::class, options: ["id" => "job_id"])]
@@ -99,13 +100,22 @@ class ApplicationController extends AbstractController
     }
 
     #[Route('/{id}', name: 'application_show', methods: ['GET'])]
-    public function show(Application $application, Job $job): Response
+    public function show(Job $job, Application $application): Response
     {
-        $this->denyAccessUnlessGranted('APPLICATION_READ');
+        $this->denyAccessUnlessGranted('JOB_EDIT', $job);
 
         return $this->render('application/show.html.twig', [
             'application' => $application,
             'job' => $job
         ]);
+    }
+
+    #[Route('/{id}/file/{file_id}', name: 'application_file', methods: ['GET'])]
+    #[ParamConverter("file", class: FileApplication::class, options: ["id" => "file_id"])]
+    public function download(Job $job, Application $application, FileApplication $file): Response
+    {
+        $this->denyAccessUnlessGranted('JOB_EDIT', $job);
+
+        return $this->file($this->getParameter('application_file_directory') . DIRECTORY_SEPARATOR . $file->getName(), $file->getName(), ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }

@@ -22,7 +22,7 @@
 				{% endif %}
 				{% if user[0][0].birthday %}
 					<li>Birthday:
-						<strong>{{ user[0][0].birthday|date("m/d/Y") }}</strong>
+						<strong>{{ user[0][0].birthday|date('Y/m/d') }}</strong>
 					</li>
 				{% endif %}
 				{% if user[0][0].phone %}

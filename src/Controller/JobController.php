@@ -75,7 +75,7 @@ class JobController extends AbstractController
             // Suppression des fichiers des candidatures
             foreach ($job->getApplications() as $application) {
                 foreach ($application->getFiles() as $file) {
-                    $fileName = $this->getParameter('application_file_directory') . '/' . $file->getName();
+                    $fileName = $this->getParameter('application_file_directory') . DIRECTORY_SEPARATOR . $file->getName();
 
                     if (file_exists($fileName)) {
                         unlink($fileName);
