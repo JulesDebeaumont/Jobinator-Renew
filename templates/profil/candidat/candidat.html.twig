@@ -65,6 +65,8 @@
 				<a href={{ path('my_applications') }}>{{ user[0][1] }}</a>
 			</div>
 
+			{% include 'profil/_delete_form.html.twig' with { 'userId' :user[0][0].id } %}
+
 		</div>
 	</div>
 {% endblock %}

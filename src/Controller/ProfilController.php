@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidat;
+use App\Entity\Recruter;
+use App\Entity\User;
 use App\Form\CandidatType;
 use App\Form\RecruterType;
 use App\Repository\ApplicationRepository;
@@ -11,6 +14,7 @@ use App\Repository\RecruterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilController extends AbstractController
@@ -161,5 +165,45 @@ class ProfilController extends AbstractController
         }
 
         return $this->redirect('home');
+    }
+
+    /**
+     * @Route("/account-delete", name="account_delete", methods={"POST"})
+     */
+    public function deleteAccount(Request $request): Response
+    {
+        if (!$this->isGranted('ROLE_USER')) {
+            $this->redirectToRoute('home');
+        }
+
+        $currentUser = $this->getUser();
+
+        // Suppression des fichiers des candidatures
+        if ($currentUser instanceof Candidat) {
+            foreach ($currentUser->getApplications() as $application) {
+                foreach ($application->getFiles() as $file) {
+                    $fileName = $this->getParameter('application_file_directory') . '/' . $file->getName();
+
+                    if (file_exists($fileName)) {
+                        unlink($fileName);
+                    }
+                }
+            }
+        } else if ($currentUser instanceof Recruter) {
+            // handle delete images
+        }
+
+        if ($this->isCsrfTokenValid('delete' . $currentUser->getId(), $request->request->get('_token'))) {
+            // Enlève la session courante
+            $session = $this->get('session');
+            $session = new Session();
+            $session->invalidate();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($currentUser);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('home');
     }
 }

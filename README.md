@@ -63,7 +63,7 @@ TODO
 -> Success applied page ✔
 -> Logique fixture apply only once ✔
 -> File max size + type ✔
--> Delete files when deleting job/user
+-> Delete files when deleting job/user ✔
 -> Show files on application/id
 -> Reactive forms pour department region pays
 -> Mailer candidature (candidat + recruter)
