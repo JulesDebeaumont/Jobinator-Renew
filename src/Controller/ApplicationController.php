@@ -60,8 +60,13 @@ class ApplicationController extends AbstractController
             foreach ($files as $file) {
                 $newFile = $fileManager->upload($file);
 
+                $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+
                 $fileApplication = new FileApplication();
                 $fileApplication->setName($newFile);
+                $fileApplication->setOriginalName($originalFileName);
+                $fileApplication->setFileExtension($fileExtension);
                 $application->addFile($fileApplication);
             }
 

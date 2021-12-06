@@ -65,9 +65,9 @@ TODO
 -> File max size + type ✔
 -> Delete files when deleting job/user ✔
 -> Show files on application/id ✔
--> Delete uploaded files with composer reset script 
--> Service fileUpload
--> Add attribute to fileApplication for original filename
+-> Delete uploaded files with composer reset script ✔
+-> Service fileUpload ✔
+-> Add attribute to fileApplication for original filename ✔
 -> Reactive forms pour department region pays ❌
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
@@ -77,6 +77,8 @@ TODO
 -> Tests login candidat -> apply
 -> Test register + mail
 -> Slug dans URL
+-> Slug filenames
+-> Fixture with files
 -> Commandes
 -> My_application/job by createdAt/UpdateAt order
 -> Apply as anonymous

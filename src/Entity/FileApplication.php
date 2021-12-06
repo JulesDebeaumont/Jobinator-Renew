@@ -36,6 +36,16 @@ class FileApplication
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $originalName;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $fileExtension;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +101,30 @@ class FileApplication
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getOriginalName(): ?string
+    {
+        return $this->originalName;
+    }
+
+    public function setOriginalName(string $originalName): self
+    {
+        $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    public function getFileExtension(): ?string
+    {
+        return $this->fileExtension;
+    }
+
+    public function setFileExtension(string $fileExtension): self
+    {
+        $this->fileExtension = $fileExtension;
 
         return $this;
     }

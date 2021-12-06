@@ -68,10 +68,14 @@
 						<div class="card-job-info">
 							<div>{{ application.description }}</div>
 
-							<div class="tiny-blank-divider"></div>
+							<div class="small-blank-divider"></div>
+							<div class="small-blank-divider"></div>
 
 							{% for file in application.files %}
-								<a href="{{ path('application_file', { 'job_id' : job.id, 'id': application.id, 'file_id': file.id }) }}" target="_blank">Linked file</a>
+							<span>File {{ loop.index }}: 
+								<a href="{{ path('application_file', { 'job_id' : job.id, 'id': application.id, 'file_id': file.id }) }}" 
+									target="_blank">{{ file.originalName }} ({{ file.fileExtension }})</a>
+									</span>
 							{% else %}
 								The candidat applied without any file.
 							{% endfor %}
@@ -81,7 +85,7 @@
 						<div class="small-blank-divider"></div>
 						<div class="small-blank-divider"></div>
 
-						<a href="{{ path('application_index', {'job_id' : job.id}) }}">Back to all candidats</a>
+						<a class="btn btn-dark" href="{{ path('application_index', {'job_id' : job.id}) }}">Back to all candidats</a>
 					</li>
 				</div>
 			</ul>
