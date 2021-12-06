@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -102,6 +104,10 @@ class JobType extends AbstractType
                     ])
                 ]
             ])
+            ->add('isRemote', CheckboxType::class, [
+                'label' => 'Remote work',
+                'required' => false,
+            ])
             ->add('location', TextType::class, [
                 'label' => 'Location',
                 'required' => false,
@@ -122,10 +128,6 @@ class JobType extends AbstractType
                     ])
                 ]
             ])
-            ->add('isRemote', CheckboxType::class, [
-                'label' => 'Remote work',
-                'required' => false,
-            ])
             ->add('experienceNeeded', IntegerType::class, [
                 'label' => 'Experience needed',
                 'required' => false,
@@ -134,7 +136,20 @@ class JobType extends AbstractType
                         'message' => 'Experience needed must be a positive number'
                     ])
                 ]
-            ]);
+            ])
+            // https://symfony.com/doc/current/form/events.html#event-listeners
+            // https://symfony.com/doc/current/form/dynamic_form_modification.html#dynamic-generation-for-submitted-forms
+            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'onPostSubmit']);
+    }
+
+    public function onPostSubmit(FormEvent $event): void
+    {
+        $job = $event->getData();
+
+        if ($job->getIsRemote() === true) {
+            $job->setLocation(null);
+            $job->setDepartement(null);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

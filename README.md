@@ -5,6 +5,7 @@ All images found on https://unsplash.com (copyright free)
 By *Jules Debeaumont*
 
 
+
 ### 🔧 1_Installation 
 
 - Do a `git init`
@@ -34,6 +35,7 @@ Password: `1234`
 *If using other Database (aka MariaDB, SQLite etc...), make sure to change the server version!*
 
 
+
 ### 🎬 3_Launch the server:
 
 Do a `symfony serve`
@@ -42,13 +44,17 @@ Do a `symfony serve`
 `php -S 127.0.0.1:8000 -t public`
 
 
+
 ### 📎 4_Misc:
 
 - Reset DB and load fixtures `composer reset`
 - To check the 404 Error Page, go to `your-localhost-here/index.php/_error/404`
 - Amazing reference: https://slides-symfony-iut.netlify.app
 
-TODO
+
+
+### 🚧 5_To do:
+
 -> Finir crud Jobs ✔
 -> Add all form errors ✔
 -> Fix Voters ✔
@@ -67,8 +73,7 @@ TODO
 -> Show files on application/id ✔
 -> Delete uploaded files with composer reset script ✔
 -> Service fileUpload ✔
--> Add attribute to fileApplication for original filename ✔
--> Reactive forms pour department region pays ❌
+-> Add attribute to fileApplication for original filename + extension ✔
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
 -> fix all <lavel> for props for forms
@@ -90,3 +95,4 @@ TODO
 -> Message table ?
 -> EasyAdmin
 -> Image table for Job
+-> Recruter must answer!

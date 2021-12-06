@@ -59,28 +59,30 @@
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[location]" class="form-group-label">
-			<strong>{{ form_label(form.location) }}</strong>
-		</label>
-		{{ form_widget(form.location) }}
-		<div class="input-error">{{ form_errors(form.location) }}</div>
-	</div>
-
-	<div class="form-group">
-		<label for="job_form[departement]" class="form-group-label">
-			<strong>{{ form_label(form.departement) }}</strong>
-		</label>
-		{{ form_widget(form.departement) }}
-		<div class="input-error">{{ form_errors(form.departement) }}</div>
-	</div>
-
-	<div class="form-group">
 		<label for="job_form[isRemote]" class="form-group-label">
 			<strong>{{ form_label(form.isRemote) }}</strong>
 		</label>
 		{{ form_widget(form.isRemote) }}
 		<div class="input-error">{{ form_errors(form.isRemote) }}</div>
 	</div>
+
+	{% if form.location and form.departement %}
+		<div class="form-group">
+			<label for="job_form[location]" class="form-group-label">
+				<strong>{{ form_label(form.location) }}</strong>
+			</label>
+			{{ form_widget(form.location) }}
+			<div class="input-error">{{ form_errors(form.location) }}</div>
+		</div>
+
+		<div class="form-group">
+			<label for="job_form[departement]" class="form-group-label">
+				<strong>{{ form_label(form.departement) }}</strong>
+			</label>
+			{{ form_widget(form.departement) }}
+			<div class="input-error">{{ form_errors(form.departement) }}</div>
+		</div>
+	{% endif %}
 
 	<button type="submit" class="btn btn-dark submit-form-button">Save</button>
 </div>
