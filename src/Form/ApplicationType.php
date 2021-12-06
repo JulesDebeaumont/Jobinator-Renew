@@ -46,7 +46,7 @@ class ApplicationType extends AbstractType
                                     'application/pdf',
                                     'application/x-pdf',
                                 ],
-                                'mimeTypesMessage' => 'Please upload a valid PDF',
+                                'mimeTypesMessage' => 'Please upload a valid PDF document',
                             ])
                         ]
                     ])

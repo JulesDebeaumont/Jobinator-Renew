@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 #[Route('/job/{job_id}/application')]
@@ -50,27 +51,32 @@ class ApplicationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             /**
-             * Gestion des images
+             * Gestion des fichiers
+             * https://symfony.com/doc/current/controller/upload_file.html
              */
-            $images = $form->get('files')->getData();
+            $files = $form->get('files')->getData();
 
-            foreach ($images as $image) {
+            foreach ($files as $file) {
                 // génère un nom de fichier
-                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                $newFile = md5(uniqid()) . '.' . $file->guessExtension();
 
                 // Copie du fichier dans le dossier
-                $image->move(
-                    // On va chercher la route du dossier dans le services.yaml
-                    $this->getParameter('application_file_directory'),
-                    $fichier
-                );
+                try {
+                    $file->move(
+                        // On va chercher la route du dossier dans le services.yaml
+                        $this->getParameter('application_file_directory'),
+                        $newFile
+                    );
+                } catch (FileException $error) {
+                    throw new FileException('An error has occured while uploadign the file' . $file . '\n' . $error->getMessage());
+                }
 
                 // On stock le nom du fichier dans la BD
-                $img = new FileApplication();
-                $img->setName($fichier);
-                // $img->setApplication($application);
-                $application->addFile($img);
+                $fileApplication = new FileApplication();
+                $fileApplication->setName($file);
+                $application->addFile($fileApplication);
             }
+
             $application->setJob($job);
 
             $entityManager = $this->getDoctrine()->getManager();

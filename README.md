@@ -65,8 +65,8 @@ TODO
 -> File max size + type ✔
 -> Delete files when deleting job/user ✔
 -> Show files on application/id ✔
--> Delete uploaded files with composer reset script
--> Reactive forms pour department region pays
+-> Delete uploaded files with composer reset script ✔
+-> Reactive forms pour department region pays ❌
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
 -> fix all <lavel> for props for forms
