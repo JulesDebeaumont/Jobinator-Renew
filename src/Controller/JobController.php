@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Job;
 use App\Form\JobType;
 use App\Repository\CandidatRepository;
+use App\Service\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,22 +67,14 @@ class JobController extends AbstractController
     }
 
     #[Route('/{id}', name: 'job_delete', methods: ['POST'])]
-    public function delete(Request $request, Job $job): Response
+    public function delete(Request $request, Job $job, FileManager $fileManager): Response
     {
         $this->denyAccessUnlessGranted('JOB_DELETE', $job);
 
         if ($this->isCsrfTokenValid('delete' . $job->getId(), $request->request->get('_token'))) {
 
             // Suppression des fichiers des candidatures
-            foreach ($job->getApplications() as $application) {
-                foreach ($application->getFiles() as $file) {
-                    $fileName = $this->getParameter('application_file_directory') . DIRECTORY_SEPARATOR . $file->getName();
-
-                    if (file_exists($fileName)) {
-                        unlink($fileName);
-                    }
-                }
-            }
+            $fileManager->deleteAllJobRelatedFiles($job);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($job);

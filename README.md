@@ -65,7 +65,9 @@ TODO
 -> File max size + type ✔
 -> Delete files when deleting job/user ✔
 -> Show files on application/id ✔
--> Delete uploaded files with composer reset script ✔
+-> Delete uploaded files with composer reset script 
+-> Service fileUpload
+-> Add attribute to fileApplication for original filename
 -> Reactive forms pour department region pays ❌
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
@@ -81,7 +83,8 @@ TODO
 -> Better emails style
 -> Change password
 -> Reset password mailer
--> Fix Job counts for Recruter
+-> Fix Job counts for Recruter ✔
+-> Fix See Candidat count on jobs
 -> Message table ?
 -> EasyAdmin
 -> Image table for Job

@@ -11,6 +11,7 @@ use App\Repository\ApplicationRepository;
 use App\Repository\CandidatRepository;
 use App\Repository\JobRepository;
 use App\Repository\RecruterRepository;
+use App\Service\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -170,7 +171,7 @@ class ProfilController extends AbstractController
     /**
      * @Route("/account-delete", name="account_delete", methods={"POST"})
      */
-    public function deleteAccount(Request $request): Response
+    public function deleteAccount(Request $request, FileManager $fileManager): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
             $this->redirectToRoute('home');
@@ -178,19 +179,9 @@ class ProfilController extends AbstractController
 
         $currentUser = $this->getUser();
 
-        // Suppression des fichiers des candidatures
+        // Suppression des fichiers lié à l'utilisateur
         if ($currentUser instanceof Candidat) {
-            foreach ($currentUser->getApplications() as $application) {
-                foreach ($application->getFiles() as $file) {
-                    $fileName = $this->getParameter('application_file_directory') . DIRECTORY_SEPARATOR . $file->getName();
-
-                    if (file_exists($fileName)) {
-                        unlink($fileName);
-                    }
-                }
-            }
-        } else if ($currentUser instanceof Recruter) {
-            // handle delete images
+            $fileManager->deleteAllCandidatFiles($currentUser);
         }
 
         if ($this->isCsrfTokenValid('delete' . $currentUser->getId(), $request->request->get('_token'))) {

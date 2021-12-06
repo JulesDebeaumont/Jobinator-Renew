@@ -7,12 +7,12 @@ use App\Entity\FileApplication;
 use App\Entity\Job;
 use App\Form\ApplicationType;
 use App\Repository\ApplicationRepository;
+use App\Service\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 #[Route('/job/{job_id}/application')]
@@ -38,7 +38,7 @@ class ApplicationController extends AbstractController
     }
 
     #[Route('/new', name: 'application_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, Job $job): Response
+    public function new(Request $request, Job $job, FileManager $fileManager): Response
     {
         if (!$this->isGranted('JOB_APPLY', $job)) {
             return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
@@ -53,27 +53,15 @@ class ApplicationController extends AbstractController
             /**
              * Gestion des fichiers
              * https://symfony.com/doc/current/controller/upload_file.html
+             * Custom service
              */
             $files = $form->get('files')->getData();
 
             foreach ($files as $file) {
-                // génère un nom de fichier
-                $newFile = md5(uniqid()) . '.' . $file->guessExtension();
+                $newFile = $fileManager->upload($file);
 
-                // Copie du fichier dans le dossier
-                try {
-                    $file->move(
-                        // On va chercher la route du dossier dans le services.yaml
-                        $this->getParameter('application_file_directory'),
-                        $newFile
-                    );
-                } catch (FileException $error) {
-                    throw new FileException('An error has occured while uploadign the file' . $file . '\n' . $error->getMessage());
-                }
-
-                // On stock le nom du fichier dans la BD
                 $fileApplication = new FileApplication();
-                $fileApplication->setName($file);
+                $fileApplication->setName($newFile);
                 $application->addFile($fileApplication);
             }
 
