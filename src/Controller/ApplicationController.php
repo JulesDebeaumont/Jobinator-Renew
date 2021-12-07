@@ -8,6 +8,7 @@ use App\Entity\Job;
 use App\Form\ApplicationType;
 use App\Repository\ApplicationRepository;
 use App\Service\FileManager;
+use App\Service\MailSender;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,8 +39,12 @@ class ApplicationController extends AbstractController
     }
 
     #[Route('/new', name: 'application_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, Job $job, FileManager $fileManager): Response
-    {
+    public function new(
+        Request $request,
+        Job $job,
+        FileManager $fileManager,
+        MailSender $mailSender
+    ): Response {
         if (!$this->isGranted('JOB_APPLY', $job)) {
             return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,6 +80,8 @@ class ApplicationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($application);
             $entityManager->flush();
+
+            $mailSender->applicationMail($application);
 
             return $this->redirectToRoute('apply_success', ['job_id' => $job->getId()], Response::HTTP_SEE_OTHER);
         }

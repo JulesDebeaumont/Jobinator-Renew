@@ -12,6 +12,7 @@ use App\Repository\CandidatRepository;
 use App\Repository\JobRepository;
 use App\Repository\RecruterRepository;
 use App\Service\FileManager;
+use App\Service\MailSender;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -171,7 +172,7 @@ class ProfilController extends AbstractController
     /**
      * @Route("/account-delete", name="account_delete", methods={"POST"})
      */
-    public function deleteAccount(Request $request, FileManager $fileManager): Response
+    public function deleteAccount(Request $request, FileManager $fileManager, MailSender $mailSender): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
             $this->redirectToRoute('home');
@@ -185,6 +186,10 @@ class ProfilController extends AbstractController
         }
 
         if ($this->isCsrfTokenValid('delete' . $currentUser->getId(), $request->request->get('_token'))) {
+
+            // Store le mail avant la fin de session et le remove de la BD
+            $currentUserEmail = $currentUser->getEmail();
+
             // Enlève la session courante
             $session = $this->get('session');
             $session = new Session();
@@ -193,6 +198,8 @@ class ProfilController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($currentUser);
             $entityManager->flush();
+
+            $mailSender->deleteAccountMail($currentUserEmail);
         }
 
         return $this->redirectToRoute('home');
