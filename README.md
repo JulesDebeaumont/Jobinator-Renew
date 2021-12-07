@@ -6,7 +6,7 @@ By *Jules Debeaumont*
 
 
 
-### 🔧 1_Installation 
+### 🔧 1-Installation 
 
 - Do a `git init`
 - Clone the project
@@ -15,7 +15,7 @@ By *Jules Debeaumont*
 
 
 
-### ⚙ 2_Configure the Database:
+### ⚙ 2-Configure the Database:
 
 - Log as admin on your localhost/phpmyadmin
 - Make a new user for the Symfony5 access
@@ -36,7 +36,7 @@ Password: `1234`
 
 
 
-### 🎬 3_Launch the server:
+### 🎬 3-Launch the server:
 
 Do a `symfony serve`
 
@@ -45,15 +45,15 @@ Do a `symfony serve`
 
 
 
-### 📎 4_Misc:
+### 📎 4-Misc:
 
-- Reset DB and load fixtures `composer reset`
+- Reset DB, remove uploaded files and load fixtures `composer reset`
 - To check the 404 Error Page, go to `your-localhost-here/index.php/_error/404`
 - Amazing reference: https://slides-symfony-iut.netlify.app
 
 
 
-### 🚧 5_To do:
+### 🚧 5-To do:
 
 -> Finir crud Jobs ✔
 -> Add all form errors ✔
@@ -74,17 +74,23 @@ Do a `symfony serve`
 -> Delete uploaded files with composer reset script ✔
 -> Service fileUpload ✔
 -> Add attribute to fileApplication for original filename + extension ✔
+-> MailSender service
 -> Mailer candidature (candidat + recruter)
 -> Page de recherche
--> fix all <lavel> for props for forms
+-> fix all <label> for props for forms
+-> Test register + edit profile for both users
 -> Test login recruter -> new job
--> Cron delete job after 6 months
 -> Tests login candidat -> apply
+-> Test new job -> look for it in search page
+-> Test create job recruter -> apply as candidat with 
+-> Test emails
+-> Cron delete job after 6 months
 -> Test register + mail
 -> Slug dans URL
 -> Slug filenames
 -> Fixture with files
--> Commandes
+-> Commande showing number of job in the database
+-> Commande for sending a mail to all candidat for fun
 -> My_application/job by createdAt/UpdateAt order
 -> Apply as anonymous
 -> Better emails style
