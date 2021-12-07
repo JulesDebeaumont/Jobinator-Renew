@@ -5,6 +5,11 @@
 	<ul class="profil-info">
 		<div class="card-job-link">
 
+			{% if jobs %}
+				<h4 class="card-job-title">{{ jobs.getTotalItemCount }}
+					result(s) found.</h4>
+			{% endif %}
+
 			{% for job in jobs %}
 				<li class="card-job card-job-link">
 					<div class="card-job-title">
@@ -35,4 +40,8 @@
 
 		</div>
 	</ul>
+
+	<div class="navigation">
+		{{ knp_pagination_render(jobs) }}
+	</div>
 {% endblock %}

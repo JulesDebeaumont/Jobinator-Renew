@@ -318,3 +318,23 @@ body, html {
     text-align: center;
     margin: 20px 0px;
 }
+
+.navigation
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0;
+    padding-bottom: 50px;
+}
+
+.page-link, .page-item.disabled .page-link {
+    background-color: #1c1f23;
+    border-color: #2e363b;
+}
+
+.page-link:hover, .page-item.disabled .page-link:hover{
+    background-color: #1c1f23;
+    border-color: #1a1e21;
+    color: #fff;
+}

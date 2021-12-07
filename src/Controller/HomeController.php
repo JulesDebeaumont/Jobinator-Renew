@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class HomeController extends AbstractController
 {
@@ -41,7 +42,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function search(Request $request): Response
+    public function search(Request $request, PaginatorInterface $paginator): Response
     {
         $jobRepository = $this->getDoctrine()->getRepository(Job::class);
 
@@ -61,7 +62,7 @@ class HomeController extends AbstractController
             ->orderBy('j.updatedAt')
             ->getQuery();
 
-        $jobs = $query->getResult();
+        $jobs = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
         return $this->render('home/search.html.twig', [
             'jobs' => $jobs,
