@@ -313,3 +313,8 @@ body, html {
         width: 600px;
     }
 }
+
+.card-job-description-search {
+    text-align: center;
+    margin: 20px 0px;
+}

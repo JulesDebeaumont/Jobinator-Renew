@@ -15,13 +15,19 @@ class HomeController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        if ($request->query->get('job-where') || $request->query->get('job-what')) {
-            return $this->redirectToRoute('search');
+        $jobWhat = $request->query->get('job-what');
+        $jobWhere = $request->query->get('job-where');
+
+        if ($jobWhat || $jobWhere) {
+            // redirects to a route and maintains the original query string parameters
+            return $this->redirectToRoute('search', $request->query->all());
         }
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'request' => $request
         ]);
+
+        // NEXT query + display last 5 research if logged as candidat
     }
 
     /**
@@ -32,7 +38,6 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-
     /**
      * @Route("/search", name="search")
      */
@@ -40,7 +45,6 @@ class HomeController extends AbstractController
     {
         $jobRepository = $this->getDoctrine()->getRepository(Job::class);
 
-        // Choppe la valeur de l'input avec la props name="job-what"
         $jobWhat = $request->query->get('job-what');
         $jobWhere = $request->query->get('job-where');
 
@@ -48,9 +52,8 @@ class HomeController extends AbstractController
             ->select('j', 'c', 't')
             ->leftJoin('j.category', 'c')
             ->leftJoin('j.type', 't')
-            ->leftJoin('j.recruter', 'r')
             ->where('
-            (j.name LIKE :jobWhat OR j.name LIKE r.company) 
+            (j.name LIKE :jobWhat OR j.name LIKE j.company) 
             AND 
             (j.departement LIKE :jobWhere OR j.location LIKE :jobWhere)')
             ->setParameter('jobWhat', "%{$jobWhat}%")
@@ -61,7 +64,9 @@ class HomeController extends AbstractController
         $jobs = $query->getResult();
 
         return $this->render('home/search.html.twig', [
-            'jobs' => $jobs
+            'jobs' => $jobs,
+            'jobWhere' => $jobWhere,
+            'jobWhat' => $jobWhat
         ]);
     }
 

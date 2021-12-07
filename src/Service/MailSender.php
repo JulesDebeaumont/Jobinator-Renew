@@ -12,10 +12,12 @@ class MailSender
 {
     private MailerInterface $mailer;
 
+
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
     }
+
 
     public function registrationMail(string $emailAdress, bool $isCandidat): void
     {
@@ -38,6 +40,7 @@ class MailSender
         }
     }
 
+
     public function applicationMail(Application $application): void
     {
         $recruterAdress = $application->getJob()->getRecruter()->getEmail();
@@ -59,6 +62,7 @@ class MailSender
             throw new TransportException($error->getMessage());
         }
     }
+
 
     public function deleteAccountMail(string $email): void
     {

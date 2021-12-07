@@ -2,10 +2,37 @@
 
 {% block body %}
 	{{ parent() }}
-	<h1>Results</h1>
+	<ul class="profil-info">
+		<div class="card-job-link">
 
-	{% for job in jobs %}
-		<h6>{{ job.name}}</h6>
-	{% endfor %}
+			{% for job in jobs %}
+				<li class="card-job card-job-link">
+					<div class="card-job-title">
+						<h2 class="title-section">
+							<strong>{{ job.name }}</strong>
+						</h2>
+						<h4>{{ job.company}}</h4>
+						<h4>{{ job.type.name }}</h4>
+					</div>
+					<div class="card-job-description-search">{{ job.description|slice(0, 250) }}..</div>
+					<div>Last updated:
+						{{ job.updatedAt|date("m/d/Y") }}</div>
 
+					{% if is_granted('ROLE_CANDIDAT') %}
+						<div class="buttons-group">
+							{% if is_granted('JOB_APPLY', job) %}
+								<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
+							{% else %}
+								<a class="btn btn-dark confirmed">Already applied ✔</a>
+							{% endif %}
+						</div>
+					{% endif %}
+				</li>
+
+			{% else %}
+				<h2>No job found.</h2>
+			{% endfor %}
+
+		</div>
+	</ul>
 {% endblock %}

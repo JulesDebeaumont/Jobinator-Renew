@@ -20,7 +20,7 @@
 							<strong>What</strong>
 						</label>
 					</div>
-					<input type="text" class="form-control" id="job-what" placeholder="Job, company.." aria-label="Job, company.." aria-describedby="basic-addon1" name="job-what">
+					<input type="text" class="form-control" id="job-what" placeholder="Job, company.." aria-label="Job, company.." aria-describedby="basic-addon1" name="job-what" value='{{ jobWhat ?? ""}}'>
 				</div>
 
 				<div class="input-group">
@@ -29,7 +29,7 @@
 							<strong>Where</strong>
 						</label>
 					</div>
-					<input type="text" class="form-control" id="job-where" placeholder="City, department.." aria-label="City, department.." aria-describedby="basic-addon1" name="job-where">
+					<input type="text" class="form-control" id="job-where" placeholder="City, department.." aria-label="City, department.." aria-describedby="basic-addon1" name="job-where" value='{{ jobWhere ?? ""}}'>
 				</div>
 
 				<button type="submit" class="btn btn-dark">
