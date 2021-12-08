@@ -16,3 +16,12 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 /public/uploads/application/
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

@@ -11,7 +11,7 @@ By *Jules Debeaumont*
 - Clone the project
 - Do a `composer install`
 - Do a `npm install`
-
+- Do a  `npm run build`
 
   
 ### ⚙ 2-Configure the Database
@@ -38,9 +38,8 @@ Password: `1234`
 ### 🚀 3-Launch the server
 
 Do a `symfony serve`  
-
 If you don't have Symfony installed, go for this command instead: `php -S 127.0.0.1:8000 -t public`
-
+Launch MailHog
 
   
 ### 📎 4-Misc
@@ -78,7 +77,6 @@ If you don't have Symfony installed, go for this command instead: `php -S 127.0.
 - Paginator ✔
 - Fix all <label> props for forms ✔
 - Voter application show ✔
-- https://symfony.com/doc/current/controller.html#managing-errors-and-404-pages
 - Test register + edit profile for both users
 - Test login recruter -> new job
 - Tests login candidat -> apply
