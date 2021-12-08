@@ -8,8 +8,9 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class CandidatFixtures extends Fixture
+class CandidatFixtures extends Fixture implements FixtureGroupInterface
 {
     private $encoder;
 
@@ -43,5 +44,10 @@ class CandidatFixtures extends Fixture
     private function loadRandom(int $count): void
     {
         CandidatFactory::createMany($count);
+    }
+
+    public static function getGroups(): array
+    {
+        return ['candidat'];
     }
 }

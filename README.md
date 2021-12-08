@@ -77,7 +77,8 @@ Launch MailHog
 - Paginator ✔
 - Fix all <label> props for forms ✔
 - Voter application show ✔
-- Test register + edit profile for both users
+- Test register ✔ 
+- Test edit profile for both users ✔
 - Test login recruter -> new job
 - Tests login candidat -> apply
 - Test new job -> look for it in search page

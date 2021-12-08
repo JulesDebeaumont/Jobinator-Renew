@@ -7,8 +7,9 @@ use App\Factory\RecruterFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class RecruterFixtures extends Fixture
+class RecruterFixtures extends Fixture implements FixtureGroupInterface
 {
     private $encoder;
 
@@ -40,5 +41,10 @@ class RecruterFixtures extends Fixture
     private function loadRandom(int $count): void
     {
         RecruterFactory::createMany($count);
+    }
+
+    public static function getGroups(): array
+    {
+        return ['recruter'];
     }
 }

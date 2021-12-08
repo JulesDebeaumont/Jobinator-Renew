@@ -88,6 +88,7 @@
         "test" : [
             "php bin/console doctrine:database:drop --force --env=test",
             "php bin/console doctrine:schema:create --env=test",
+            "php bin/console doctrine:fixtures:load --no-interaction --group=recruter --group=candidat --env=test",
             "php bin/phpunit tests"
         ]
     },
