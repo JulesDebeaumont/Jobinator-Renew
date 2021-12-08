@@ -17,17 +17,17 @@
 
 			<div class="aligned-input">
 				<div class="form-group">
-					<label for="registration_form[email]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.email) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.email) }}
 					<div class="input-error">{{ form_errors(registrationForm.email) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[password][first]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.password.first) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.password.first) }}
 					{% if form_errors(registrationForm.password.first) is same as('') %}
 						<small id="passwordHelp" class="form-text text-muted">{{ form_help(registrationForm.password.first) }}</small>
@@ -36,16 +36,16 @@
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[password][second]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.password.second) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.password.second) }}
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[company]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.company) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.company) }}
 					<div class="input-error">{{ form_errors(registrationForm.company) }}</div>
 				</div>

@@ -2,22 +2,23 @@
 <div class="job-form">
 
 	<div class="form-group-big">
-		<label for="form[description]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.description) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.description) }}
 		<div class="input-error">{{ form_errors(form.description) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="form[files]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.files) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.files) }}
 		<small id="passwordHelp" class="form-text text-muted">{{ form_help(form.files) }}</small>
 		<div class="input-error">{{ form_errors(form.files) }}</div>
 	</div>
 
 	<button type="submit" class="btn btn-dark submit-form-button">Save</button>
+
 </div>
 {{ form_end(form) }}

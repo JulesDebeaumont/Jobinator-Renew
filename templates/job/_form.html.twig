@@ -3,82 +3,82 @@
 <div class="job-form">
 
 	<div class="form-group">
-		<label for="job_form[name]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.name) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.name) }}
 		<div class="input-error">{{ form_errors(form.name) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[company]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.company) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.company) }}
 		<div class="input-error">{{ form_errors(form.company) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[type]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.type) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.type) }}
 		<div class="input-error">{{ form_errors(form.type) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[category]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.category) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.category) }}
 		<div class="input-error">{{ form_errors(form.category) }}</div>
 	</div>
 
 	<div class="form-group-big">
-		<label for="job_form[description]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.description) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.description) }}
 		<div class="input-error">{{ form_errors(form.description) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[experienceNeeded]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.experienceNeeded) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.experienceNeeded) }}
 		<div class="input-error">{{ form_errors(form.experienceNeeded) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[pay]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.pay) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.pay) }}
 		<div class="input-error">{{ form_errors(form.pay) }}</div>
 	</div>
 
 	<div class="form-group">
-		<label for="job_form[isRemote]" class="form-group-label">
+		<span class="form-group-label">
 			<strong>{{ form_label(form.isRemote) }}</strong>
-		</label>
+		</span>
 		{{ form_widget(form.isRemote) }}
 		<div class="input-error">{{ form_errors(form.isRemote) }}</div>
 	</div>
 
 	{% if form.location and form.departement %}
 		<div class="form-group">
-			<label for="job_form[location]" class="form-group-label">
+			<span class="form-group-label">
 				<strong>{{ form_label(form.location) }}</strong>
-			</label>
+			</span>
 			{{ form_widget(form.location) }}
 			<div class="input-error">{{ form_errors(form.location) }}</div>
 		</div>
 
 		<div class="form-group">
-			<label for="job_form[departement]" class="form-group-label">
+			<span class="form-group-label">
 				<strong>{{ form_label(form.departement) }}</strong>
-			</label>
+			</span>
 			{{ form_widget(form.departement) }}
 			<div class="input-error">{{ form_errors(form.departement) }}</div>
 		</div>

@@ -4,15 +4,14 @@
 
 	<div class="aligned-input">
 		<div class="form-group">
-			<label for="registration_form[company]" class="form-group-label">
+			<span class="form-group-label">
 				<strong>{{ form_label(form.company) }}</strong>
-			</label>
+			</span>
 			{{ form_widget(form.company) }}
 			<div class="input-error">{{ form_errors(form.company) }}</div>
 		</div>
 		<button type="submit" class="btn btn-dark submit-form-button">Save</button>
 	</div>
-
 
 </div>
 

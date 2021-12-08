@@ -12,17 +12,17 @@
 
 			<div class="aligned-input">
 				<div class="form-group">
-					<label for="registration_form[email]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.email) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.email) }}
 					<div class="input-error">{{ form_errors(registrationForm.email) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[password][first]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.password.first) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.password.first) }}
 					{% if form_errors(registrationForm.password.first) is same as('') %}
 						<small id="passwordHelp" class="form-text text-muted">{{ form_help(registrationForm.password.first) }}</small>
@@ -31,9 +31,9 @@
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[password][second]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.password.second) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.password.second) }}
 				</div>
 			</div>
@@ -43,57 +43,57 @@
 
 			<div class="aligned-input">
 				<div class="form-group">
-					<label for="registration_form[name]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.name) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.name) }}
 					<div class="input-error">{{ form_errors(registrationForm.name) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[surname]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.surname) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.surname) }}
 					<div class="input-error">{{ form_errors(registrationForm.surname) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[birthday]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.birthday) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.birthday) }}
 					<div class="input-error">{{ form_errors(registrationForm.birthday) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[phone]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.phone) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.phone) }}
 					<div class="input-error">{{ form_errors(registrationForm.phone) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[country]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.country) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.country) }}
 					<div class="input-error">{{ form_errors(registrationForm.country) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[city]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.city) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.city) }}
 					<div class="input-error">{{ form_errors(registrationForm.city) }}</div>
 				</div>
 
 				<div class="form-group">
-					<label for="registration_form[departement]" class="form-group-label">
+					<span class="form-group-label">
 						<strong>{{ form_label(registrationForm.departement) }}</strong>
-					</label>
+					</span>
 					{{ form_widget(registrationForm.departement) }}
 					<div class="input-error">{{ form_errors(registrationForm.departement) }}</div>
 				</div>
