@@ -77,6 +77,7 @@ If you don't have Symfony installed, go for this command instead: `php -S 127.0.
 - Page de recherche ✔
 - Paginator ✔
 - Fix all <label> props for forms ✔
+- Voter application show ✔
 - https://symfony.com/doc/current/controller.html#managing-errors-and-404-pages
 - Test register + edit profile for both users
 - Test login recruter -> new job

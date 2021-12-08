@@ -109,6 +109,7 @@ class ApplicationController extends AbstractController
     public function show(Job $job, Application $application): Response
     {
         $this->denyAccessUnlessGranted('JOB_EDIT', $job);
+        $this->denyAccessUnlessGranted('APPLICATION_SHOW', $application);
 
         return $this->render('application/show.html.twig', [
             'application' => $application,
@@ -121,6 +122,7 @@ class ApplicationController extends AbstractController
     public function download(Job $job, Application $application, FileApplication $file): Response
     {
         $this->denyAccessUnlessGranted('JOB_EDIT', $job);
+        $this->denyAccessUnlessGranted('APPLICATION_SHOW', $application);
 
         return $this->file($this->getParameter('application_file_directory') . DIRECTORY_SEPARATOR . $file->getName(), $file->getName(), ResponseHeaderBag::DISPOSITION_INLINE);
     }

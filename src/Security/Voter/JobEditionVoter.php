@@ -6,7 +6,6 @@ use App\Entity\Candidat;
 use App\Entity\Job;
 use App\Entity\Recruter;
 use App\Entity\User;
-use App\Repository\CandidatRepository;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -17,14 +16,6 @@ class JobEditionVoter extends Voter
     protected const DELETE = 'JOB_DELETE';
     protected const POST = 'JOB_POST';
     protected const APPLY = 'JOB_APPLY';
-    // private $candidatRepository;
-
-    /*
-    public function __construct(CandidatRepository $candidatRepository)
-    {
-        $this->candidatRepository = $candidatRepository;
-    }
-    */
 
     protected function supports(string $attribute, $subject): bool
     {
@@ -105,21 +96,6 @@ class JobEditionVoter extends Voter
             return false;
         }
 
-        /*
-        $results = $this->candidatRepository->createQueryBuilder('c')
-            ->leftJoin('c.applications', 'a')
-            ->where('c = :currentUser', 'a.job = :currentJob')
-            ->setParameters([
-                'currentUser' => $user,
-                'currentJob' => $job
-            ])
-            ->getQuery()
-            ->getResult();
-        
-        dump($results);
-        */
-
-        // Ici on est sûr que le $user est une instance de Candidat
         foreach ($user->getApplications() as $application) {
             if ($application->getJob() === $job) {
                 return false;
