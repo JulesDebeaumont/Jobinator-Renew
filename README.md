@@ -75,7 +75,7 @@ If you don't have Symfony installed, go for this command instead: `php -S 127.0.
 - MailSender service ✔
 - Mailer candidature (candidat + recruter) ✔
 - Page de recherche ✔
-- Paginator
+- Paginator ✔
 - Fix all <label> props for forms
 - https://symfony.com/doc/current/controller.html#managing-errors-and-404-pages
 - Test register + edit profile for both users

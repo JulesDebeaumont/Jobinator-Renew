@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Candidat;
-use App\Entity\Recruter;
-use App\Entity\User;
 use App\Form\CandidatType;
 use App\Form\RecruterType;
 use App\Repository\ApplicationRepository;
@@ -18,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ProfilController extends AbstractController
 {
@@ -121,18 +120,19 @@ class ProfilController extends AbstractController
     /**
      * @Route("/my-applications", name="my_applications")
      */
-    public function candidatApplications(ApplicationRepository $applicationRepository): Response
+    public function candidatApplications(ApplicationRepository $applicationRepository, Request $request, PaginatorInterface $paginator): Response
     {
         if ($this->isCandidat()) {
-            $applications = $applicationRepository->createQueryBuilder('a')
+            $query = $applicationRepository->createQueryBuilder('a')
                 ->select('a', 'j')
                 ->leftJoin('a.candidat', 'c')
                 ->leftJoin('a.job', 'j')
                 ->where('c.id = :currentUser')
                 ->setParameter('currentUser', $this->getUser()->getId())
                 ->orderBy('a.createdAt', 'DESC')
-                ->getQuery()
-                ->getResult();
+                ->getQuery();
+
+                $applications = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
             return $this->render('profil/candidat/applications.html.twig', [
                 'applications' => $applications,
@@ -146,10 +146,10 @@ class ProfilController extends AbstractController
     /**
      * @Route("/my-jobs", name="my_jobs")
      */
-    public function recruterJobs(JobRepository $jobRepository): Response
+    public function recruterJobs(JobRepository $jobRepository, Request $request, PaginatorInterface $paginator): Response
     {
         if ($this->isRecruter()) {
-            $jobs = $jobRepository->createQueryBuilder('j')
+            $query = $jobRepository->createQueryBuilder('j')
                 ->select('j', 'a', 'COUNT(c)')
                 ->leftJoin('j.recruter', 'r')
                 ->leftJoin('j.applications', 'a')
@@ -158,8 +158,9 @@ class ProfilController extends AbstractController
                 ->setParameter('currentUser', $this->getUser()->getId())
                 ->groupBy('a')
                 ->orderBy('j.updatedAt', 'DESC')
-                ->getQuery()
-                ->getResult();
+                ->getQuery();
+
+            $jobs = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
             return $this->render('profil/recruter/jobs.html.twig', [
                 'jobs' => $jobs
