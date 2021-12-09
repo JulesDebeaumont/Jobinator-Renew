@@ -49,20 +49,22 @@ class JobTest extends WebTestCase
         $categoryRepository = $container->get('doctrine')->getRepository(Category::class);
         $category = $categoryRepository->findOneBy(['name' => 'Autre']);
 
+        $client->request('GET', '/job/new');
+
         $client->submitForm('Save', [
             'job[name]' => 'TestJob',
             'job[company]' => 'TestCompany',
-            'job[type]' => $type,
-            'job[category]' => $category,
+            'job[type]' => $type->getId(),
+            'job[category]' => $category->getId(),
             'job[description]' => 'Test description'
         ]);
 
-        $this->assertResponseRedirects('/my_jobs');
+        $this->assertResponseRedirects('/my-jobs');
         $client->followRedirect();
 
         $this->assertSelectorTextContains('.card-job-title', '1 job(s) in total.');
 
-        $this->request('/home', 'GET');
+        $client->request('GET', '/');
         $client->submitForm('Search', [
             'job-where' => '',
             'job-what' => 'TestJob'
