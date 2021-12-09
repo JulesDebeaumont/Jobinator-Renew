@@ -85,7 +85,6 @@ Launch MailHog
 - Test create job recruter -> apply as candidat with 
 - Test emails
 - Cron delete job after 6 months
-- Test register + mail
 - Slug dans URL
 - Slug filenames
 - Fixture with files
