@@ -64,13 +64,13 @@ class JobTest extends WebTestCase
 
         $this->assertSelectorTextContains('.card-job-title', '1 job(s) in total.');
 
-        $client->request('GET', '/');
+        $client->request('GET', '/search');
         $client->submitForm('Search', [
             'job-where' => '',
             'job-what' => 'TestJob'
         ]);
-        $this->assertResponseRedirects('/search');
-        $client->followRedirect();
+
+        $this->assertResponseIsSuccessful();
 
         $this->assertSelectorTextContains('.card-job-title', '1 result(s) found.');
         $this->assertSelectorTextContains('.title-section', 'TestJob');

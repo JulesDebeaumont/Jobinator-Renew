@@ -28,10 +28,14 @@
 							{% if is_granted('JOB_APPLY', job) %}
 								<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
 							{% else %}
-								<a class="btn btn-dark confirmed">Already applied ✔</a>
+								<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
+								<a class="btn btn-dark confirmed">Applied ✔</a>
 							{% endif %}
 						</div>
+					{% else %}
+						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
 					{% endif %}
+
 				</li>
 
 			{% endfor %}

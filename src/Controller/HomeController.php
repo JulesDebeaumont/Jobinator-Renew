@@ -53,14 +53,15 @@ class HomeController extends AbstractController
             ->select('j', 'c', 't')
             ->leftJoin('j.category', 'c')
             ->leftJoin('j.type', 't')
-            ->where('
-            (j.name LIKE :jobWhat OR j.name LIKE j.company) 
-            AND 
-            (j.departement LIKE :jobWhere OR j.location LIKE :jobWhere)')
+            ->where("
+            (j.name LIKE :jobWhat OR j.company LIKE :jobWhat) 
+            AND
+            (j.departement LIKE :jobWhere OR j.location LIKE :jobWhere OR j.departement IS NULL OR j.location IS NULL)")
             ->setParameter('jobWhat', "%{$jobWhat}%")
             ->setParameter('jobWhere', "%{$jobWhere}%")
             ->orderBy('j.updatedAt')
             ->getQuery();
+
 
         $jobs = $paginator->paginate($query, $request->query->getInt('page', 1), 5);
 
