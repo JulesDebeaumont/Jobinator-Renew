@@ -10,6 +10,7 @@ use App\Repository\JobRepository;
 use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class JobTest extends WebTestCase
 {
@@ -166,4 +167,57 @@ class JobTest extends WebTestCase
         $this->assertSelectorTextContains('.card-job-info', "Hello, I'm just a test!");
         $this->assertSelectorTextContains('.card-job-info', "The candidat applied without any file.");
     }
+
+
+    public function testLogAsCandidatAndApplyToAnAlreadyAppliedJob(): void
+    {
+        $client = $this->authAsCandidat();
+
+        $client->request('GET', '/job/2');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('.btn', 'Already applied');
+
+        $client->request('GET', '/job/2/application/new');
+        $this->assertResponseRedirects('/');
+    }
+
+
+    public function testDeniedAccessCreateJobAsCandidat(): void {
+        $this->expectException(AccessDeniedException::class);
+
+        $client = $this->authAsCandidat();
+        $client->catchExceptions(false);
+        $client->request('GET', '/job/new');
+    }
+
+
+    public function testDeniedAccessMyJobRouteAsCandidat(): void {
+        $client = $this->authAsCandidat();
+        $client->request('GET', '/my-jobs');
+        $this->assertResponseRedirects('/');
+    }
+
+
+    public function testDeniedAccessMyApplicationRouteAsRecruter(): void {
+        $client = $this->authAsRecruter();
+        $client->request('GET', '/my-applications');
+        $this->assertResponseRedirects('/');
+    }
+
+
+    public function testDeniedAccessEditJobAsCandidat(): void {
+        $this->expectException(AccessDeniedException::class);
+
+        $client = $this->authAsCandidat();
+        $client->catchExceptions(false);
+        $client->request('GET', '/job/1/edit');
+    }
+
+    
+    public function testDeniedAccessApplyAsRecruter(): void {
+        $client = $this->authAsRecruter();
+        $client->request('GET', '/job/1/application/new');
+        $this->assertResponseRedirects('/');
+    }
+
 }

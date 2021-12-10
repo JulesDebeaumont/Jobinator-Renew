@@ -139,7 +139,7 @@ class ProfilController extends AbstractController
             ]);
         }
 
-        return $this->redirect('home');
+        return $this->redirectToRoute('home');
     }
 
 
@@ -167,7 +167,7 @@ class ProfilController extends AbstractController
             ]);
         }
 
-        return $this->redirect('home');
+        return $this->redirectToRoute('home');
     }
 
     /**
