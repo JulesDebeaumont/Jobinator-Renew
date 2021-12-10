@@ -79,10 +79,10 @@ Launch MailHog
 - Voter application show ✔
 - Test register ✔ 
 - Test edit profile for both users ✔
-- Test login recruter -> new job
-- Tests login candidat -> apply
-- Test new job -> look for it in search page
-- Test create job recruter -> apply as candidat with 
+- Test login recruter -> new job ✔
+- Tests login candidat -> apply ✔
+- Test new job -> look for it in search page ✔
+- Test create job recruter -> apply as candidat ✔
 - Test emails
 - Cron delete job after 6 months
 - Slug dans URL
