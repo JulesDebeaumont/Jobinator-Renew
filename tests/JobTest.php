@@ -147,8 +147,23 @@ class JobTest extends WebTestCase
         $this->assertInstanceOf(Application::class, $application);
     }
 
-    
-    public function testShowApplicationAsRecruter(): void {
-    
+
+    public function testShowApplicationAsRecruter(): void
+    {
+        $client = $this->authAsRecruter();
+        $client->request('GET', '/my-jobs');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('body', 'See candidats (1)');
+
+        $client->clickLink('See candidats (1)');
+        $this->assertResponseIsSuccessful();
+
+        $this->assertSelectorTextContains('.card-job-title', '1 candidat(s)');
+
+        $client->clickLink('Show');
+        $this->assertResponseIsSuccessful();
+
+        $this->assertSelectorTextContains('.card-job-info', "Hello, I'm just a test!");
+        $this->assertSelectorTextContains('.card-job-info', "The candidat applied without any file.");
     }
 }

@@ -7,6 +7,13 @@
 			{{ job.name }}</h1>
 		<div class="profil">
 			<ul class="profil-info">
+				{% if applications %}
+					<div class="card-job-title">{{ applications|length }}
+						candidat(s).</div>
+				{% else %}
+					<div class="card-job-title">There's no candidat for this job yet.</div>
+				{% endif %}
+
 				{% for application in applications %}
 					<li class="card-job card-job-link">
 						<h2>
@@ -16,10 +23,8 @@
 						<div>
 							Applied on
 							{{ application.createdAt|date("m/d/Y") }}</div>
-						<a class="btn btn-dark" href="{{ path('application_show', {'job_id' : job.id, 'id': application.id}) }}">show</a>
+						<a class="btn btn-dark" href="{{ path('application_show', {'job_id' : job.id, 'id': application.id}) }}">Show</a>
 					</li>
-				{% else %}
-					<div>There's no candidat for this job yet.</div>
 				{% endfor %}
 			</ul>
 		</div>
