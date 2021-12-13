@@ -93,7 +93,7 @@ Launch MailHog
 - Password with lower/uppercase and number
 - Captcha in registration forms
 - Commande showing number of job in the database ✔
-- Commande for sending a mail to all candidat for fun
+- Commande for sending a mail to all candidat for fun ✔
 - My_application/job by createdAt/UpdateAt order ✔
 - Apply as anonymous
 - Table last research linked to candidat

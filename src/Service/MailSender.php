@@ -76,4 +76,17 @@ class MailSender
             echo ($error->getMessage());
         }
     }
+
+
+    public function uselessMail(string $email): void {
+        $email = (new TemplatedEmail())
+        ->to($email)
+        ->subject("I'm a useless email")
+        ->htmlTemplate('emails/welcome.html.twig');
+    try {
+        $this->mailer->send($email);
+    } catch (TransportExceptionInterface $error) {
+        echo ($error->getMessage());
+    }
+    }
 }
