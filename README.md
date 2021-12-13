@@ -45,6 +45,7 @@ Launch MailHog
 ### 📎 4-Misc
 
 - Reset DB, remove uploaded files and load fixtures: `composer reset`
+- Run all tests: `composer test`
 - To check the 404 Error Page, go to `your-localhost-here/index.php/_error/404`
 - Amazing reference: https://slides-symfony-iut.netlify.app
 
@@ -84,11 +85,13 @@ Launch MailHog
 - Test new job -> look for it in search page ✔
 - Test create job recruter -> apply as candidat ✔
 - Test emails ✔
-- Add phone number to user job
 - Cron delete job after 6 months
 - Slug dans URL
 - Slug filenames
 - Fixture with files
+- BD Archives
+- Password with lower/uppercase and number
+- Captcha in registration forms
 - Commande showing number of job in the database
 - Commande for sending a mail to all candidat for fun
 - My_application/job by createdAt/UpdateAt order

@@ -99,7 +99,6 @@ class Job
      */
     private $company;
 
-
     public function __construct()
     {
         $this->applications = new ArrayCollection();
