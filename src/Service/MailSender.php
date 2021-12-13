@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Entity\Application;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
@@ -36,7 +35,7 @@ class MailSender
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $error) {
-            throw new TransportException($error->getMessage());
+            echo ($error->getMessage());
         }
     }
 
@@ -59,7 +58,7 @@ class MailSender
             $this->mailer->send($recruterEmail);
             $this->mailer->send($candidatEmail);
         } catch (TransportExceptionInterface $error) {
-            throw new TransportException($error->getMessage());
+            echo ($error->getMessage());
         }
     }
 
@@ -74,7 +73,7 @@ class MailSender
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $error) {
-            throw new TransportException($error->getMessage());
+            echo ($error->getMessage());
         }
     }
 }

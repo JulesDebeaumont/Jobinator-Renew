@@ -11,9 +11,12 @@ use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Bundle\FrameworkBundle\Test\MailerAssertionsTrait;
 
 class JobTest extends WebTestCase
 {
+    use MailerAssertionsTrait;
+
     /**
      * Log as Candidat
      */
@@ -218,6 +221,33 @@ class JobTest extends WebTestCase
         $client = $this->authAsRecruter();
         $client->request('GET', '/job/1/application/new');
         $this->assertResponseRedirects('/');
+    }
+
+
+    public function testGettingEmailsWhenApplying(): void {
+        $client = $this->authAsCandidat();
+        $job = $this->createJob('Another Job');
+
+        $client->request('GET', "/job/{$job->getId()}/application/new");
+        $this->assertResponseIsSuccessful();
+
+        $client->submitForm('Apply', [
+            'application[description]' => "Hello, I'm just a test!"
+        ]);
+
+        $this->assertEmailCount(2);
+
+        $email = $this->getMailerMessage(0);
+
+        $this->assertEmailHeaderSame($email, 'To', 'another@hotmail.fr');
+        $this->assertEmailHeaderSame($email, 'Subject', 'Someone applied to your job!');
+        $this->assertEmailHeaderSame($email, 'Sender', 'jobinator-renew@gmail.com');
+
+        $email = $this->getMailerMessage(1);
+
+        $this->assertEmailHeaderSame($email, 'To', 'random@yahoo.fr');
+        $this->assertEmailHeaderSame($email, 'Subject', 'You applied to a job!');
+        $this->assertEmailHeaderSame($email, 'Sender', 'jobinator-renew@gmail.com');
     }
 
 }
