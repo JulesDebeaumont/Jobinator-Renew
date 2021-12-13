@@ -85,16 +85,16 @@ Launch MailHog
 - Test new job -> look for it in search page ✔
 - Test create job recruter -> apply as candidat ✔
 - Test emails ✔
-- Cron delete job after 6 months
+- Commande delete outdated Job (6 months > updatedAt) ✔
 - Slug dans URL
 - Slug filenames
 - Fixture with files
 - BD Archives
 - Password with lower/uppercase and number
 - Captcha in registration forms
-- Commande showing number of job in the database
+- Commande showing number of job in the database ✔
 - Commande for sending a mail to all candidat for fun
-- My_application/job by createdAt/UpdateAt order
+- My_application/job by createdAt/UpdateAt order ✔
 - Apply as anonymous
 - Table last research linked to candidat
 - Event with research -> add to last research if user is logged, max 5
