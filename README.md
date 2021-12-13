@@ -83,7 +83,7 @@ Launch MailHog
 - Tests login candidat -> apply ✔
 - Test new job -> look for it in search page ✔
 - Test create job recruter -> apply as candidat ✔
-- Test emails
+- Test emails ✔
 - Add phone number to user job
 - Cron delete job after 6 months
 - Slug dans URL

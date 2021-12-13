@@ -4,9 +4,11 @@ namespace App\Tests;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\MailerAssertionsTrait;
 
 class UserTest extends WebTestCase
 {
+    use MailerAssertionsTrait;
 
     /**
      * Log as Candidat
@@ -131,5 +133,44 @@ class UserTest extends WebTestCase
         $client->followRedirect();
 
         $this->assertSelectorTextContains('.profil-info', 'Test');
+    }
+
+
+    public function testEailWhenRegisterAsCandidat(): void {
+        $client = static::createClient();
+        $client->request('GET', '/register/candidat');
+        $client->submitForm('Register', [
+            'registration_candidat_form[email]' => 'testCandidatEmail@yahoo.fr',
+            'registration_candidat_form[password][first]' => 'aRegularPassword',
+            'registration_candidat_form[password][second]' => 'aRegularPassword'
+        ]);
+
+        $this->assertEmailCount(1);
+
+        $email = $this->getMailerMessage(0);
+
+        $this->assertEmailHeaderSame($email, 'To', 'testCandidatEmail@yahoo.fr');
+        $this->assertEmailHeaderSame($email, 'Subject', 'Thanks for signing up!');
+        $this->assertEmailHeaderSame($email, 'Sender', 'jobinator-renew@gmail.com');
+    }
+
+
+    public function testEailWhenRegisterAsRecruter(): void {
+        $client = static::createClient();
+        $client->request('GET', '/register/recruter');
+        $client->submitForm('Register', [
+            'registration_recruter_form[email]' => 'testRecruterEmail@yahoo.fr',
+            'registration_recruter_form[password][first]' => 'aRegularPassword',
+            'registration_recruter_form[password][second]' => 'aRegularPassword',
+            'registration_recruter_form[company]' => 'TestCompany'
+        ]);
+
+        $this->assertEmailCount(1);
+
+        $email = $this->getMailerMessage(0);
+
+        $this->assertEmailHeaderSame($email, 'To', 'testRecruterEmail@yahoo.fr');
+        $this->assertEmailHeaderSame($email, 'Subject', 'Thanks for signing up!');
+        $this->assertEmailHeaderSame($email, 'Sender', 'jobinator-renew@gmail.com');
     }
 }
