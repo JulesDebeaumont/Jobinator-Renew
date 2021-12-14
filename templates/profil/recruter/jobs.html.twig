@@ -34,14 +34,13 @@
 								<div>Updated on
 									{{ job[0].updatedAt|date("m/d/Y") }}</div>
 								<div class="buttons-group">
-									<a class="btn btn-dark" href="{{ path('job_show', {'id': job[0].id}) }}">See</a>
-									{# if job[1] > 0 #}
-									{% if true %}
-										<a class="btn btn-dark" href="{{ path('application_index', {'job_id': job[0].id}) }}">See candidats ({{ job[1]}})</a>
+									<a class="btn btn-dark" href="{{ path('job_show', {'slug': job[0].slug}) }}">See</a>
+									{% if job[1] > 0 %}
+										<a class="btn btn-dark" href="{{ path('application_index', {'job_slug': job[0].slug}) }}">See candidats ({{ job[1]}})</a>
 									{% else %}
 										<a class="btn btn-dark">No candidat yet</a>
 									{% endif %}
-									<a class="btn btn-dark" href="{{ path('job_edit', {'id': job[0].id}) }}">Edit</a>
+									<a class="btn btn-dark" href="{{ path('job_edit', {'slug': job[0].slug}) }}">Edit</a>
 									{% include 'job/_delete_form.html.twig' with { job : job[0] } %}
 								</div>
 							</div>

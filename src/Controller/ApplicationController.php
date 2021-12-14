@@ -16,8 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
-#[Route('/job/{job_id}/application')]
-#[ParamConverter("job", class: Job::class, options: ["id" => "job_id"])]
+#[Route('/job/{job_slug}/application')]
+#[ParamConverter('job', class: Job::class, options: ['mapping' => ['job_slug' => 'slug']])]
 class ApplicationController extends AbstractController
 {
     #[Route('/', name: 'application_index', methods: ['GET'])]
@@ -62,6 +62,8 @@ class ApplicationController extends AbstractController
              */
             $files = $form->get('files')->getData();
 
+
+            // TODO : throw error if count($files) > 3 ?
             foreach ($files as $file) {
                 $newFile = $fileManager->upload($file);
 
@@ -83,7 +85,7 @@ class ApplicationController extends AbstractController
 
             $mailSender->applicationMail($application);
 
-            return $this->redirectToRoute('apply_success', ['job_id' => $job->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('apply_success', ['job_slug' => $job->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('application/new.html.twig', [
@@ -97,7 +99,7 @@ class ApplicationController extends AbstractController
     public function success(Job $job): Response
     {
         if ($this->isGranted('JOB_APPLY', $job) || $this->isGranted('ROLE_RECRUTER')) {
-            return $this->redirectToRoute('job_show', ['id' => $job->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('job_show', ['slug' => $job->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('job/success.html.twig', [

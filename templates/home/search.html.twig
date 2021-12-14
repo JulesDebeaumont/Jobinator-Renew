@@ -16,6 +16,7 @@
 						<h2 class="title-section">
 							<strong>{{ job.name }}</strong>
 						</h2>
+						<h2>{{ job.slug }}</h2>
 						<h4>{{ job.company}}</h4>
 						<h4>{{ job.type.name }}</h4>
 					</div>
@@ -26,14 +27,14 @@
 					{% if is_granted('ROLE_CANDIDAT') %}
 						<div class="buttons-group">
 							{% if is_granted('JOB_APPLY', job) %}
-								<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
+								<a class="btn btn-dark" href="{{ path('job_show', {'slug': job.slug}) }}">Check</a>
 							{% else %}
-								<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
+								<a class="btn btn-dark" href="{{ path('job_show', {'slug': job.slug}) }}">Check</a>
 								<a class="btn btn-dark confirmed">Applied ✔</a>
 							{% endif %}
 						</div>
 					{% else %}
-						<a class="btn btn-dark" href="{{ path('job_show', {'id': job.id}) }}">Check</a>
+						<a class="btn btn-dark" href="{{ path('job_show', {'slug': job.slug}) }}">Check</a>
 					{% endif %}
 
 				</li>

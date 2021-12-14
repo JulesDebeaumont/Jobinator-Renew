@@ -38,7 +38,7 @@ class JobController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'job_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'job_show', methods: ['GET'])]
     public function show(Job $job): Response
     {
         return $this->render('job/show.html.twig', [
@@ -46,7 +46,7 @@ class JobController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'job_edit', methods: ['GET', 'POST'])]
+    #[Route('/{slug}/edit', name: 'job_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Job $job): Response
     {
         $this->denyAccessUnlessGranted('JOB_EDIT', $job);
@@ -66,7 +66,7 @@ class JobController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'job_delete', methods: ['POST'])]
+    #[Route('/{slug}', name: 'job_delete', methods: ['POST'])]
     public function delete(Request $request, Job $job, FileManager $fileManager): Response
     {
         $this->denyAccessUnlessGranted('JOB_DELETE', $job);

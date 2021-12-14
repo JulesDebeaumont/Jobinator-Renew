@@ -129,7 +129,7 @@ class JobTest extends WebTestCase
         $client = $this->authAsCandidat();
         $job = $this->createJob('Test Job');
 
-        $client->request('GET', "/job/{$job->getId()}");
+        $client->request('GET', "/job/{$job->getSlug()}");
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextNotContains('.btn', 'Already applied');
 
@@ -139,7 +139,7 @@ class JobTest extends WebTestCase
         $client->submitForm('Apply', [
             'application[description]' => "Hello, I'm just a test!"
         ]);
-        $this->assertResponseRedirects("/job/{$job->getId()}/application/success");
+        $this->assertResponseRedirects("/job/{$job->getSlug()}/application/success");
         $client->followRedirect();
 
         $this->assertSelectorTextContains('h1', 'You successfully applied to ' . $job->getName());
@@ -175,12 +175,20 @@ class JobTest extends WebTestCase
     public function testLogAsCandidatAndApplyToAnAlreadyAppliedJob(): void
     {
         $client = $this->authAsCandidat();
+        $job = $this->createJob('Test Job Another One');
 
-        $client->request('GET', '/job/2');
+        $client->request('GET', "/job/{$job->getSlug()}/application/new");
+        $client->submitForm('Apply', [
+            'application[description]' => "Hello, I'm just a test !"
+        ]);
+        $this->assertResponseRedirects("/job/{$job->getSlug()}/application/success");
+        $client->followRedirect();
+
+        $client->request('GET', "/job/{$job->getSlug()}");
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('.btn', 'Already applied');
 
-        $client->request('GET', '/job/2/application/new');
+        $client->request('GET', "/job/{$job->getSlug()}/application/new");
         $this->assertResponseRedirects('/');
     }
 
@@ -212,14 +220,16 @@ class JobTest extends WebTestCase
         $this->expectException(AccessDeniedException::class);
 
         $client = $this->authAsCandidat();
+        $job = $this->createJob('Test Job For Denied Access Edit Job as Candidat');
         $client->catchExceptions(false);
-        $client->request('GET', '/job/1/edit');
+        $client->request('GET', "/job/{$job->getSlug()}/edit");
     }
 
     
     public function testDeniedAccessApplyAsRecruter(): void {
         $client = $this->authAsRecruter();
-        $client->request('GET', '/job/1/application/new');
+        $job = $this->createJob('Test Job For Denied Access as Recruter');
+        $client->request('GET', "/job/{$job->getSlug()}/application/new");
         $this->assertResponseRedirects('/');
     }
 
@@ -228,7 +238,7 @@ class JobTest extends WebTestCase
         $client = $this->authAsCandidat();
         $job = $this->createJob('Another Job');
 
-        $client->request('GET', "/job/{$job->getId()}/application/new");
+        $client->request('GET', "/job/{$job->getSlug()}/application/new");
         $this->assertResponseIsSuccessful();
 
         $client->submitForm('Apply', [

@@ -86,7 +86,10 @@ Launch MailHog
 - Test create job recruter -> apply as candidat ✔
 - Test emails ✔
 - Commande delete outdated Job (6 months > updatedAt) ✔
-- Slug dans URL
+- Slug Job ✔
+- Slug Category
+- Slug Type
+- Slug Application
 - Slug filenames
 - Fixture with files
 - BD Archives

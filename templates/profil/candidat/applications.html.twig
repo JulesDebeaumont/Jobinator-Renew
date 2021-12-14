@@ -12,7 +12,7 @@
 					applications(s) in total.</h4>
 
 				{% for application in applications %}
-					<a href="{{ path('job_show', {'id': application.job.id}) }}" class="card-job-link">
+					<a href="{{ path('job_show', {'slug': application.job.slug}) }}" class="card-job-link">
 						<li class="card-job">
 							<h2>
 								<strong>{{ application.job.name}}</strong>

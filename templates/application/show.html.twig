@@ -73,7 +73,7 @@
 
 							{% for file in application.files %}
 							<span>File {{ loop.index }}: 
-								<a href="{{ path('application_file', { 'job_id' : job.id, 'id': application.id, 'file_id': file.id }) }}" 
+								<a href="{{ path('application_file', { 'job_slug' : job.slug, 'id': application.id, 'file_id': file.id }) }}" 
 									target="_blank">{{ file.originalName }} ({{ file.fileExtension }})</a>
 									</span>
 							{% else %}
@@ -85,7 +85,7 @@
 						<div class="small-blank-divider"></div>
 						<div class="small-blank-divider"></div>
 
-						<a class="btn btn-dark" href="{{ path('application_index', {'job_id' : job.id}) }}">Back to all candidats</a>
+						<a class="btn btn-dark" href="{{ path('application_index', {'job_slug' : job.slug}) }}">Back to all candidats</a>
 					</li>
 				</div>
 			</ul>
