@@ -100,7 +100,7 @@ class Job
     private $company;
 
     /**
-     * @Gedmo\Slug(fields={"name", "company"})
+     * @Gedmo\Slug(fields={"name", "company"}, separator="_")
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;

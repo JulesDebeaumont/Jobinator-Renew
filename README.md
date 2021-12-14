@@ -87,10 +87,9 @@ Launch MailHog
 - Test emails ✔
 - Commande delete outdated Job (6 months > updatedAt) ✔
 - Slug Job ✔
-- Slug Application
+- Slug Application ✔
 - Slug filenames
 - Fixture with files
-- BD Archives
 - Password with lower/uppercase and number
 - Captcha in registration forms
 - Commande showing number of job in the database ✔
@@ -103,6 +102,7 @@ Launch MailHog
 - Event with research -> add to last research if user is logged, max 5
 - Better emails style
 - Change password
+- BD Archives
 - Reset password mailer
 - Fix Job counts for Recruter ✔
 - Fix See Candidat count on jobs

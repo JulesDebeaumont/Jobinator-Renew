@@ -107,7 +107,7 @@ class ApplicationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'application_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'application_show', methods: ['GET'])]
     public function show(Job $job, Application $application): Response
     {
         $this->denyAccessUnlessGranted('JOB_EDIT', $job);
@@ -119,7 +119,7 @@ class ApplicationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/file/{file_id}', name: 'application_file', methods: ['GET'])]
+    #[Route('/{slug}/file/{file_id}', name: 'application_file', methods: ['GET'])]
     #[ParamConverter("file", class: FileApplication::class, options: ["id" => "file_id"])]
     public function download(Job $job, Application $application, FileApplication $file): Response
     {

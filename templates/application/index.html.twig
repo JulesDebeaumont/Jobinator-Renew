@@ -23,7 +23,7 @@
 						<div>
 							Applied on
 							{{ application.createdAt|date("m/d/Y") }}</div>
-						<a class="btn btn-dark" href="{{ path('application_show', {'job_slug' : job.slug, 'id': application.id}) }}">Show</a>
+						<a class="btn btn-dark" href="{{ path('application_show', {'job_slug' : job.slug, 'slug': application.slug}) }}">Show</a>
 					</li>
 				{% endfor %}
 			</ul>

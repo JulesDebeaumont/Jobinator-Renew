@@ -59,7 +59,7 @@
 
 							<h4>
 								<strong>Applied on:
-									{{ application.createdAt ? application.createdAt|date('Y-m-d H:i:s') : 'Today' }}</strong>
+									{{ application.createdAt ? application.createdAt|date('Y-m-d') : 'Today' }}</strong>
 							</h4>
 						</div>
 
@@ -73,7 +73,7 @@
 
 							{% for file in application.files %}
 							<span>File {{ loop.index }}: 
-								<a href="{{ path('application_file', { 'job_slug' : job.slug, 'id': application.id, 'file_id': file.id }) }}" 
+								<a href="{{ path('application_file', { 'job_slug' : job.slug, 'slug': application.slug, 'file_id': file.id }) }}" 
 									target="_blank">{{ file.originalName }} ({{ file.fileExtension }})</a>
 									</span>
 							{% else %}

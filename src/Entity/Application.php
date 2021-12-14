@@ -39,7 +39,8 @@ class Application
     private $candidat;
 
     /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -47,6 +48,12 @@ class Application
      * @ORM\OneToMany(targetEntity=FileApplication::class, mappedBy="application", orphanRemoval=true, cascade={"persist"})
      */
     private $files;
+
+    /**
+     * @Gedmo\Slug(fields={"createdAt"}, dateFormat="Ymdhsi")
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -94,12 +101,12 @@ class Application
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -132,6 +139,18 @@ class Application
                 $file->setApplication(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
