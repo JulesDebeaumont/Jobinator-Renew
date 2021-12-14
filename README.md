@@ -87,8 +87,6 @@ Launch MailHog
 - Test emails ✔
 - Commande delete outdated Job (6 months > updatedAt) ✔
 - Slug Job ✔
-- Slug Category
-- Slug Type
 - Slug Application
 - Slug filenames
 - Fixture with files
@@ -99,6 +97,8 @@ Launch MailHog
 - Commande for sending a mail to all candidat for fun ✔
 - My_application/job by createdAt/UpdateAt order ✔
 - Apply as anonymous
+- Test Edit another recruter's Job as Recruter
+- Test 
 - Table last research linked to candidat
 - Event with research -> add to last research if user is logged, max 5
 - Better emails style
