@@ -89,7 +89,7 @@ Launch MailHog
 - Slug Job ✔
 - Slug Application ✔
 - Slug filenames
-- Fixture with files
+- Fixture with files ✔
 - Password with lower/uppercase and number
 - Captcha in registration forms
 - Commande showing number of job in the database ✔

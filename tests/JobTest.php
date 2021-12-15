@@ -139,13 +139,16 @@ class JobTest extends WebTestCase
         $buttonCrawlerNode = $crawler->selectButton('Apply');
         $form = $buttonCrawlerNode->form();
         $form['application[description]'] = "Hello, I'm just a test!";
-        $form['application[files][0]']->upload(
-            DIRECTORY_SEPARATOR .
-                'public' . DIRECTORY_SEPARATOR .
-                'uploads' . DIRECTORY_SEPARATOR .
-                'test' . DIRECTORY_SEPARATOR .
-                'TestCase.pdf'
-        );
+
+        $filePath = 'public' . DIRECTORY_SEPARATOR .
+            'uploads' . DIRECTORY_SEPARATOR .
+            'tests' . DIRECTORY_SEPARATOR .
+            'TestCase.pdf';
+
+        if (file_exists($filePath)) {
+            $form['application[files][0]']->upload($filePath);
+        }
+
         $client->submit($form);
 
         $this->assertResponseRedirects("/job/{$job->getSlug()}/application/success");
@@ -179,7 +182,7 @@ class JobTest extends WebTestCase
         $this->assertSelectorTextContains('.card-job-info', "Hello, I'm just a test!");
         $this->assertSelectorTextNotContains('.card-job-info', "The candidat applied without any file.");
 
-        $client->clickLink('TestCase (PDF)');
+        $client->clickLink('TestCase (pdf)');
         $this->assertResponseIsSuccessful();
     }
 

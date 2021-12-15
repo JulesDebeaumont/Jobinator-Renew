@@ -64,6 +64,7 @@ class ApplicationController extends AbstractController
 
 
             // TODO : throw error if count($files) > 3 ?
+            // TODO : file cannot be empty
             foreach ($files as $file) {
                 $newFile = $fileManager->upload($file);
 
