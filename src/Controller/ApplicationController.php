@@ -120,8 +120,8 @@ class ApplicationController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/file/{file_id}', name: 'application_file', methods: ['GET'])]
-    #[ParamConverter("file", class: FileApplication::class, options: ["id" => "file_id"])]
+    #[Route('/{slug}/file/{file_name}', name: 'application_file', methods: ['GET'])]
+    #[ParamConverter("file", class: FileApplication::class, options: ['mapping' => ["file_name" => "name"]])]
     public function download(Job $job, Application $application, FileApplication $file): Response
     {
         $this->denyAccessUnlessGranted('JOB_EDIT', $job);

@@ -88,7 +88,7 @@ Launch MailHog
 - Commande delete outdated Job (6 months > updatedAt) ✔
 - Slug Job ✔
 - Slug Application ✔
-- Slug filenames
+- ApplicationFiles url change id to name (already unique with md5 method) ✔
 - Fixture with files ✔
 - Password with lower/uppercase and number
 - Captcha in registration forms

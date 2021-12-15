@@ -73,7 +73,7 @@
 
 							{% for file in application.files %}
 							<span>File {{ loop.index }}: 
-								<a href="{{ path('application_file', { 'job_slug' : job.slug, 'slug': application.slug, 'file_id': file.id }) }}" 
+								<a href="{{ path('application_file', { 'job_slug' : job.slug, 'slug': application.slug, 'file_name': file.name }) }}" 
 									target="_blank">{{ file.originalName }} ({{ file.fileExtension }})</a>
 									</span>
 							{% else %}
