@@ -133,12 +133,21 @@ class JobTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextNotContains('.btn', 'Already applied');
 
-        $client->clickLink('Apply');
+        $crawler = $client->clickLink('Apply');
         $this->assertResponseIsSuccessful();
 
-        $client->submitForm('Apply', [
-            'application[description]' => "Hello, I'm just a test!"
-        ]);
+        $buttonCrawlerNode = $crawler->selectButton('Apply');
+        $form = $buttonCrawlerNode->form();
+        $form['application[description]'] = "Hello, I'm just a test!";
+        $form['application[files][0]']->upload(
+            DIRECTORY_SEPARATOR .
+                'public' . DIRECTORY_SEPARATOR .
+                'uploads' . DIRECTORY_SEPARATOR .
+                'test' . DIRECTORY_SEPARATOR .
+                'TestCase.pdf'
+        );
+        $client->submit($form);
+
         $this->assertResponseRedirects("/job/{$job->getSlug()}/application/success");
         $client->followRedirect();
 
@@ -152,7 +161,7 @@ class JobTest extends WebTestCase
     }
 
 
-    public function testShowApplicationAsRecruter(): void
+    public function testShowApplicationAsRecruterWithFile(): void
     {
         $client = $this->authAsRecruter();
         $client->request('GET', '/my-jobs');
@@ -168,7 +177,10 @@ class JobTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertSelectorTextContains('.card-job-info', "Hello, I'm just a test!");
-        $this->assertSelectorTextContains('.card-job-info', "The candidat applied without any file.");
+        $this->assertSelectorTextNotContains('.card-job-info', "The candidat applied without any file.");
+
+        $client->clickLink('TestCase (PDF)');
+        $this->assertResponseIsSuccessful();
     }
 
 
@@ -193,7 +205,8 @@ class JobTest extends WebTestCase
     }
 
 
-    public function testDeniedAccessCreateJobAsCandidat(): void {
+    public function testDeniedAccessCreateJobAsCandidat(): void
+    {
         $this->expectException(AccessDeniedException::class);
 
         $client = $this->authAsCandidat();
@@ -202,21 +215,24 @@ class JobTest extends WebTestCase
     }
 
 
-    public function testDeniedAccessMyJobRouteAsCandidat(): void {
+    public function testDeniedAccessMyJobRouteAsCandidat(): void
+    {
         $client = $this->authAsCandidat();
         $client->request('GET', '/my-jobs');
         $this->assertResponseRedirects('/');
     }
 
 
-    public function testDeniedAccessMyApplicationRouteAsRecruter(): void {
+    public function testDeniedAccessMyApplicationRouteAsRecruter(): void
+    {
         $client = $this->authAsRecruter();
         $client->request('GET', '/my-applications');
         $this->assertResponseRedirects('/');
     }
 
 
-    public function testDeniedAccessEditJobAsCandidat(): void {
+    public function testDeniedAccessEditJobAsCandidat(): void
+    {
         $this->expectException(AccessDeniedException::class);
 
         $client = $this->authAsCandidat();
@@ -225,8 +241,9 @@ class JobTest extends WebTestCase
         $client->request('GET', "/job/{$job->getSlug()}/edit");
     }
 
-    
-    public function testDeniedAccessApplyAsRecruter(): void {
+
+    public function testDeniedAccessApplyAsRecruter(): void
+    {
         $client = $this->authAsRecruter();
         $job = $this->createJob('Test Job For Denied Access as Recruter');
         $client->request('GET', "/job/{$job->getSlug()}/application/new");
@@ -234,7 +251,8 @@ class JobTest extends WebTestCase
     }
 
 
-    public function testGettingEmailsWhenApplying(): void {
+    public function testGettingEmailsWhenApplying(): void
+    {
         $client = $this->authAsCandidat();
         $job = $this->createJob('Another Job');
 

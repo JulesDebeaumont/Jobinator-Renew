@@ -97,7 +97,8 @@ Launch MailHog
 - My_application/job by createdAt/UpdateAt order ✔
 - Apply as anonymous
 - Test Edit another recruter's Job as Recruter
-- Test 
+- Test Apply With File ✔
+- Test show file ✔
 - Table last research linked to candidat
 - Event with research -> add to last research if user is logged, max 5
 - Better emails style
