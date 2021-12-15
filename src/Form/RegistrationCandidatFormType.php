@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Rollerworks\Component\PasswordStrength\Validator\Constraints as RollerworksPassword;
 
 class RegistrationCandidatFormType extends AbstractType
 {
@@ -49,6 +50,11 @@ class RegistrationCandidatFormType extends AbstractType
                             'minMessage' => 'Your password should be at least {{ limit }} characters',
                             // max length allowed by Symfony for security reasons
                             'max' => 4096,
+                        ]),
+                        new RollerworksPassword\PasswordRequirements([
+                            'requireNumbers' => true,
+                            'requireCaseDiff' => true,
+                            'requireSpecialCharacter' => true
                         ]),
                     ],
                     'attr' => ['autocomplete' => 'new-password']

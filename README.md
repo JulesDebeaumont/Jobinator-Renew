@@ -90,7 +90,7 @@ Launch MailHog
 - Slug Application ✔
 - ApplicationFiles url change id to name (already unique with md5 method) ✔
 - Fixture with files ✔
-- Password with lower/uppercase and number
+- Password with lower/uppercase and number ✔
 - Captcha in registration forms
 - Commande showing number of job in the database ✔
 - Commande for sending a mail to all candidat for fun ✔
