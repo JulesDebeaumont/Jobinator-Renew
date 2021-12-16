@@ -1,4 +1,8 @@
 <div class="card-job-title">
+
+	{% if job.jobImage %}
+		<img class="image-job" src="/uploads/image/{{ job.jobImage.name }}"><img>
+	{% endif %}
 	<h2 class="title-section">
 		<strong>{{ job.name }}</strong>
 	</h2>

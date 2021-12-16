@@ -112,6 +112,8 @@ Launch MailHog
 - Message table ?
 - EasyAdmin
 - Image table for Job ✔
+- Fixture image job
+- Test image in job creation
 - JobImage displayed in template
-- JobImage in job form
+- JobImage in job form ✔
 - Recruter must answer!

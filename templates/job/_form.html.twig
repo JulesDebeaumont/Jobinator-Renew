@@ -84,6 +84,15 @@
 		</div>
 	{% endif %}
 
+	<div class="form-group">
+		<span class="form-group-label">
+			<strong>{{ form_label(form.companyImage) }}</strong>
+		</span>
+		{{ form_widget(form.companyImage) }}
+		<small id="passwordHelp" class="form-text text-muted">{{ form_help(form.companyImage) }}</small>
+		<div class="input-error">{{ form_errors(form.companyImage) }}</div>
+	</div>
+
 	<button type="submit" class="btn btn-dark submit-form-button">Save</button>
 </div>
 {{ form_end(form) }}

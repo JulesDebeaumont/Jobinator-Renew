@@ -338,3 +338,16 @@ body, html {
     border-color: #1a1e21;
     color: #fff;
 }
+
+.image-job {
+    max-width: 600px;
+    max-height: 200px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 450px) {
+    .image-job {
+        max-width: 300px;
+        max-height: 150px;
+    }
+}
