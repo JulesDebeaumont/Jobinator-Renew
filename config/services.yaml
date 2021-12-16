@@ -27,4 +27,5 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Service\FileManager:
             arguments:
-                $targetDirectory: '%kernel.project_dir%/public/uploads/application'
+                $targetDirectoryPDF: '%kernel.project_dir%/public/uploads/application'
+                $targetDirectoryImages: '%kernel.project_dir%/public/uploads/images'

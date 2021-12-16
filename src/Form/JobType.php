@@ -4,12 +4,14 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Job;
+use App\Entity\JobImage;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormEvent;
@@ -18,6 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\File;
 
 class JobType extends AbstractType
 {
@@ -135,6 +138,26 @@ class JobType extends AbstractType
                     new Positive([
                         'message' => 'Experience needed must be a positive number'
                     ])
+                ]
+            ])
+            ->add('companyImage', FileType::class, [
+                'label' => 'Company Image',
+                'mapped' => false,
+                'required' => false,
+                'help' => '2Mb max',
+                'constraints' => [
+                        'constraints' => [
+                            new File([
+                                'maxSize' => '2M',
+                                'maxSizeMessage' => 'File must be at most 2Mb',
+                                'mimeTypes' => [
+                                    'image/jpg',
+                                    'image/png',
+                                    'image/jpeg'
+                                ],
+                                'mimeTypesMessage' => 'Please upload a valid image',
+                            ])
+                        ]
                 ]
             ])
             // https://symfony.com/doc/current/form/events.html#event-listeners

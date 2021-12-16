@@ -104,6 +104,8 @@ Launch MailHog
 - Better emails style
 - Change password
 - BD Archives
+- Check if files <= 3 when uploading for applications
+- Application success redirect to previous search
 - Reset password mailer
 - Fix Job counts for Recruter ✔
 - Fix See Candidat count on jobs
@@ -111,6 +113,5 @@ Launch MailHog
 - EasyAdmin
 - Image table for Job ✔
 - JobImage displayed in template
-- JobImage service
 - JobImage in job form
 - Recruter must answer!

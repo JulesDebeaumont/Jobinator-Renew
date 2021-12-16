@@ -66,7 +66,7 @@ class ApplicationController extends AbstractController
             // TODO : throw error if count($files) > 3 ?
             // TODO : file cannot be empty
             foreach ($files as $file) {
-                $newFile = $fileManager->upload($file);
+                $newFile = $fileManager->uploadPDF($file);
 
                 $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
