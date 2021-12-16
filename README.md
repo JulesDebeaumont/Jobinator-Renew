@@ -109,5 +109,8 @@ Launch MailHog
 - Fix See Candidat count on jobs
 - Message table ?
 - EasyAdmin
-- Image table for Job
+- Image table for Job ✔
+- JobImage displayed in template
+- JobImage service
+- JobImage in job form
 - Recruter must answer!

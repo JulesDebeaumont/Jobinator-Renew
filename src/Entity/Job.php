@@ -105,6 +105,11 @@ class Job
      */
     private $slug;
 
+    /**
+     * @ORM\OneToOne(targetEntity=JobImage::class, mappedBy="job", cascade={"persist", "remove"})
+     */
+    private $jobImage;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -321,6 +326,23 @@ class Job
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getJobImage(): ?JobImage
+    {
+        return $this->jobImage;
+    }
+
+    public function setJobImage(JobImage $jobImage): self
+    {
+        // set the owning side of the relation if necessary
+        if ($jobImage->getJob() !== $this) {
+            $jobImage->setJob($this);
+        }
+
+        $this->jobImage = $jobImage;
 
         return $this;
     }
