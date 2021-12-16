@@ -26,9 +26,16 @@ class RecruterFixtures extends Fixture implements FixtureGroupInterface
         $password = $this->encoder->encodePassword($recruter, 'abcd');
         $recruter->setPassword($password);
         $recruter->setCompany('Da Big Biz');
-
-
         $manager->persist($recruter);
+
+        $anotherRecruter = new Recruter();
+        $anotherRecruter->setEmail('anotherRecruter@hotmail.fr');
+        $anotherRecruter->setRoles(['ROLE_USER', 'ROLE_RECRUTER']);
+        $anotherPassword = $this->encoder->encodePassword($recruter, 'abcde');
+        $anotherRecruter->setPassword($anotherPassword);
+        $anotherRecruter->setCompany('Nimpize');
+        $manager->persist($anotherRecruter);
+
         $manager->flush();
 
         $this->loadRandom(10);

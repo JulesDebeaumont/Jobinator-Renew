@@ -280,4 +280,11 @@ class JobTest extends WebTestCase
         $this->assertEmailHeaderSame($email, 'Subject', 'You applied to a job!');
         $this->assertEmailHeaderSame($email, 'Sender', 'jobinator-renew@gmail.com');
     }
+
+
+    public function testEditOtherRecrutersJobAsRecruter(): void {
+        $this->authAsRecruter();
+
+        
+    }
 }
