@@ -96,7 +96,7 @@ Launch MailHog
 - Commande for sending a mail to all candidat for fun ✔
 - My_application/job by createdAt/UpdateAt order ✔
 - Apply as anonymous
-- Test Edit another recruter's Job as Recruter
+- Test Edit another recruter's Job as Recruter ✔
 - Test Apply With File ✔
 - Test show file ✔
 - Table last research linked to candidat

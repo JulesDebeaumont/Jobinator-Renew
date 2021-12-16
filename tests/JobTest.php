@@ -32,6 +32,21 @@ class JobTest extends WebTestCase
     }
 
     /**
+     * Log as Another Recruter
+     */
+    public function authAsAnotherRecruter(): \Symfony\Bundle\FrameworkBundle\KernelBrowser
+    {
+        $client = static::createClient();
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
+        $testUser = $userRepository->findOneByEmail('anotherRecruter@hotmail.fr');
+        $client->loginUser($testUser);
+
+        return $client;
+    }
+
+
+    /**
      * Log as Recruter
      */
     public function authAsRecruter(): \Symfony\Bundle\FrameworkBundle\KernelBrowser
@@ -44,6 +59,7 @@ class JobTest extends WebTestCase
 
         return $client;
     }
+
 
     /**
      * Create a job
@@ -282,9 +298,15 @@ class JobTest extends WebTestCase
     }
 
 
-    public function testEditOtherRecrutersJobAsRecruter(): void {
-        $this->authAsRecruter();
+    public function testEditOtherRecrutersJobAsRecruter(): void
+    {
+        $this->expectException(AccessDeniedException::class);
 
-        
+        $client = $this->authAsAnotherRecruter();
+        // Here the job owner is not the current user
+        $job = $this->createJob('Another job');
+
+        $client->catchExceptions(false);
+        $client->request('GET', "/job/{$job->getSlug()}/edit");
     }
 }
