@@ -50,8 +50,8 @@ class UserTest extends WebTestCase
         $client->request('GET', '/register/candidat');
         $client->submitForm('Register', [
             'registration_candidat_form[email]' => 'testCandidat@yahoo.fr',
-            'registration_candidat_form[password][first]' => 'aRegularPassword',
-            'registration_candidat_form[password][second]' => 'aRegularPassword'
+            'registration_candidat_form[password][first]' => 'aRegularPassword&&12',
+            'registration_candidat_form[password][second]' => 'aRegularPassword&&12'
         ]);
         $this->assertResponseRedirects('/profil');
         $client->followRedirect();
@@ -69,8 +69,8 @@ class UserTest extends WebTestCase
         $client->request('GET', '/register/recruter');
         $client->submitForm('Register', [
             'registration_recruter_form[email]' => 'testRecruter@yahoo.fr',
-            'registration_recruter_form[password][first]' => 'aRegularPassword',
-            'registration_recruter_form[password][second]' => 'aRegularPassword',
+            'registration_recruter_form[password][first]' => 'aRegularPassword&&13',
+            'registration_recruter_form[password][second]' => 'aRegularPassword&&13',
             'registration_recruter_form[company]' => 'TestCompany'
         ]);
         $this->assertResponseRedirects('/profil');
@@ -136,13 +136,13 @@ class UserTest extends WebTestCase
     }
 
 
-    public function testEailWhenRegisterAsCandidat(): void {
+    public function testEmailWhenRegisterAsCandidat(): void {
         $client = static::createClient();
         $client->request('GET', '/register/candidat');
         $client->submitForm('Register', [
             'registration_candidat_form[email]' => 'testCandidatEmail@yahoo.fr',
-            'registration_candidat_form[password][first]' => 'aRegularPassword',
-            'registration_candidat_form[password][second]' => 'aRegularPassword'
+            'registration_candidat_form[password][first]' => 'aRegularPassword&&15',
+            'registration_candidat_form[password][second]' => 'aRegularPassword&&15'
         ]);
 
         $this->assertEmailCount(1);
@@ -160,8 +160,8 @@ class UserTest extends WebTestCase
         $client->request('GET', '/register/recruter');
         $client->submitForm('Register', [
             'registration_recruter_form[email]' => 'testRecruterEmail@yahoo.fr',
-            'registration_recruter_form[password][first]' => 'aRegularPassword',
-            'registration_recruter_form[password][second]' => 'aRegularPassword',
+            'registration_recruter_form[password][first]' => 'aRegularPassword&&199',
+            'registration_recruter_form[password][second]' => 'aRegularPassword&&199',
             'registration_recruter_form[company]' => 'TestCompany'
         ]);
 

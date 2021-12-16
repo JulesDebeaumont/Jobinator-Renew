@@ -13,9 +13,18 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Rollerworks\Component\PasswordStrength\Validator\Constraints as RollerworksPassword;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
+use Psr\Container\ContainerInterface;
 
 class RegistrationRecruterFormType extends AbstractType
 {
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -73,6 +82,11 @@ class RegistrationRecruterFormType extends AbstractType
                         'maxMessage' => 'Should be at most 255 characters long',
                     ])
                 ]
+            ])
+            ->add('captcha', CaptchaType::class, [
+                'disabled' => $this->container->getParameter('captchas_disabled')
+                // 'reload' => true,
+                // 'as_url' => true
             ]);
     }
 
