@@ -38,7 +38,7 @@ class FileManager
         return $newFile;
     }
 
-    public function uploadFile(UploadedFile $file): string
+    public function uploadImage(UploadedFile $file): string
     {
         $newFile = md5(uniqid()) . '.' . $file->guessExtension();
 
@@ -58,6 +58,7 @@ class FileManager
 
     public function deleteAllJobRelatedFiles(Job $job): void
     {
+        // PDF
         foreach ($job->getApplications() as $application) {
             foreach ($application->getFiles() as $file) {
                 $fileName = $this->getTargetDirectoryPDF() . DIRECTORY_SEPARATOR . $file->getName();
@@ -68,7 +69,15 @@ class FileManager
             }
         }
 
-        // NEXT handle images
+        // Images
+        $file = $job->getJobImage();
+        if ($file) {
+            $fileName = $this->getTargetDirectoryImage() . DIRECTORY_SEPARATOR . $file->getName();
+
+            if (file_exists($fileName)) {
+                unlink($fileName);
+            }
+        }
     }
 
     public function deleteAllCandidatFiles(Candidat $candidat): void
@@ -86,11 +95,11 @@ class FileManager
 
     public function getTargetDirectoryPDF(): string
     {
-        return $this->getTargetDirectoryPDF;
+        return $this->targetDirectoryPDF;
     }
 
     public function getTargetDirectoryImage(): string
     {
-        return $this->getTargetDirectoryImage;
+        return $this->targetDirectoryImage;
     }
 }

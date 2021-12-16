@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Job;
+use App\Entity\JobImage;
 use App\Form\JobType;
 use App\Repository\CandidatRepository;
 use App\Service\FileManager;
@@ -16,7 +17,7 @@ class JobController extends AbstractController
 {
 
     #[Route('/new', name: 'job_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, FileManager $fileManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_RECRUTER');
 
@@ -25,6 +26,17 @@ class JobController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form->get('companyImage')->getData();
+
+            if ($file) {
+                $newFile = $fileManager->uploadImage($file);
+
+                $jobImage = new JobImage();
+                $jobImage->setName($newFile);
+                $job->setJobImage($jobImage);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();

@@ -146,18 +146,17 @@ class JobType extends AbstractType
                 'required' => false,
                 'help' => '2Mb max',
                 'constraints' => [
-                        'constraints' => [
-                            new File([
-                                'maxSize' => '2M',
-                                'maxSizeMessage' => 'File must be at most 2Mb',
-                                'mimeTypes' => [
-                                    'image/jpg',
-                                    'image/png',
-                                    'image/jpeg'
-                                ],
-                                'mimeTypesMessage' => 'Please upload a valid image',
-                            ])
-                        ]
+                    new File([
+                        'maxSize' => '2M',
+                        'maxSizeMessage' => 'File must be at most 2Mb',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/png',
+                            'image/jpeg'
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ])
+
                 ]
             ])
             // https://symfony.com/doc/current/form/events.html#event-listeners

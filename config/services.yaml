@@ -28,4 +28,4 @@ services:
     App\Service\FileManager:
             arguments:
                 $targetDirectoryPDF: '%kernel.project_dir%/public/uploads/application'
-                $targetDirectoryImages: '%kernel.project_dir%/public/uploads/images'
+                $targetDirectoryImage: '%kernel.project_dir%/public/uploads/image'
