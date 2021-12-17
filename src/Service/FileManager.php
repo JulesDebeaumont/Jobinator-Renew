@@ -84,12 +84,25 @@ class FileManager
     {
         foreach ($candidat->getApplications() as $application) {
             foreach ($application->getFiles() as $file) {
-                $fileName = $this->getTargetDirectoryPDF() . DIRECTORY_SEPARATOR . $file->getName();
 
-                if (file_exists($fileName)) {
-                    unlink($fileName);
-                }
+                $this->removePDF($file->getName());
             }
+        }
+    }
+
+    public function removePDF(string $fileName): void
+    {
+        $fileName = $this->getTargetDirectoryPDF() . DIRECTORY_SEPARATOR . $fileName;
+        if (file_exists($fileName)) {
+            unlink($fileName);
+        }
+    }
+
+    public function removeImage(string $fileName): void
+    {
+        $fileName = $this->getTargetDirectoryImage() . DIRECTORY_SEPARATOR . $fileName;
+        if (file_exists($fileName)) {
+            unlink($fileName);
         }
     }
 

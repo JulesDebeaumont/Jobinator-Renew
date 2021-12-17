@@ -8,6 +8,7 @@ use App\Form\JobType;
 use App\Repository\CandidatRepository;
 use App\Service\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,7 +60,7 @@ class JobController extends AbstractController
     }
 
     #[Route('/{slug}/edit', name: 'job_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Job $job): Response
+    public function edit(Request $request, Job $job, FileManager $fileManager): Response
     {
         $this->denyAccessUnlessGranted('JOB_EDIT', $job);
 
@@ -67,6 +68,23 @@ class JobController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Image management
+            $file = $form->get('companyImage')->getData();
+            if ($file && $file->isValid()) {
+
+                // Si le job possède déjà une image
+                if ($job->getJobImage()) {
+                    $fileManager->removeImage($job->getJobImage()->getName());
+                    $newFile = $fileManager->uploadImage($file);
+                    $job->getJobImage()->setName($newFile);
+                } else {
+                    $newFile = $fileManager->uploadImage($file);
+                    $jobImage = new JobImage();
+                    $jobImage->setName($newFile);
+                    $job->setJobImage($jobImage);
+                }
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);

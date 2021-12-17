@@ -82,6 +82,7 @@
         ],
         "reset" : [
             "php -r \"foreach(glob('public/uploads/application/*') as $file) unlink($file);\"",
+            "php -r \"foreach(glob('public/uploads/image/*') as $file) unlink($file);\"",
             "php bin/console doctrine:database:drop --force",
             "php bin/console doctrine:database:create",
             "php bin/console doctrine:migration:migrate --no-interaction",
@@ -89,6 +90,7 @@
         ],
         "test" : [
             "php -r \"foreach(glob('public/uploads/application/*') as $file) unlink($file);\"",
+            "php -r \"foreach(glob('public/uploads/image/*') as $file) unlink($file);\"",
             "php bin/console doctrine:database:drop --force --env=test",
             "php bin/console doctrine:schema:create --env=test",
             "php bin/console doctrine:fixtures:load --no-interaction --group=test --env=test",
