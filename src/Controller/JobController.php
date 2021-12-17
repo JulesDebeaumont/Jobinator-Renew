@@ -29,7 +29,7 @@ class JobController extends AbstractController
 
             // Image management
             $file = $form->get('companyImage')->getData();
-            if ($file) {
+            if ($file && $file->isValid()) {
                 $newFile = $fileManager->uploadImage($file);
 
                 $jobImage = new JobImage();

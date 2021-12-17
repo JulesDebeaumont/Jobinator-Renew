@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 #[Route('/job/{job_slug}/application')]
@@ -55,27 +56,27 @@ class ApplicationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /**
-             * Gestion des fichiers
-             * https://symfony.com/doc/current/controller/upload_file.html
-             * Custom service
-             */
+            // Gestion des fichiers
+            // https://symfony.com/doc/current/controller/upload_file.html
             $files = $form->get('files')->getData();
 
+            if (count($files) > 3) {
+                throw new FileException('More than 3 files are being uploaded.');
+            }
 
-            // TODO : throw error if count($files) > 3 ?
-            // TODO : file cannot be empty
             foreach ($files as $file) {
-                $newFile = $fileManager->uploadPDF($file);
+                if ($file->isValid()) {
+                    $newFile = $fileManager->uploadPDF($file);
 
-                $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                    $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
-                $fileApplication = new FileApplication();
-                $fileApplication->setName($newFile);
-                $fileApplication->setOriginalName($originalFileName);
-                $fileApplication->setFileExtension($fileExtension);
-                $application->addFile($fileApplication);
+                    $fileApplication = new FileApplication();
+                    $fileApplication->setName($newFile);
+                    $fileApplication->setOriginalName($originalFileName);
+                    $fileApplication->setFileExtension($fileExtension);
+                    $application->addFile($fileApplication);
+                }
             }
 
             $application->setJob($job);

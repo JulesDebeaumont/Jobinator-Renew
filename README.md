@@ -104,7 +104,7 @@ Launch MailHog
 - Better emails style
 - Change password
 - BD Archives
-- Check if files <= 3 when uploading for applications
+- Check if files <= 3 when uploading for applications ✔
 - Application success redirect to previous search
 - Reset password mailer
 - Fix Job counts for Recruter ✔
@@ -114,6 +114,7 @@ Launch MailHog
 - Image table for Job ✔
 - Fixture image job
 - Test image in job creation
-- JobImage displayed in template
+- Test more than 3 files for application form
+- JobImage displayed in template ✔
 - JobImage in job form ✔
 - Recruter must answer!
