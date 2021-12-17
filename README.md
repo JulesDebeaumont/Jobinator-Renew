@@ -89,7 +89,6 @@ Launch MailHog
 - Slug Job ✔
 - Slug Application ✔
 - ApplicationFiles url change id to name (already unique with md5 method) ✔
-- Fixture with files ✔
 - Password with lower/uppercase and number ✔
 - Captcha in registration forms ✔
 - Commande showing number of job in the database ✔
@@ -108,13 +107,12 @@ Launch MailHog
 - Application success redirect to previous search
 - Reset password mailer
 - Fix Job counts for Recruter ✔
+- Fix My-Jobs list for Recruter (not showing all/bad request?)
 - Fix See Candidat count on jobs
 - Message table ?
 - EasyAdmin
 - Image table for Job ✔
-- Fixture image job
-- Test image in job creation
-- Test more than 3 files for application form
+- Test image in job creation ✔
 - JobImage displayed in template ✔
 - JobImage in job form ✔
 - Recruter must answer!

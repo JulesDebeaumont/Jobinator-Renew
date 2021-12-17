@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Bundle\FrameworkBundle\Test\MailerAssertionsTrait;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class JobTest extends WebTestCase
 {
@@ -308,5 +309,75 @@ class JobTest extends WebTestCase
 
         $client->catchExceptions(false);
         $client->request('GET', "/job/{$job->getSlug()}/edit");
+    }
+
+    // Not working, can't finf the 'application[files][1]' field for some reason
+    // https://symfony.com/doc/current/testing.html#submitting-forms
+    /*
+    public function testMoreThan3FilesForApplicationForm(): void {
+        $client = $this->authAsCandidat();
+        $job = $this->createJob('A new job');
+        
+        $crawler = $client->request('GET', "/job/{$job->getSlug()}/application/new");
+        $this->assertResponseIsSuccessful();
+
+        $this->expectException(FileException::class);
+
+        $buttonCrawlerNode = $crawler->selectButton('Apply');
+        $form = $buttonCrawlerNode->form();
+        $form['application[description]'] = "Hello, I test if I can put more than 3 files in this form";
+
+        $filePath = 'public' . DIRECTORY_SEPARATOR .
+            'uploads' . DIRECTORY_SEPARATOR .
+            'tests' . DIRECTORY_SEPARATOR .
+            'TestCase.pdf';
+
+        if (file_exists($filePath)) {
+            $form['application[files][0]']->upload($filePath);
+            $form['application[files][1]']->upload($filePath);
+            $form['application[files][2]']->upload($filePath);
+            $form['application[files][3]']->upload($filePath);
+        }
+
+        $client->submit($form);
+        $client->catchExceptions(false);
+    }
+    */
+
+
+    public function testCreateJobWithImage(): void
+    {
+        $client = $this->authAsRecruter();
+        $container = static::getContainer();
+
+        $typeRepository = $container->get(TypeRepository::class);
+        $type = $typeRepository->findOneBy(['name' => 'CDI']);
+
+        $categoryRepository = $container->get(CategoryRepository::class);
+        $category = $categoryRepository->findOneBy(['name' => 'Autre']);
+
+        $crawler =   $client->request('GET', '/job/new');
+        $buttonCrawlerNode = $crawler->selectButton('Save');
+        $form = $buttonCrawlerNode->form();
+        $form['job[name]'] = "Test job with image";
+        $form['job[company]'] = "Test company";
+        $form['job[type]'] = $type->getId();
+        $form['job[category]'] = $category->getId();
+        $form['job[description]'] = 'Test description';
+
+        $filePath = 'public' . DIRECTORY_SEPARATOR .
+            'uploads' . DIRECTORY_SEPARATOR .
+            'tests' . DIRECTORY_SEPARATOR .
+            'ImageTestCase.png';
+
+        if (file_exists($filePath)) {
+            $form['job[companyImage]']->upload($filePath);
+        }
+
+        $client->submit($form);
+        $this->assertResponseRedirects('/my-jobs');
+
+        $client->request('GET', '/job/test_job_with_image_test_company');
+        $this->assertSelectorExists('img');
     }
 }
