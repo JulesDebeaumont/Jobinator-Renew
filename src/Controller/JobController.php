@@ -113,4 +113,21 @@ class JobController extends AbstractController
 
         return $this->redirectToRoute('my_jobs', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{slug}/edit/delete-image', name: 'job_delete_image', methods: ['GET', 'POST'])]
+    public function deleteImage(Job $job, FileManager $fileManager): Response
+    {
+        $this->denyAccessUnlessGranted('JOB_EDIT', $job);
+
+        $jobImage = $job->getJobImage();
+
+        if ($jobImage) {
+            $fileManager->removeImage($jobImage->getName());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($jobImage);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('job_edit', ['slug' => $job->getSlug()], 303);
+    }
 }

@@ -18,7 +18,7 @@ class JobImage
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Job::class, inversedBy="jobImage", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Job::class, inversedBy="jobImage")
      * @ORM\JoinColumn(nullable=false)
      */
     private $job;

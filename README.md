@@ -106,6 +106,7 @@ Launch MailHog
 - Check if files <= 3 when uploading for applications ✔
 - Application success redirect to previous search
 - Reset password mailer
+- Job edit form delete iamge ✔
 - Fix Job counts for Recruter ✔
 - Fix My-Jobs list for Recruter (not showing all/bad request?)
 - Fix See Candidat count on jobs
