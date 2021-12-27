@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=MessageRepository::class)
@@ -29,13 +30,14 @@ class Message
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $seen;
+    private $seen = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesSent")

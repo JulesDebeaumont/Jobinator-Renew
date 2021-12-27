@@ -28,7 +28,6 @@ class HomeController extends AbstractController
             'request' => $request
         ]);
 
-        // NEXT query + display last 5 research if logged as candidat
     }
 
     /**
