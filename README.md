@@ -94,12 +94,9 @@ Launch MailHog
 - Commande showing number of job in the database ✔
 - Commande for sending a mail to all candidat for fun ✔
 - My_application/job by createdAt/UpdateAt order ✔
-- Apply as anonymous
 - Test Edit another recruter's Job as Recruter ✔
 - Test Apply With File ✔
 - Test show file ✔
-- Table last research linked to candidat
-- Event with research -> add to last research if user is logged, max 5
 - Better emails style
 - Change password
 - BD Archives
@@ -110,7 +107,7 @@ Launch MailHog
 - Fix Job counts for Recruter ✔
 - Fix My-Jobs list for Recruter (not showing all/bad request?)
 - Fix See Candidat count on jobs
-- Message table ?
+- Message table
 - EasyAdmin
 - Image table for Job ✔
 - Test image in job creation ✔
