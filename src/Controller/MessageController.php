@@ -16,6 +16,12 @@ use Symfony\Component\Console\Exception\InvalidOptionException;
 #[Route('/message')]
 class MessageController extends AbstractController
 {
+    #[Route('/', name: 'messages', methods: ['GET'])]
+    public function index(): Response
+    {
+        return $this->redirectToRoute('message_sent');
+    }
+
     #[Route('/sent', name: 'messages_sent', methods: ['GET'])]
     public function sent(Request $request ,MessageRepository $messageRepository, PaginatorInterface $paginator): Response
     {
@@ -49,7 +55,7 @@ class MessageController extends AbstractController
     }
 
     #[Route('/new', name: 'message_new', methods: ['GET','POST'])]
-    public function new(Request $request, User $receiver): Response
+    public function new(Request $request): Response
     {
         $message = new Message();
         $form = $this->createForm(MessageType::class, $message);
@@ -57,7 +63,6 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setSender($this->getUser());
-            $message->setReceiver($receiver);
 
             if ($message->getSender() === $message->getReceiver()) {
                 throw new InvalidOptionException("You can't send a message to yourself!");

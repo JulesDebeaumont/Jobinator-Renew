@@ -1,4 +1,23 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div class="job-form">
+
+	<div class="form-group">
+		<span class="form-group-label">
+			<strong>{{ form_label(form.title) }}</strong>
+		</span>
+		{{ form_widget(form.title) }}
+		<div class="input-error">{{ form_errors(form.title) }}</div>
+	</div>
+
+    	<div class="form-group">
+		<span class="form-group-label">
+			<strong>{{ form_label(form.content) }}</strong>
+		</span>
+		{{ form_widget(form.content) }}
+		<div class="input-error">{{ form_errors(form.content) }}</div>
+	</div>
+
+	<button type="submit" class="btn btn-dark submit-form-button">Save</button>
+</div>
 {{ form_end(form) }}
