@@ -24,7 +24,7 @@ class Message
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", length=1000)
      */
     private $content;
 
