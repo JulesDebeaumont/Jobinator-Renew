@@ -373,3 +373,10 @@ body, html {
 .message-page {
     margin: 20px;
 }
+
+.message-item {
+    border: 1px solid var(--whiteAlpha);
+    background-color: #30303020;
+    margin: 10px;
+    padding: 8px;
+}
