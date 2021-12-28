@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Message
-{% endblock %}
-
 {% block body %}
 	<div class="main-page">
 		<div class="tiny-blank-divider"></div>
-		<h1 class="title-section">New message</h1>
+		<li>
+			{% for message in messages %}
+				<ul>
+					<div>{{ message.content }}</div>
+				</ul>
+			{% else %}
+				<span>No message yet.</span>
+			{% endfor %}
+		</li>
 
 		{{ include('message/_form.html.twig') }}
 
-		<a href="{{ path('my_jobs') }}">Cancel</a>
+		<a href="{{ path('conversation_index') }}">Back</a>
 
 		<div class="small-blank-divider"></div>
 	</div>

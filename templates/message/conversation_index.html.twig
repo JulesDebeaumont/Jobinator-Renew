@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="message-page">
+		<div class="tiny-blank-divider"></div>
+
+		<div class="message-list">
+			<h1 class="title-section">Messages</h1>
+			<ul>
+				{% for message in conversations %}
+					<li class="message-card">
+						<a href="{{ path('conversation_show', {'slug': message.application.slug}) }}">
+							<h2>{{ message.application.job.company }}</h2>
+							<div>{{ message.application.job.name }}</div>
+							<div>{{ message.content|slice(0, 80) }}...</div>
+							<div>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+						</a>
+					</li>
+				{% else %}
+					<span>No message.</span>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}

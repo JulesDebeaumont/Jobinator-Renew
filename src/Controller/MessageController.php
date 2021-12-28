@@ -28,23 +28,26 @@ class MessageController extends AbstractController
     public function sent(Request $request, MessageRepository $messageRepository, PaginatorInterface $paginator): Response
     {
         $conversationQuery = $messageRepository->createQueryBuilder('m')
-            ->where('m.receiver = :currentUser')
+            ->where('m.receiver = :currentUser OR m.sender = :currentUser')
             ->leftJoin('m.application', 'a')
             ->setParameter('currentUser', $this->getUser())
             ->orderBy('m.createdAt', 'DESC')
             ->groupBy('a.job')
             ->getQuery();
 
+            $convs = $conversationQuery->getResult();
+
         $conversations = $paginator->paginate($conversationQuery, $request->query->getInt('page', 1), 10);
 
         return $this->render('message/conversation_index.html.twig', [
-            'messages' => $conversations
+            'conversations' => $conversations,
+            'convs' => $convs
         ]);
     }
 
-    #[Route('/conversation/application/{slug}', name: 'conversation_application', methods: ['GET', 'POST'])]
+    #[Route('/conversation/application/{slug}', name: 'conversation_show', methods: ['GET', 'POST'])]
     #[ParamConverter('application', class: Application::class, options: ['mapping' => ['slug' => 'slug']])]
-    public function conversation(Application $application, Request $request, MessageRepository $messageRepository): Response
+    public function show(Application $application, Request $request, MessageRepository $messageRepository): Response
     {
         $message = new Message();
         $form = $this->createForm(MessageType::class, $message);
@@ -53,12 +56,13 @@ class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setSender($this->getUser());
             $message->setReceiver($application->getCandidat());
+            $message->setApplication($application);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($message);
             $entityManager->flush();
 
-            return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('conversation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         $messages = $messageRepository->createQueryBuilder('m')
@@ -74,7 +78,7 @@ class MessageController extends AbstractController
             ->getQuery()
             ->getResult();
 
-        return $this->renderForm('message/new.html.twig', [
+        return $this->renderForm('message/show.html.twig', [
             'messages' => $messages,
             'message' => $message,
             'form' => $form,

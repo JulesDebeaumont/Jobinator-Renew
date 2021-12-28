@@ -351,3 +351,25 @@ body, html {
         max-height: 150px;
     }
 }
+
+.table {
+    color: var(--whiteAlt);
+}
+
+.message-card {
+    background-color: #77777734;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.message-card:hover {
+    background-color: #77777770;
+}
+
+.message-list {
+    margin: 20px;
+}
+
+.message-page {
+    margin: 20px;
+}
