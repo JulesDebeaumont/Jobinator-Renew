@@ -2,16 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Application;
 use App\Entity\Message;
 use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Console\Exception\InvalidOptionException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/message')]
 class MessageController extends AbstractController
@@ -19,43 +21,30 @@ class MessageController extends AbstractController
     #[Route('/', name: 'messages', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->redirectToRoute('message_sent');
+        return $this->redirectToRoute('conversation_index');
     }
 
-    #[Route('/sent', name: 'messages_sent', methods: ['GET'])]
-    public function sent(Request $request ,MessageRepository $messageRepository, PaginatorInterface $paginator): Response
+    #[Route('/conversation', name: 'conversation_index', methods: ['GET'])]
+    public function sent(Request $request, MessageRepository $messageRepository, PaginatorInterface $paginator): Response
     {
-        $messagesQuery = $messageRepository->createQueryBuilder('m')
+        $conversationQuery = $messageRepository->createQueryBuilder('m')
             ->where('m.receiver = :currentUser')
+            ->leftJoin('m.application', 'a')
             ->setParameter('currentUser', $this->getUser())
             ->orderBy('m.createdAt', 'DESC')
+            ->groupBy('a.job')
             ->getQuery();
 
-        $messages = $paginator->paginate($messagesQuery, $request->query->getInt('page', 1), 10);
+        $conversations = $paginator->paginate($conversationQuery, $request->query->getInt('page', 1), 10);
 
-        return $this->render('message/sent.html.twig', [
-            'messages' => $messages
+        return $this->render('message/conversation_index.html.twig', [
+            'messages' => $conversations
         ]);
     }
 
-    #[Route('/received', name: 'message_received', methods: ['GET'])]
-    public function received(Request $request ,MessageRepository $messageRepository, PaginatorInterface $paginator): Response
-    {
-        $messagesQuery = $messageRepository->createQueryBuilder('m')
-            ->where('m.sender = :currentUser')
-            ->setParameter('currentUser', $this->getUser())
-            ->orderBy('m.createdAt', 'DESC')
-            ->getQuery();
-
-        $messages = $paginator->paginate($messagesQuery, $request->query->getInt('page', 1), 10);
-
-        return $this->render('message/received.html.twig', [
-            'messages' => $messages
-        ]);
-    }
-
-    #[Route('/new', name: 'message_new', methods: ['GET','POST'])]
-    public function new(Request $request): Response
+    #[Route('/conversation/application/{slug}', name: 'message_new', methods: ['GET', 'POST'])]
+    #[ParamConverter('application', class: Application::class, options: ['mapping' => ['slug' => 'slug']])]
+    public function conversation(Application $application, Request $request, MessageRepository $messageRepository): Response
     {
         $message = new Message();
         $form = $this->createForm(MessageType::class, $message);
@@ -63,10 +52,7 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setSender($this->getUser());
-
-            if ($message->getSender() === $message->getReceiver()) {
-                throw new InvalidOptionException("You can't send a message to yourself!");
-            }
+            $message->setReceiver($application->getCandidat());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($message);
@@ -75,17 +61,23 @@ class MessageController extends AbstractController
             return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $messages = $messageRepository->createQueryBuilder('m')
+            ->leftJoin('m.application', 'a')
+            ->leftJoin('a.job', 'j')
+            ->where('a.candidat = :candidat')
+            ->andWhere('j.recruter = :recruter')
+            ->setParameters([
+                'candidat' => $application->getCandidat(),
+                'recruter' => $application->getJob()->getRecruter()
+            ])
+            ->orderBy('createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+
         return $this->renderForm('message/new.html.twig', [
+            'messages' => $messages,
             'message' => $message,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'message_show', methods: ['GET'])]
-    public function show(Message $message): Response
-    {
-        return $this->render('message/show.html.twig', [
-            'message' => $message,
         ]);
     }
 }
