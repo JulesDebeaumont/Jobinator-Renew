@@ -51,6 +51,17 @@ class Message
      */
     private $receiver;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Application::class, inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $application;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSignaled = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +135,30 @@ class Message
     public function setReceiver(?User $receiver): self
     {
         $this->receiver = $receiver;
+
+        return $this;
+    }
+
+    public function getApplication(): ?Application
+    {
+        return $this->application;
+    }
+
+    public function setApplication(?Application $application): self
+    {
+        $this->application = $application;
+
+        return $this;
+    }
+
+    public function getIsSignaled(): ?bool
+    {
+        return $this->isSignaled;
+    }
+
+    public function setIsSignaled(bool $isSignaled): self
+    {
+        $this->isSignaled = $isSignaled;
 
         return $this;
     }

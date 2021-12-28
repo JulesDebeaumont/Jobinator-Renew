@@ -86,7 +86,7 @@
 						<div class="small-blank-divider"></div>
 						<div class="small-blank-divider"></div>
 
-						<a class="btn btn-dark" href="{{ path('message_new', {'user' : application.candidat}) }}">Send a message</a>
+						<a class="btn btn-dark" href="{{ path('conversation_application', {'slug' : application.slug}) }}">Send a message</a>
 						<div class="small-blank-divider"></div>
 						<a class="btn btn-dark" href="{{ path('application_index', {'job_slug' : job.slug}) }}">Back to all candidats</a>
 

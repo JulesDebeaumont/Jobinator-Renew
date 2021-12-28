@@ -42,7 +42,7 @@ class MessageController extends AbstractController
         ]);
     }
 
-    #[Route('/conversation/application/{slug}', name: 'message_new', methods: ['GET', 'POST'])]
+    #[Route('/conversation/application/{slug}', name: 'conversation_application', methods: ['GET', 'POST'])]
     #[ParamConverter('application', class: Application::class, options: ['mapping' => ['slug' => 'slug']])]
     public function conversation(Application $application, Request $request, MessageRepository $messageRepository): Response
     {
@@ -70,7 +70,7 @@ class MessageController extends AbstractController
                 'candidat' => $application->getCandidat(),
                 'recruter' => $application->getJob()->getRecruter()
             ])
-            ->orderBy('createdAt', 'DESC')
+            ->orderBy('m.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
 

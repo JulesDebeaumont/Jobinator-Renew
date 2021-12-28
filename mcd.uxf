@@ -114,6 +114,7 @@ m1=1
 m2=0,n
 links v
 
+fg=green
 </panel_attributes><additional_attributes>400;630;400;680;10;680;10;10;190;10;190;60</additional_attributes></element><element><id>Relation</id><coordinates><x>284</x><y>0</y><w>830</w><h>650</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
 m1=0,n
 m2=0,1
