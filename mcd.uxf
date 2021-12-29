@@ -58,7 +58,7 @@ m2=1
 submits ^
 fg=green</panel_attributes><additional_attributes>10;90;10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>514</x><y>600</y><w>360</w><h>50</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
 m1=0,n
-m2=0,1
+m2=1
 contains &gt;
 
 fg=green</panel_attributes><additional_attributes>340;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>174</x><y>520</y><w>250</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;
@@ -93,7 +93,6 @@ aussi aux users
 possible
 bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>194</x><y>70</y><w>120</w><h>100</h></coordinates><panel_attributes>Message
 --
-title: string
 content: string
 seen: bool
 createdAt: Date
@@ -109,15 +108,19 @@ m1=0,n
 m2=1
 send ^
 
-fg=green</panel_attributes><additional_attributes>10;10;60;10;60;130;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>64</x><y>10</y><w>430</w><h>700</h></coordinates><panel_attributes>lt=-
+fg=green</panel_attributes><additional_attributes>10;10;60;10;60;130;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>64</x><y>10</y><w>430</w><h>680</h></coordinates><panel_attributes>lt=-
 m1=1
 m2=0,n
 links v
 
 fg=green
-</panel_attributes><additional_attributes>400;630;400;680;10;680;10;10;190;10;190;60</additional_attributes></element><element><id>Relation</id><coordinates><x>284</x><y>0</y><w>830</w><h>650</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
+</panel_attributes><additional_attributes>400;630;400;660;10;660;10;10;190;10;190;60</additional_attributes></element><element><id>Relation</id><coordinates><x>284</x><y>0</y><w>150</w><h>90</h></coordinates><panel_attributes>lt=&lt;-&gt;&gt;&gt;&gt;
 m1=0,n
-m2=0,1
-contains v
+m2=1
+contains &gt;
 
-</panel_attributes><additional_attributes>690;620;750;620;750;10;10;10;10;70</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes>130;20;10;20;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>0</y><w>120</w><h>70</h></coordinates><panel_attributes>File
+--
+path: string
+name: string
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

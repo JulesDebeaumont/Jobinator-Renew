@@ -16,21 +16,6 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
-                'label' => 'title',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Title is required'
-                    ]),
-                    new Length([
-                        'min' => 3,
-                        'minMessage' => 'Should be at least 3 characters long',
-                        'max' => 255,
-                        'maxMessage' => 'Should be at most 255 characters long',
-                    ])
-                ]
-            ])
             ->add('content', TextareaType::class, [
                 'label' => 'message',
                 'required' => true,

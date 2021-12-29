@@ -32,7 +32,7 @@ class Message
     /**
      * @ORM\Column(type="boolean")
      */
-    private $seen = 0;
+    private $seen = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesSent")
