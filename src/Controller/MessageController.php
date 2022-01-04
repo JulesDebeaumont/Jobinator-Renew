@@ -79,6 +79,7 @@ class MessageController extends AbstractController
             ->getResult();
 
         return $this->renderForm('message/show.html.twig', [
+            'application' => $application,
             'messages' => $messages,
             'message' => $message,
             'form' => $form,

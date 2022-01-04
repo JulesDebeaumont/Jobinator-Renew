@@ -4,25 +4,28 @@
 	<div class="main-page">
 		<div class="tiny-blank-divider"></div>
 
-		<div class="">
-		<ul>
-			{% for message in messages %}
-				<li class="message-item">
-					<h3>{{ message.sender.name }}
-						<div>{{ message.createdAt|date("") }}</div>
-					</h3>
-					<h3>{{ message.sender.surname }}</h3>
-					<div>{{ message.content }}</div>
-				</li>
-			{% else %}
-				<span>No message yet.</span>
-			{% endfor %}
-		</ul>
+		<div class="title-conversation">
+			<h2>{{ application.job.name}}</h2>
+			<h3>{{ application.job.company }}</h3>
+		</div>
 
-		{{ include('message/_form.html.twig') }}
+		<div class="conversation-block">
+				{% for message in messages %}
+					<div class="message-item">
+						<h3>{{ message.sender.name }}
+							<div>{{ message.createdAt|date("") }}</div>
+						</h3>
+						<h3>{{ message.sender.surname }}</h3>
+						<div>{{ message.content }}</div>
+					</div>
+				{% else %}
+					<span>No message yet.</span>
+				{% endfor %}
 
-		<a href="{{ path('conversation_index') }}">Back</a>
+			{{ include('message/_form.html.twig') }}
 
-		<div class="small-blank-divider"></div>
-	</div>
-{% endblock %}
+			<a href="{{ path('conversation_index') }}">Back</a>
+
+			<div class="small-blank-divider"></div>
+		</div>
+	{% endblock %}
